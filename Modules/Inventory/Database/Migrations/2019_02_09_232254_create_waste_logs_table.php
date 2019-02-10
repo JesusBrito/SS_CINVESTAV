@@ -25,7 +25,7 @@ class CreateWasteLogsTable extends Migration
             $table->string('creti',5);
             $table->tinyInteger('estado');
 
-            $table->foreign('idUsuario')->references('id')->on('users');
+            //$table->foreign('idUsuario')->references('id')->on('users'); referencia pendiente
             $table->foreign('idTipoDesecho')->references('id')->on('type_wastes');
             $table->foreign('idUnidad')->references('id')->on('unities');
 

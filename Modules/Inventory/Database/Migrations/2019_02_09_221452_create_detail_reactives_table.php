@@ -16,8 +16,8 @@ class CreateDetailReactivesTable extends Migration
         Schema::create('detail_reactives', function (Blueprint $table) {
             $table->increments('id');
             $table->string('idDetalleCatalogo',45)->unique();
-            $table->usingnedInteger('idReactivo');
-            $table->usingnedInteger('idProveedor');
+            $table->unsignedInteger('idReactivo');
+            $table->unsignedInteger('idProveedor');
             $table->unsignedInteger('idUbicacion');
             $table->unsignedInteger('idUnidad');                 
             $table->string('marca',30);
