@@ -21,7 +21,7 @@ class CreateProvidersTable extends Migration
             $table->integer('numExterior');
             $table->integer('numInterior');
             $table->string('alcMun',30);
-            $table->string('estadoRep'20);
+            $table->string('estadoRep',20);
             $table->integer('cp');
             $table->tinyInteger('estado');
 

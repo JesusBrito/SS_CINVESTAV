@@ -15,18 +15,18 @@ class CreateDetailEquipmentsTable extends Migration
     {
         Schema::create('detail_equipments', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('idDetalleCinvestav',45)->unique();
+            $table->string('idDetalleCinvestav', 45)->unique();
             $table->unsignedInteger('idProveedor');
             $table->unsignedInteger('idEquipo');
             $table->unsignedInteger('idEncargado');
             $table->integer('numSerie');
             $table->dateTime('fechaGarantia');
-            $table->string('imagen'80);
+            $table->string('imagen', 80);
             $table->tinyInteger('estado');
             $table->timestamps();
 
-            $table->foreign('idProveedor')references('id')on('providers');
-            $table->foreign('idEquipo')references('id')on('equipments');
+            $table->foreign('idProveedor')->references('id')->on('providers');
+            $table->foreign('idEquipo')->references('id')->on('equipments');
            // $table->foreign('idEncargado')references('idEncargado')on(''); relacion pendiente
         });
     }

@@ -19,8 +19,8 @@ class CreateBrandProvidersTable extends Migration
             $table->unsignedInteger('idMarcaCompañia');
             $table->tinyInteger('estado');
             $table->timestamps();
-            $table->foreign('idProveedor')references('id')on('providers');
-            $table->foreign('idMarcaCompañia')references('id')on('brand_companies');
+            $table->foreign('idProveedor')->references('id')->on('providers');
+            $table->foreign('idMarcaCompañia')->references('id')->on('brand_companies');
 
         });
     }

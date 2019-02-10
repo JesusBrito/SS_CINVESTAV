@@ -25,7 +25,7 @@ class CreateReactivesTable extends Migration
             $table->integer('totalExistencia');
             $table->tinyInteger('estado');
             $table->timestamps();
-            $table->foreign('idTipoReactivo')references('id')on('Type_reactives');
+            $table->foreign('idTipoReactivo')->references('id')->on('Type_reactives');
 
         });
     }

@@ -21,7 +21,7 @@ class CreateContactProvidersTable extends Migration
             $table->string('email',50)->unique();
             $table->tinyInteger('estado');         
             $table->timestamps();
-            $table->foreign('idProveedor')references('id')on('providers');
+            $table->foreign('idProveedor')->references('id')->on('providers');
         });
     }
 
