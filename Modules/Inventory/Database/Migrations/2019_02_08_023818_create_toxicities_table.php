@@ -15,7 +15,7 @@ class CreateToxicitiesTable extends Migration
     {
         Schema::create('toxicities', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('toxicidad',35);
+            $table->string('toxicidad', 35);
             $table->tinyInteger('estado');
             $table->timestamps();
         });
