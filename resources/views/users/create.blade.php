@@ -50,17 +50,17 @@
 
                 <div class="form-group">
                   <label for="txtnombre">Nombre(s)</label>
-                  <input class="form-control" required type="text" name="txtNombre" id="txtNombre" placeholder="Escribe tu nombre(s)" required>
+                  <input class="form-control" type="text" name="txtNombre" maxlegth="30" id="txtNombre" placeholder="Escribe tu nombre(s)" required>
                 </div>
 
                 <div class="form-group">
                   <label for="txtappat">Apellido paterno</label>
-                  <input class="form-control" required type="text" id="txtappat" name="txtappat" placeholder="Escribe tu apellido paterno" required>
+                  <input class="form-control" type="text" id="txtappat" maxlegth="20" name="txtappat" placeholder="Escribe tu apellido paterno" required>
                 </div>
 
                  <div class="form-group">
                   <label for="txtapmat">Apellido materno</label>
-                  <input class="form-control" required type="text" id="txtapmat" name="txtapmat" placeholder="Escribe tu apellido materno" required>
+                  <input class="form-control" type="text" id="txtapmat" maxlegth="20" name="txtapmat" placeholder="Escribe tu apellido materno" required>
                 </div>
 
             <!--
@@ -86,7 +86,7 @@
 
                  <div class="form-group">
                   <label for="txtfecha">Fecha de nacimiento</label>
-                  <input class="form-control" required type="text" id="txtfecha" name="txtfecha" required readonly style="background:white;">
+                  <input class="form-control" type="text" id="txtfecha" name="txtfecha" required readonly style="background:white;">
                 </div>
 
                 <div class="form-group">
@@ -99,7 +99,7 @@
 
                 <div class="form-group">
                   <label for="txtnumero">Número de teléfono</label>
-                  <input class="form-control" required type="text" pattern="[0-9]{10}" id="txtnumero" name="txtnumero" required>
+                  <input class="form-control" type="text" pattern="[0-9]{10}" id="txtnumero" name="txtnumero" required>
 
                 </div>
 
@@ -206,8 +206,9 @@
 
                   <div class="form-group has-feedback">
                     <label for="txtpassword2">Repetir contraseña</label>
-                    <input type="password" required class="form-control" id="txtpassword2" name="txtpassword2" placeholder="Contraseña" required>
+                    <input type="password" required class="form-control" onkeyup="validarPass()" id="txtpassword2" name="txtpassword2" placeholder="Contraseña" required>
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                    <span id="aviso_pass" hidden>* Las contraseñas no coinciden</span>
                   </div>
 
                 </div>

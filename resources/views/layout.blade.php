@@ -63,7 +63,7 @@ desired effect
   <!-- Main Header -->
   <header class="main-header">
 
-   
+
 
     <!-- Header Navbar -->
     <nav class="navbar navbar-static-top" role="navigation">
@@ -75,13 +75,13 @@ desired effect
           </button>
         </div>
       </div>
-     
-     
+
+
     </nav>
   </header>
- 
+
 @yield('contenido')
-  
+
 
   <!-- Main Footer -->
   <footer class="main-footer">
@@ -93,8 +93,8 @@ desired effect
     <strong>Copyright &copy; 2018 <a href="https://www.cinvestav.mx">CINVESTAV</a>.</strong>
   </footer>
 
-  
-  
+
+
 <!-- ./wrapper -->
 
 <!-- REQUIRED JS SCRIPTS -->
@@ -106,7 +106,8 @@ desired effect
 <!-- AdminLTE App -->
 <script src="{{asset("/js/adminlte.min.js")}}"></script>
 
-
+<!--validar cosas de usuario-->
+<script src="{{asset("/js/usuarios.js")}}"></script>
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->

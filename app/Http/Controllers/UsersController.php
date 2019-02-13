@@ -37,7 +37,7 @@ class UsersController extends Controller
     {
         $options=[
             'Correo'=>$request->txtNombre,
-            'Clave'=>$request->txtpassword1,
+            'Clave'=>bcrypt($request->txtpassword1),
             'Imagen'=>$request->flfoto,
             'Nombre'=>$request->txtNombre,
             'A_Paterno'=>$request->txtappat,
@@ -55,7 +55,6 @@ class UsersController extends Controller
         }else{
             return view('users.create');
         }
-
     }
 
     /**
