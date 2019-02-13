@@ -1,13 +1,13 @@
  @extends('layout')
     @section ('contenido')
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+ <!--content-wrapper-->
+   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
         Registro de usuarios
-        <small>Aquí se registran tanto profesores como alumnos por el administrador</small>
+        <small>Aquí se registra a cualquier usuario por el administrador</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i>Nivel</a></li>
@@ -84,10 +84,10 @@
 
               <div class="col-md-6">
 
-                <div class="form-group">
+                 <div class="form-group">
                   <label for="txtfecha">Fecha de nacimiento</label>
-                  <input class="form-control" type="date" id="txtfecha" required>
-                </div>        
+                  <input class="form-control" type="text" id="txtfecha" required readonly style="background:white;">
+                </div>   
 
                 <div class="form-group">
                   <label>Sexo</label>
@@ -99,7 +99,8 @@
 
                 <div class="form-group">
                   <label for="txtnumero">Número de teléfono</label>
-                  <input class="form-control" type="text" id="txtnumero" placeholder="ejemplo 5545566789" required>
+                  <input class="form-control" type="text" pattern="[0-9]{10}" id="txtnumero"  required>
+                  
                 </div>
 
                  <div class="form-group">
@@ -157,8 +158,8 @@
                               </select></td>
                             <td><input class="form-control" type="text" id="txtescuela"></td>
                             <td><input class="form-control" type="text" id="txtcarrera"></td>                            
-                            <td><input class="form-control" type="date" id="txtfechaini"></td>
-                            <td><input class="form-control" type="date" id="txtfechafin"></td>
+                            <td><input class="form-control ano" type="text" id="txtfechaini" readonly style="background:white;"></td>
+                            <td><input class="form-control ano" type="text" id="txtfechafin" readonly style="background:white;"></td>
                             <td><select class="form-control" id=slestatus>
                                   <option value="Enprogreso">En progreso</option>
                                   <option value="Egresado">Egresado</option>
@@ -173,8 +174,8 @@
                       </div>
 
                       <div class="box-footer clearfix">
-                        <div class="btn-group">
-                         <button type="submit" class="btn btn-primary pull-right" id="btnagregar">Agregar nuevo</button>
+                        <div class="btn-group pull-right">
+                         <button type="button" class="btn btn-block btn-default" id="btnagregar"><i class="fa fa-plus-circle"></i> Agregar</button>
                         </div>
                       </div>
 
@@ -190,20 +191,23 @@
                 
 
                 <div class="col-md-6">
-               
-                  <div class="form-group">
+                  
+                  <div class="form-group has-feedback">
                     <label for="txtcorreo">Correo electrónico</label>
                     <input type="email" class="form-control" id="txtcorreo" placeholder="ejemplo@email.com" required>
+                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                   </div>
 
-                  <div class="form-group">
+                  <div class="form-group has-feedback">
                     <label for="txtpassword1">Contraseña</label>
-                    <input type="password" class="form-control" id="txtpassword1" placeholder="********" required>
+                    <input type="password" class="form-control" id="txtpassword1" placeholder="Contraseña" required>
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                   </div>  
 
-                  <div class="form-group">
+                  <div class="form-group has-feedback">
                     <label for="txtpassword2">Repetir ontraseña</label>
-                    <input type="password" class="form-control" id="txtpassword2" placeholder="********" required>
+                    <input type="password" class="form-control" id="txtpassword2" placeholder="Contraseña" required>
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                   </div>  
 
                 </div>
@@ -213,7 +217,7 @@
 
                 <div class="box-footer">
                 
-                <button type="submit" class="btn btn-primary pull-right" id="btnaceptar">Aceptar</button>
+                <button type="submit" class="btn btn-primary pull-right" id="btnaceptar"><i class="glyphicon glyphicon-ok"></i> Aceptar</button>
               </div>
               <!-- /.box-footer -->
 
@@ -236,4 +240,6 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+  
+  
   @stop

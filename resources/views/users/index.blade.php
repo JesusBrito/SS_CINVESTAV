@@ -30,7 +30,7 @@
           <div class="col-md-12">
             <div class="box box-primary">
               <div class="box-header with-border">
-               <h3 class="box-title">Llene los siguientes campos</h3>
+               <h3 class="box-title">Usuarios</h3>
               </div>
               
               <form role="form">
@@ -47,39 +47,24 @@
 
                 <div class="row">
                   <div class="col-sm-12">
-
-                    <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                    <div class="box-body table-responsive no-padding">
+                     <table id="tblUsuarios" class="table table-hover">
 
                       <thead>
                         <tr role="row">
 
-                           <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 164px;">Tipo de usuario</th>
-
-                          <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 164px;">Nombre(s)</th>
-
-                          <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 225px;">Apellido paterno</th>
-
-                          <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 206px;">Apellido materno</th>
-
-
-                          <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 206px;">Grupo</th>
-
-
-                          <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 206px;">Fecha de nacimiento</th>
-
-                          <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 206px;">Sexo</th>
-
-
-                          <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 206px;">Teléfono</th>
-
-
-                          <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 206px;">Correo electrónico</th>
-
-                          <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 206px;">Grado</th>
-
-                          <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 206px;">Estatus</th>
-
-                          <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 206px;">Acciones</th>
+                          <th>Tipo de usuario</th>
+                          <th >Nombre(s)</th>
+                          <th>Apellido paterno</th>
+                          <th>Apellido materno</th>
+                          <th>Grupo</th>
+                          <th >Fecha de nacimiento</th>
+                          <th>Sexo</th>
+                          <th>Teléfono</th>
+                          <th>Correo electrónico</th>
+                          <th>Grado</th>
+                          <th>Estatus</th>
+                          <th>Acciones</th>
 
                         </tr>
                       </thead>
@@ -101,26 +86,27 @@
                           <td>Egresado</td>
                           <td>
                               
-                            <div class="btn-group">
-                             <button type="button" class="btn btn-primary pull-right" id="btnEditar">Editar</button>
+                            <div class="btn-group form-inline">
+                             <button type="button" class="btn btn-primary " id="btnEditar">Editar</button>
+                             </div>
+                             <div class="btn-group form-inline">
+                             <button type="button" class="btn btn-primary " id="btnEliminar">Eliminar</button>
+                             </div>
                             
-                            
-                             <button type="button" class="btn btn-primary pull-right" id="btnEliminar">Eliminar</button>
-                            </div>
                           
                           </td>
                         </tr>
 
-                        
-
-                        
+                      
 
                       </tbody>
 
-                      <tfoot>
-                      </tfoot>
+                      
 
                     </table>
+                  </div>
+
+                   
 
                 </div>
               </div>
@@ -130,21 +116,11 @@
 
               </div>
 
-            
-              
-
-                
-
-                
-
+      
                 </div>
                 <!-- /.box-body -->
 
-                <div class="box-footer">
-                
-                
-              </div>
-              <!-- /.box-footer -->
+               
 
                </form>
 
