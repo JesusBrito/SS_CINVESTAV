@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class UsersController extends Controller
 {
@@ -34,7 +35,27 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $options=[
+            'Correo'=>$request->txtcorreo,
+            'Clave'=>$request->txtpassword1,
+            'Imagen'=>$request->flfoto,
+            'Nombre'=>$request->txtNombre,
+            'A_Paterno'=>$request->txtappat,
+            'A_Materno'=>$request->txtapmat,
+            'Tipo_Usuario'=>$request->slTipoUsuario,
+            'Celular'=>$request->txtnumero,
+            'Permisos'=>"1234456",
+            'FechaNac'=>$request->txtfecha,
+            'Sexo'=>$request->slsexo,
+            'Estatus'=>1
+        ];
+
+        if(User::create($options)){
+            return view('users.index');
+        }else{
+            return view('users.create');
+        }
+
     }
 
     /**
@@ -56,7 +77,7 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-       
+
     }
 
     /**

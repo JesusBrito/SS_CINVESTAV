@@ -14,4 +14,5 @@
 Route::get('/', function () {
     return view('home');
 });
- Route::resource('usuarios', 'UsersController');
+
+Route::resource('usuarios', 'UsersController');
