@@ -36,7 +36,7 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         $options=[
-            'Correo'=>$request->txtcorreo,
+            'Correo'=>$request->txtNombre,
             'Clave'=>$request->txtpassword1,
             'Imagen'=>$request->flfoto,
             'Nombre'=>$request->txtNombre,
@@ -45,7 +45,7 @@ class UsersController extends Controller
             'Tipo_Usuario'=>$request->slTipoUsuario,
             'Celular'=>$request->txtnumero,
             'Permisos'=>"1234456",
-            'FechaNac'=>$request->txtfecha,
+            'FechaNac'=>date("Y-m-d", strtotime($request->txtfecha)),
             'Sexo'=>$request->slsexo,
             'Estatus'=>1
         ];

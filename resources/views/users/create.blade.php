@@ -39,7 +39,7 @@
 
                 <div class="form-group">
                   <label>Tipo de usuario</label>
-                  <select class="form-control" id="slTipoUsuario" required name=="slTipoUsuario">
+                  <select class="form-control" id="slTipoUsuario" required name="slTipoUsuario">
                     <option value="Alumno" selected="true">Alumno</option>
                     <option value="Profesor">Profesor</option>
                     <option value="Administrador">Administrador</option>

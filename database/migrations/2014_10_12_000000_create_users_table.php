@@ -27,6 +27,7 @@ class CreateUsersTable extends Migration
             $table->date('FechaNac');
             $table->boolean('Sexo');
             $table->boolean('Estatus');
+            $table->timestamps();
         });
     }
 

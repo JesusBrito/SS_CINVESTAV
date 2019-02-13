@@ -16,10 +16,10 @@ class CreateGroupDetailsTable extends Migration
         Schema::create('group_details', function (Blueprint $table) {
             $table->string('idGrupo',6);
             $table->unsignedInteger('idUsuario');
-            $table->timestamps();
             $table->primary(['idGrupo', 'idUsuario']);
             $table->foreign('idGrupo')->references('idGrupo')->on('groups')->onDelete('cascade');
             $table->foreign('idUsuario')->references('idUsuario')->on('users')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 
