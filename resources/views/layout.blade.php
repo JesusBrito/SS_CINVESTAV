@@ -10,19 +10,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <title>CINVESTAV</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <link rel="stylesheet" href="{{asset("/admin-lte/bower_components/bootstrap/dist/css/bootstrap.min.css")}}">
+  <link rel="stylesheet" href="{{asset("/css/bootstrap.min.css")}}">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{asset("/admin-lte/bower_components/font-awesome/css/font-awesome.min.css")}}">
+  <link rel="stylesheet" href="{{asset("/css/font-awesome.min.css")}}">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="{{asset("/admin-lte/bower_components/Ionicons/css/ionicons.min.css")}}">
+  <link rel="stylesheet" href="{{asset("/css/ionicons.min.css")}}">
   <!-- Theme style -->
-  <link rel="stylesheet" href="{{asset("/admin-lte/dist/css/AdminLTE.min.css")}}">
+  <link rel="stylesheet" href="{{asset("/css/AdminLTE.min.css")}}">
   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect. -->
-  <link rel="stylesheet" href="{{asset("/admin-lte/dist/css/skins/skin-blue.min.css")}}">
+  <link rel="stylesheet" href="{{asset("css/skin-blue.min.css")}}">
   <!-- Date Picker -->
-  <link rel="stylesheet" href="{{asset("/admin-lte/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css")}}">
+  <link rel="stylesheet" href="{{asset("/css/bootstrap-datepicker.min.css")}}">
   <!-- Cambio de Título-->
 <link rel="stylesheet" href="{{asset("/admin-lte/texto.css")}}">
 
@@ -100,24 +100,24 @@ desired effect
 <!-- REQUIRED JS SCRIPTS -->
 
 <!-- jQuery 3 -->
-<script src="{{asset("/admin-lte/bower_components/jquery/dist/jquery.min.js")}}"></script>
+<script src="{{asset("/js/jquery.min.js")}}"></script>
 <!-- Bootstrap 3.3.7 -->
-<script src="{{asset("/admin-lte/bower_components/bootstrap/dist/js/bootstrap.min.js")}}"></script>
+<script src="{{asset("/js/bootstrap.min.js")}}"></script>
 <!-- AdminLTE App -->
-<script src="{{asset("/admin-lte/dist/js/adminlte.min.js")}}"></script>
+<script src="{{asset("/js/adminlte.min.js")}}"></script>
 
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->
      <!-- Slimscroll -->
-<script src="{{asset("/admin-lte/bower_components/jquery-slimscroll/jquery.slimscroll.min.js")}}"></script>
+<script src="{{asset("/js/jquery.slimscroll.min.js")}}"></script>
 
 <!-- bootstrap datepicker -->
-<script src="{{asset("/admin-lte/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js")}}"></script>
+<script src="{{asset("/js/bootstrap-datepicker.min.js")}}"></script>
 
 
-<script src="{{asset("/admin-lte/bower_components/bootstrap-datepicker/dist/locales/bootstrap-datepicker.es.min.js")}}"></script>
+<script src="{{asset("/js/bootstrap-datepicker.es.min.js")}}"></script>
 
 
 
