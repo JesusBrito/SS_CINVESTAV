@@ -12,5 +12,14 @@
 */
 
 Route::prefix('documents')->group(function() {
-    Route::get('/', 'DocumentsController@index');
+
+  Route::resource('usuarios', 'UsersControllerDocuments');
+   
+
+
+
+
+
+
+
 });

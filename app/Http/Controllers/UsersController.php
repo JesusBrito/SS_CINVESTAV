@@ -7,6 +7,13 @@ use App\User;
 
 class UsersController extends Controller
 {
+
+    public function __construct()
+    {
+       
+       $this->middleware('auth');//Entregable 10: agregar rol de administrador
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +21,9 @@ class UsersController extends Controller
      */
     public function index()
     {
-        return view('users.index');
+       
+        $users=\App\User::all();
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -35,7 +44,7 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        $options=[
+       /* $options=[
             'Correo'=>$request->txtNombre,
             'Clave'=>bcrypt($request->txtpassword1),
             'Imagen'=>$request->flfoto,
@@ -54,7 +63,7 @@ class UsersController extends Controller
             return view('users.index');
         }else{
             return view('users.create');
-        }
+        }*/
     }
 
     /**

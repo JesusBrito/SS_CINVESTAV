@@ -8,7 +8,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Listado de Usuarios
+        Listado de Usuarios 
         <small>Aquí se muestran todos los usuarios del sistema</small>
       </h1>
       <ol class="breadcrumb">
@@ -70,18 +70,18 @@
                       </thead>
 
                       <tbody>
-             
+                        @foreach($users as $user)
                         <tr role="row" class="odd">
-                          <td class="sorting_1">Alumno</td>
+                          <td class="sorting_1">{{$user->Tipo_Usuario}}</td>
                           <!--luego lo agrego, XD-->
-                          <td>Nombre</td>
-                          <td>Apellido paterno</td>
-                          <td>Apellido materno</td>
+                          <td>{{$user->Nombre}}</td>
+                          <td>{{$user->A_Paterno}}</td>
+                          <td>{{$user->A_Materno}}</td>
                           <td>Grupo</td>
-                          <td>Fecha</td>
-                          <td>Femenino</td>
-                          <td>5544332211</td>
-                          <td>ejemplo@gmail.com</td>
+                          <td>{{$user->FechaNac}}</td>
+                          <td>{{$user->Sexo}}</td>
+                          <td>{{$user->Celular}}</td>
+                          <td>{{$user->Correo}}</td>
                           <td>Diplomado</td>
                           <td>Egresado</td>
                           <td>
@@ -96,6 +96,7 @@
                           
                           </td>
                         </tr>
+                        @endforeach
 
                       
 

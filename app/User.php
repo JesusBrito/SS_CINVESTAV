@@ -17,7 +17,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'Correo',
-        'Clave',
+        'password',
         'Imagen',
         'Nombre',
         'A_Paterno',
@@ -29,6 +29,7 @@ class User extends Authenticatable
         'Sexo',
         'Estatus'
     ];
+    protected $primaryKey = 'idUsuario';
 
     /**
      * The attributes that should be hidden for arrays.
@@ -36,6 +37,6 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+    
     ];
 }

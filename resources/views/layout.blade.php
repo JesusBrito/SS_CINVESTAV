@@ -124,8 +124,8 @@ desired effect
 
 
 <script type="text/javascript">
-  $('#txtfecha').datepicker({language: 'es', autoclose: true});
-  $("#txtfecha").datepicker().datepicker("setDate", new Date());
+  $('#FechaNac').datepicker({format: 'yyyy/mm/dd',language: 'es', autoclose: true});
+  $("#FechaNac").datepicker().datepicker("setDate", new Date());
   $('.ano').datepicker({
       format: "yyyy",
       viewMode: "years",

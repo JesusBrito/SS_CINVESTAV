@@ -31,7 +31,7 @@
                <h3 class="box-title">Llene los siguientes campos</h3>
               </div>
 
-            <form method="POST" Action="{{route('usuarios.store')}}" role="form">
+            <form method="POST" Action="{{ route('register') }}" role="form">
                 {{csrf_field()}}
               <div class="box-body">
 
@@ -39,28 +39,28 @@
 
                 <div class="form-group">
                   <label>Tipo de usuario</label>
-                  <select class="form-control" id="slTipoUsuario" required name="slTipoUsuario">
-                    <option value="Alumno" selected="true">Alumno</option>
+                  <select class="form-control" id="Tipo_Usuario" required name="Tipo_Usuario">
+                    <option value="Estudiante" selected="true">Estudiante</option>
                     <option value="Profesor">Profesor</option>
                     <option value="Administrador">Administrador</option>
-                    <option value="Tecnico">Técnico</option>
+                    <option value="Técnico">Técnico</option>
                     <option value="Auxiliar">Auxiliar de laboratorio</option>
                   </select>
                 </div>
 
                 <div class="form-group">
                   <label for="txtnombre">Nombre(s)</label>
-                  <input class="form-control" type="text" name="txtNombre" maxlegth="30" id="txtNombre" placeholder="Escribe tu nombre(s)" required>
+                  <input class="form-control" type="text" name="Nombre" maxlegth="30" id="Nombre" placeholder="Escribe tu nombre(s)" required>
                 </div>
 
                 <div class="form-group">
                   <label for="txtappat">Apellido paterno</label>
-                  <input class="form-control" type="text" id="txtappat" maxlegth="20" name="txtappat" placeholder="Escribe tu apellido paterno" required>
+                  <input class="form-control" type="text" id="A_Paterno" maxlegth="20" name="A_Paterno" placeholder="Escribe tu apellido paterno" required>
                 </div>
 
                  <div class="form-group">
                   <label for="txtapmat">Apellido materno</label>
-                  <input class="form-control" type="text" id="txtapmat" maxlegth="20" name="txtapmat" placeholder="Escribe tu apellido materno" required>
+                  <input class="form-control" type="text" id="A_Materno" maxlegth="20" name="A_Materno" placeholder="Escribe tu apellido materno" required>
                 </div>
 
             <!--
@@ -85,13 +85,13 @@
               <div class="col-md-6">
 
                  <div class="form-group">
-                  <label for="txtfecha">Fecha de nacimiento</label>
-                  <input class="form-control" type="text" id="txtfecha" name="txtfecha" required readonly style="background:white;">
+                  <label for="FechaNac">Fecha de nacimiento</label>
+                  <input class="form-control" type="text" id="FechaNac" name="FechaNac" required readonly style="background:white;">
                 </div>
 
                 <div class="form-group">
                   <label>Sexo</label>
-                  <select class="form-control" required id="slsexo" name="slsexo">
+                  <select class="form-control" required id="Sexo" name="Sexo">
                     <option value="0" selected="true">Femenino</option>
                     <option value="1">Masculino</option>
                   </select>
@@ -99,13 +99,13 @@
 
                 <div class="form-group">
                   <label for="txtnumero">Número de teléfono</label>
-                  <input class="form-control" type="text" pattern="[0-9]{10}" id="txtnumero" name="txtnumero" required>
+                  <input class="form-control" type="text" pattern="[0-9]{10}" id="Celular" name="Celular" required>
 
                 </div>
 
                  <div class="form-group">
                   <label for="flfoto">Añadir foto</label>
-                  <input type="file" id="flfoto" name="flfoto">
+                  <input type="file" id="Imagen" name="Imagen">
                   <p class="help-block">Suba una fotografía en formato .jpg o .png</p>
                 </div>
 
@@ -194,19 +194,19 @@
 
                   <div class="form-group has-feedback">
                     <label for="txtcorreo">Correo electrónico</label>
-                    <input type="email" required class="form-control" name="txtcorreo" id="txtcorreo" placeholder="ejemplo@email.com" required>
+                    <input type="email" required class="form-control" name="Correo" id="Correo" placeholder="ejemplo@email.com" required>
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                   </div>
 
                   <div class="form-group has-feedback">
                     <label for="txtpassword1">Contraseña</label>
-                    <input type="password" required class="form-control" id="txtpassword1" name="txtpassword1" placeholder="Contraseña" required>
+                    <input type="password" required class="form-control" id="password" name="password" placeholder="Contraseña" required>
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                   </div>
 
                   <div class="form-group has-feedback">
                     <label for="txtpassword2">Repetir contraseña</label>
-                    <input type="password" required class="form-control" onkeyup="validarPass()" id="txtpassword2" name="txtpassword2" placeholder="Contraseña" required>
+                    <input type="password" required class="form-control"  id="txtpassword2" name="txtpassword2" placeholder="Contraseña" required>
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                     <span id="aviso_pass" hidden>* Las contraseñas no coinciden</span>
                   </div>

@@ -29,28 +29,50 @@
   <div class="login-box-body">
     <p class="login-box-msg"></p>
 
-    <form action="paginaprincipal.html" method="post">
+    <form  method="POST" action="{{ route('login') }}">
+      @csrf
       <div class="form-group has-feedback">
          <label>Correo electrónico:</label>
-        <input id="txtCorreo" type="email" class="form-control" placeholder="ejemplo@gmail.com">
+        <input id="Correo" name="Correo" type="email" class="form-control" placeholder="ejemplo@gmail.com" value="{{ old('Correo') }}">
+        
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        <strong>{{ $errors->first('Correo') }}</strong>
+
       </div>
       <div class="form-group has-feedback">
          <label>Contraseña:</label>
-        <input id="txtPassword" type="password" class="form-control" placeholder="Contraseña">
+        <input id="password" name="password" type="password" class="form-control" placeholder="Contraseña">
+        
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
+      <strong>{{ $errors->first('password') }}</strong>
        <div class="form-group">
                   <label>Selecciona el sistema al que quieres ingresar:</label>
-                  <select class="form-control" id=slsexo>
+                  <select class="form-control" id="Sistema" name="Sistema" >
                     <option value="0" selected="true">Documentos</option>
                     <option value="1">Inventarios</option>
                   </select>
+        </div>
+        <div class="form-group row">
+                <div class="col-md-6 offset-md-4">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+
+                        <label class="form-check-label" for="remember">
+                            {{ __('Recordarme') }}
+                        </label>
+                    </div>
                 </div>
+          </div>
       <div class="row">
         <div class="col-xs-4">
           <button type="submit" class="btn btn-primary btn-block btn-flat">Entrar</button>
         </div>
+         @if (Route::has('password.request'))
+                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                        {{ __('Olvidé mi contraseña') }}
+                                    </a>
+                                @endif
         <!-- /.col -->
       </div>
     </form>

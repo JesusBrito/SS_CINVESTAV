@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = 'usuarios';
 
     /**
      * Create a new controller instance.
@@ -37,7 +37,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('auth');
     }
 
     /**
@@ -49,10 +49,12 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
+            
         ]);
+    }
+    public function showRegistrationForm()
+    {
+        return view('usuarios.create');
     }
 
     /**
@@ -64,9 +66,18 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'Correo'=>$data['Correo'],
+            'password'=>Hash::make($data['password']),
+            'Imagen'=>$data['Imagen'],
+            'Nombre'=>$data['Nombre'],
+            'A_Paterno'=>$data['A_Paterno'],
+            'A_Materno'=>$data['A_Materno'],
+            'Tipo_Usuario'=>$data['Tipo_Usuario'],
+            'Celular'=>$data['Celular'],
+            
+            'FechaNac'=>$data['FechaNac'],
+            'Sexo'=>$data['Sexo'],
+
         ]);
     }
 }
