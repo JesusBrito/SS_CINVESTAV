@@ -26,7 +26,8 @@ class CreateUsersTable extends Migration
             $table->string('Permisos',45)->default(0);
             $table->date('FechaNac');
             $table->boolean('Sexo');
-            $table->boolean('Estatus')->default(1);;
+            $table->boolean('Estatus')->default(1);
+            $table->rememberToken();
             $table->timestamps();
 
         });

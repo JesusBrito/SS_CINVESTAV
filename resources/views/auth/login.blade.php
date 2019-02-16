@@ -80,7 +80,7 @@
     
     <!-- /.social-auth-links -->
 
-    <a href="#">Olvidé mi contraseña</a><br>
+   
    
   </div>
   <!-- /.login-box-body -->

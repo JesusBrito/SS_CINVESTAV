@@ -27,11 +27,11 @@
                             <label for="email">{{ __('Correo electrónico') }}</label>
 
                             
-                                <input id="email" placeholder="ejemplo@email.com" type="email" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+                                <input id="Correo" placeholder="ejemplo@email.com" type="email" class="form-control {{ $errors->has('Correo') ? ' is-invalid' : '' }}" name="Correo" value="{{ old('Correo') }}" required>
 
-                                @if ($errors->has('email'))
+                                @if ($errors->has('Correo'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong>{{ $errors->first('Correo') }}</strong>
                                     </span>
                                 @endif
                             

@@ -39,4 +39,16 @@ class User extends Authenticatable
     protected $hidden = [
     
     ];
+    public function getEmailAttribute() {
+        return $this->attributes['Correo'];
+    }
+
+    public function setEmailAttribute($value) {
+        $this->attributes['Correo'] = $value;
+    }
+    public function getEmailForPasswordReset()
+    {
+        return $this->Correo;
+    }
+    
 }
