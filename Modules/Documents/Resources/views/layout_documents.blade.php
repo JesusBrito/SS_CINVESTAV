@@ -160,7 +160,7 @@ desired effect
                   <a href="sistema.html" class="btn btn-default btn-flat">Sistema <br> inventarios</a>
                 </div>
                 <div class="pull-right text-center">
-                  <a href="iniciosesion.html" class="btn btn-default btn-flat">Cerrar <br> sesión</a>
+                  <a href="{{ url('/logout') }}" class="btn btn-default btn-flat">Cerrar <br> sesión</a>
                 
               </div>
                 

@@ -19,7 +19,7 @@ class UsersTableSeeder extends Seeder
             'Tipo_Usuario' => 'Administrador',
             'FechaNac' => '1996-12-26',
             'Sexo' => 1,
-            'email' => 'lfcg.programador@gmail.com',
+            'Correo' => 'lfcg.programador@gmail.com',
             'password' => bcrypt('password'),
         ]);
     }

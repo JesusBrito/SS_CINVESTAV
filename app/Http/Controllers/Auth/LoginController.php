@@ -42,12 +42,12 @@ class LoginController extends Controller
     {
         return 'Correo';
     }
+    
     protected function authenticated(Request $request)
     {
         if ( $request->Sistema=='0' ) {
             return redirect('/documents/usuarios/show');
-    }
-
+        }
         return redirect('/home'); //inventarios
     }
     

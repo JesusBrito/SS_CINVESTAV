@@ -74,7 +74,6 @@ class RegisterController extends Controller
             'A_Materno'=>$data['A_Materno'],
             'Tipo_Usuario'=>$data['Tipo_Usuario'],
             'Celular'=>$data['Celular'],
-            
             'FechaNac'=>$data['FechaNac'],
             'Sexo'=>$data['Sexo'],
 

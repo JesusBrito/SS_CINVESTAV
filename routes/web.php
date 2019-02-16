@@ -18,5 +18,6 @@ Route::get('/', function () {
 Route::resource('usuarios', 'UsersController');
 
 Auth::routes();
+Route::get('/logout', 'Auth\LoginController@logout');
 
 
