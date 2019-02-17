@@ -248,6 +248,8 @@ desired effect
   immediately after the control sidebar -->
   <div class="control-sidebar-bg"></div>
 </div>
+
+
 <!-- ./wrapper -->
 
 <!-- REQUIRED JS SCRIPTS -->
@@ -272,6 +274,7 @@ desired effect
 
 
 <script src="{{asset("/js/bootstrap-datepicker.es.min.js")}}"></script>
+@stack('scripts')
 
 
 

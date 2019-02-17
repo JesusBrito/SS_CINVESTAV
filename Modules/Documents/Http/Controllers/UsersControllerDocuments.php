@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use App\User;
-use DetailLevel;
+use Modules\Documents\Entities\Level as Level;
+use Modules\Documents\Entities\LevelDetail as LevelDetail;
 
 class UsersControllerDocuments extends Controller
 {
@@ -57,7 +58,9 @@ class UsersControllerDocuments extends Controller
     public function edit($id)
     {
         $usuario= User::find($id);
-        return view('documents::users.edit',["usuario"=>$usuario]);
+        $detailLevels= $usuario->detailLevel();
+        $levels= Level::all();
+        return view('documents::users.edit',["usuario"=>$usuario,"detailLevels"=>$detailLevels,"levels"=>$levels]);
     }
 
     /**
@@ -94,5 +97,11 @@ class UsersControllerDocuments extends Controller
      */
     public function destroy()
     {
+    }
+
+
+    //AJAX
+    public function saveDetailLevel(Request $request, $id){
+
     }
 }

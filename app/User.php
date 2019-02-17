@@ -51,8 +51,8 @@ class User extends Authenticatable
     {
         return $this->Correo;
     }
-
+    
     public function detailLevel(){
-        //return $this-> hasMany('Modules\Documents\Entities\DetailLevel');
+        return $this-> hasMany('Modules\Documents\Entities\LevelDetail', 'idUsuario')->get();
 	}
 }

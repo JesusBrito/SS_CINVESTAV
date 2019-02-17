@@ -26,7 +26,7 @@
               </div>
             <form method="POST" Action="{{ route('usuarios.update', $usuario->idUsuario) }}" role="form" enctype="multipart/form-data">
               <input name="_method" type="hidden" value="PUT">
-                {{csrf_field()}}
+              <input name="_token" value="{{ csrf_token() }}" type="hidden">
               <div class="box-body">
 
               <div class="col-md-6">
@@ -131,70 +131,96 @@
                   <div class="col-xs-12">
                     <div class="box">
                       <div class="box-header">
-                        <h3 class="box-title">Agregar grado de estudios</h3>
+                        <h3 class="box-title">Grados de estudio registrados</h3>
                       </div>
-
                       <div class="box-body table-responsive no-padding">
-                          {{$usuario->detailLevel()}}
-                        <table class="table table-hover">
-                          <tbody><tr>
-                            <th>Grado</th>
-                            <th>Escuela</th>
-                            <th>Carrera o estudios</th>
-                            <th>Año inicio</th>
-                            <th>Año término</th>
-                            <th>Estatus</th>
-                            <th>Opciones</th>
-                          </tr>
-                          <tr>
-                            <td>Diplomado</td>
-                            <td>UPIICSA - IPN</td>
-                            <td>Diplomado en seguridad </td>
-                            <td>2015</td>
-                            <td>2016</td>
-                            <td>Egresado</td>
-                            <td>
-                              <div class="btn-group form-inline">
-                                <a class="btn btn-danger" href="">Eliminar</a>
-                              </div>
-                            </td>
-                          </tr>
-
-                          <tr>
-                              <td><select class="form-control" id=slgrado>
-                                  <option value="Tecnico">Técnico</option>
-                                  <option value="Licenciatura">Licenciatura</option>
-                                  <option value="Diplomado">Diplomado</option>
-                                  <option value="Maestria">Maestría</option>
-                                  <option value="Doctorado">Doctorado</option>
-                              </select></td>
-                            <td><input class="form-control" type="text" id="txtescuela"></td>
-                            <td><input class="form-control" type="text" id="txtcarrera"></td>
-                            <td><input class="form-control ano" type="text" id="txtfechaini" readonly style="background:white;"></td>
-                            <td><input class="form-control ano" type="text" id="txtfechafin" readonly style="background:white;"></td>
-                            <td><select class="form-control" id=slestatus>
-                                  <option value="Enprogreso">En progreso</option>
-                                  <option value="Egresado">Egresado</option>
-                                  <option value="Pasante">Pasante</option>
-                                  <option value="Titulado">Titulado</option>
-                              </select></td>
-                          </tr>
-
-
-                        </tbody></table>
-
+                        <table id="detalles" class="table table-hover">
+                          <thead>
+                            <tr>
+                              <th>Grado</th>
+                              <th>Escuela</th>
+                              <th>Carrera o estudios</th>
+                              <th>Año inicio</th>
+                              <th>Año término</th>
+                              <th>Estatus</th>
+                              <th>Opciones</th>
+                            </tr>
+                          </thead>
+                          
+                          <tbody>
+                            @foreach($detailLevels as $detail)
+                              <tr>
+                                <td>{{($detail->level())[0]->Grado}}</td>
+                                <td>{{$detail->Escuela}}</td>
+                                <td>{{$detail->Carrera}}</td>
+                                <td>{{$detail->Ingreso}}</td>
+                                <td>{{$detail->Egreso}}</td>
+                                <td>{{$detail->Estatus}}</td>
+                                <td>
+                                  <div class="btn-group form-inline">
+                                    <a class="btn btn-danger" onclick="eliminar({{$detail->id}});">Eliminar</a>
+                                  </div>
+                                </td>
+                              </tr>
+                            @endforeach                     
+                          </tbody>
+                      </table>
                       </div>
 
+
+
+
+                      <hr/>
+                      <div class="box-header">
+                          <h3 class="box-title">Agregar grado de estudios</h3>
+                        </div>
+                      <div class="box-body table-responsive no-padding">
+                          <table  class="table table-hover">
+                            <thead>
+                              <tr>
+                                <th>Grado</th>
+                                <th>Escuela</th>
+                                <th>Carrera o estudios</th>
+                                <th>Año inicio</th>
+                                <th>Año término</th>
+                                <th>Estatus</th>
+                                <th>Opciones</th>
+                              </tr>
+                            </thead>
+                            
+                            <tbody>
+                                                            
+                              <tr>
+                                <td>
+                                  <select class="form-control" id=slgrado>
+                                    @foreach($levels as $level)
+                                      <option value="{{$level->idNivel}}">{{$level->Grado}}</option>
+                                    @endforeach
+                                  </select>
+                                </td>
+                                <td><input class="form-control" type="text" id="txtescuela"></td>
+                                <td><input class="form-control" type="text" id="txtcarrera"></td>
+                                <td><input class="form-control ano" type="text" id="txtfechaini" readonly style="background:white;"></td>
+                                <td><input class="form-control ano" type="text" id="txtfechafin" readonly style="background:white;"></td>
+                                <td>
+                                  <select class="form-control" id=slestatus>
+                                      <option value="Enprogreso">En progreso</option>
+                                      <option value="Egresado">Egresado</option>
+                                      <option value="Pasante">Pasante</option>
+                                      <option value="Titulado">Titulado</option>
+                                  </select>
+                                </td>
+                              </tr>
+                            </tbody>
+                        </table>
+                        </div>
                       <div class="box-footer clearfix">
                         <div class="btn-group pull-right">
                          <button type="button" class="btn btn-block btn-default" id="btnagregar"><i class="fa fa-plus-circle"></i> Agregar</button>
                         </div>
                       </div>
 
-
-
                     </div>
-
                   </div>
                 </div>
 
@@ -214,4 +240,39 @@
           </div>
     </section>
   </div>
+  @push ('scripts')
+  <script>
+    var detailLevels = {!! json_encode($detailLevels->toArray()) !!};
+    $(document).ready(function(){
+      var _token = $('input[name="_token"]').val();
+
+      $('#btnagregar').click(function(){
+        agregar()
+      });
+
+      function agregar(){
+        var gradoLabel= $('#slgrado option:selected').text()
+        var grado= $('#slgrado').val()
+        var escuela= $('#txtescuela').val()
+        var carrera= $('#txtcarrera').val()
+        var fechaInicio= $('#txtfechaini').val()
+        var fechaFin= $('#txtfechafin').val()
+        var estatus= $('#slestatus').val()
+        var cont =0;
+        var fila='+<tr class="selected" id="fila'+cont+'"><td><input type="hidden" name="elemento[]" value="'+grado+'">'+gradoLabel+'</td> <td><input type="hidden" name="nombreElemento[]" value="'+escuela+'">'+escuela+'</td> <td><input type="hidden" name="ancho[]" value="'+carrera+'">'+carrera+'</td><td><input type="hidden" name="etiqueta[]" value="'+fechaInicio+'">'+fechaInicio+'</td><td><input type="hidden" name="globo[]" value="'+fechaFin+'">'+fechaFin+'</td><td><input type="hidden" name="observaciones[]" value="'+estatus+'">'+estatus+'</td> <td><a class="btn btn-danger" onclick="eliminar({{$detail->id}});">Eliminar</a></td></tr>';
+
+        $('#detalles').append(fila);
+        /*
+        idUsuario 
+        idNivel
+        Carrera
+        Escuela
+        Ingreso
+        Egreso
+        Estatus
+        */
+      }
+    })
+  </script>
+@endpush
 @stop

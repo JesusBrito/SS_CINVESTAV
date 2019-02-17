@@ -10,3 +10,11 @@ function validarPass(){
         $('#aviso_pass').prop('hidden',true);
     }
 }
+
+
+
+
+//NIVELES DE LOS USUARIOS
+
+
+
