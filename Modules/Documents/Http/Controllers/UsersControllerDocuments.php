@@ -3,11 +3,12 @@
 namespace Modules\Documents\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use App\User;
 use Modules\Documents\Entities\Level as Level;
 use Modules\Documents\Entities\LevelDetail as LevelDetail;
+
+use Response;
 
 class UsersControllerDocuments extends Controller
 {
@@ -101,7 +102,26 @@ class UsersControllerDocuments extends Controller
 
 
     //AJAX
-    public function saveDetailLevel(Request $request, $id){
+    public function saveDetailLevel(Request $request){
+
+        $detailLevel = new LevelDetail;
+        $detailLevel->idUsuario=$request->idUsuario;
+        $detailLevel->idNivel=$request->idNivel;
+        $detailLevel->Carrera=$request->Carrera;
+        $detailLevel->Escuela=$request->Escuela;
+        $detailLevel->Ingreso=$request->Ingreso;
+        $detailLevel->Egreso=$request->Egreso;
+        $detailLevel->Estatus=$request->Estatus;
+
+        if($detailLevel->save()){
+            return response()->json(array('success' => true, 'responseId' => $detailLevel->id), 200);
+        }else{
+            return Response::json("{message:'Error'}");
+        } 
+    }
+
+    public function deleteDetailLevel(Request $request){
 
     }
+        
 }

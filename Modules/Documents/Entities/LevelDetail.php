@@ -7,7 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class LevelDetail extends Model
 {
-    protected $fillable = [];
+    protected $fillable = [
+        'idUsuario',
+        'idNivel',
+        'Carrera',
+        'Escuela',
+        'Ingreso',
+        'Egreso',
+        'Estatus',
+    ];
     public function user(){
         return $this-> belongsTo('App\User', 'idUsuario')->get();
     }

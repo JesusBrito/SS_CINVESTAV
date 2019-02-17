@@ -27,6 +27,8 @@
             <form method="POST" Action="{{ route('usuarios.update', $usuario->idUsuario) }}" role="form" enctype="multipart/form-data">
               <input name="_method" type="hidden" value="PUT">
               <input name="_token" value="{{ csrf_token() }}" type="hidden">
+              <input name="_asset" value="{{ url('/') }}" type="hidden">
+              <input name="_idUsuario" value="{{ $usuario->idUsuario }}" type="hidden">
               <div class="box-body">
 
               <div class="col-md-6">
@@ -204,7 +206,7 @@
                                 <td><input class="form-control ano" type="text" id="txtfechafin" readonly style="background:white;"></td>
                                 <td>
                                   <select class="form-control" id=slestatus>
-                                      <option value="Enprogreso">En progreso</option>
+                                      <option value="En progreso">En progreso</option>
                                       <option value="Egresado">Egresado</option>
                                       <option value="Pasante">Pasante</option>
                                       <option value="Titulado">Titulado</option>
@@ -243,9 +245,12 @@
   @push ('scripts')
   <script>
     var detailLevels = {!! json_encode($detailLevels->toArray()) !!};
+    
     $(document).ready(function(){
-      var _token = $('input[name="_token"]').val();
-
+      var _token = $('input[name="_token"]').val()
+      var urlImport = $('input[name="_asset"]').val()
+      var usuario = $('input[name="_idUsuario"]').val()
+      
       $('#btnagregar').click(function(){
         agregar()
       });
@@ -258,19 +263,30 @@
         var fechaInicio= $('#txtfechaini').val()
         var fechaFin= $('#txtfechafin').val()
         var estatus= $('#slestatus').val()
-        var cont =0;
-        var fila='+<tr class="selected" id="fila'+cont+'"><td><input type="hidden" name="elemento[]" value="'+grado+'">'+gradoLabel+'</td> <td><input type="hidden" name="nombreElemento[]" value="'+escuela+'">'+escuela+'</td> <td><input type="hidden" name="ancho[]" value="'+carrera+'">'+carrera+'</td><td><input type="hidden" name="etiqueta[]" value="'+fechaInicio+'">'+fechaInicio+'</td><td><input type="hidden" name="globo[]" value="'+fechaFin+'">'+fechaFin+'</td><td><input type="hidden" name="observaciones[]" value="'+estatus+'">'+estatus+'</td> <td><a class="btn btn-danger" onclick="eliminar({{$detail->id}});">Eliminar</a></td></tr>';
+        var cont=0;
+        var fila='+<tr class="selected" id="fila'+cont+'"><td><input type="hidden" name="elemento[]" value="'+grado+'">'+gradoLabel+'</td> <td><input type="hidden" name="nombreElemento[]" value="'+escuela+'">'+escuela+'</td> <td><input type="hidden" name="ancho[]" value="'+carrera+'">'+carrera+'</td><td><input type="hidden" name="etiqueta[]" value="'+fechaInicio+'">'+fechaInicio+'</td><td><input type="hidden" name="globo[]" value="'+fechaFin+'">'+fechaFin+'</td><td><input type="hidden" name="observaciones[]" value="'+estatus+'">'+estatus+'</td> <td><a class="btn btn-danger" onclick="eliminar();">Eliminar</a></td></tr>';
 
-        $('#detalles').append(fila);
-        /*
-        idUsuario 
-        idNivel
-        Carrera
-        Escuela
-        Ingreso
-        Egreso
-        Estatus
-        */
+        $.ajax({ 
+          type: "POST",
+          url: urlImport+"/documents/guardar-detalle-nivel",
+          dataType: "json",
+          data: {
+            "_token": _token,
+            "idUsuario":usuario,
+            "idNivel":grado,
+            "Escuela":escuela,
+            "Carrera":carrera,
+            "Ingreso":fechaInicio,
+            "Egreso":fechaFin,
+            "Estatus":estatus,
+          }
+        }).done(function(resp){
+          alert("Ok")
+          $('#detalles').append(fila);
+        }).fail(function(err) {
+          alert("Error")
+        });
+
       }
     })
   </script>

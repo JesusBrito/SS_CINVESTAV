@@ -14,7 +14,7 @@ class CreateLevelDetailsTable extends Migration
     public function up()
     {
         Schema::create('Level_Details', function (Blueprint $table) {
-            $table->increments('idDetalleNivel');
+            $table->increments('id');
             $table->unsignedInteger('idUsuario');
             $table->unsignedInteger('idNivel');
             $table->string('Carrera',50);
