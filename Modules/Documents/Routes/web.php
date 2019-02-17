@@ -17,8 +17,8 @@ Route::prefix('documents')->group(function() {
 
   //RUTAS AJAX
   Route::post('/guardar-detalle-nivel', 'UsersControllerDocuments@saveDetailLevel');
-  Route::put('/eliminar-detalle-nivel/{id}', 'UsersControllerDocuments@deleteDetailLevel');
-   
+  Route::delete('/eliminar-detalle-nivel/{id}', 'UsersControllerDocuments@deleteDetailLevel');
+
 
 
 

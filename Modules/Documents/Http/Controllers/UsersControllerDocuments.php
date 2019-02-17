@@ -117,11 +117,15 @@ class UsersControllerDocuments extends Controller
             return response()->json(array('success' => true, 'responseId' => $detailLevel->id), 200);
         }else{
             return Response::json("{message:'Error'}");
-        } 
+        }
     }
 
-    public function deleteDetailLevel(Request $request){
-
+    public function deleteDetailLevel(Request $request, $id){
+        if(LevelDetail::destroy($id)){
+            return response()->json(array('success' => true), 200);
+        }else{
+            return Response::json("{message:'Error'}");
+        }
     }
-        
+
 }

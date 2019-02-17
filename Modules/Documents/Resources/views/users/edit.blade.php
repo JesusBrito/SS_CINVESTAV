@@ -110,7 +110,7 @@
                 </div>
                 <br>
                  <div class="form-group">
-                 <img src="{{Storage::url($usuario->Imagen)}}" widht="30px" height="30px"alt="Foto de perfil">
+                 <img src="{{Storage::url($usuario->Imagen)}}" widht="80px" height="80px"alt="Foto de perfil">
                   <label for="flfoto">Añadir foto de perfil</label>
                   <input type="file" id="Imagen" name="Imagen" >
                   <p class="help-block">Suba una fotografía en formato .jpg o .png</p>
@@ -148,10 +148,10 @@
                               <th>Opciones</th>
                             </tr>
                           </thead>
-                          
+
                           <tbody>
                             @foreach($detailLevels as $detail)
-                              <tr>
+                                <tr id="fila{{$detail->id}}">
                                 <td>{{($detail->level())[0]->Grado}}</td>
                                 <td>{{$detail->Escuela}}</td>
                                 <td>{{$detail->Carrera}}</td>
@@ -160,11 +160,11 @@
                                 <td>{{$detail->Estatus}}</td>
                                 <td>
                                   <div class="btn-group form-inline">
-                                    <a class="btn btn-danger" onclick="eliminar({{$detail->id}});">Eliminar</a>
+                                    <a class="btn btn-danger" onclick="eliminar({{$detail->id}})">Eliminar</a>
                                   </div>
                                 </td>
                               </tr>
-                            @endforeach                     
+                            @endforeach
                           </tbody>
                       </table>
                       </div>
@@ -186,12 +186,11 @@
                                 <th>Año inicio</th>
                                 <th>Año término</th>
                                 <th>Estatus</th>
-                                <th>Opciones</th>
                               </tr>
                             </thead>
-                            
+
                             <tbody>
-                                                            
+
                               <tr>
                                 <td>
                                   <select class="form-control" id=slgrado>
@@ -245,12 +244,11 @@
   @push ('scripts')
   <script>
     var detailLevels = {!! json_encode($detailLevels->toArray()) !!};
-    
-    $(document).ready(function(){
+
       var _token = $('input[name="_token"]').val()
       var urlImport = $('input[name="_asset"]').val()
       var usuario = $('input[name="_idUsuario"]').val()
-      
+
       $('#btnagregar').click(function(){
         agregar()
       });
@@ -264,31 +262,88 @@
         var fechaFin= $('#txtfechafin').val()
         var estatus= $('#slestatus').val()
         var cont=0;
-        var fila='+<tr class="selected" id="fila'+cont+'"><td><input type="hidden" name="elemento[]" value="'+grado+'">'+gradoLabel+'</td> <td><input type="hidden" name="nombreElemento[]" value="'+escuela+'">'+escuela+'</td> <td><input type="hidden" name="ancho[]" value="'+carrera+'">'+carrera+'</td><td><input type="hidden" name="etiqueta[]" value="'+fechaInicio+'">'+fechaInicio+'</td><td><input type="hidden" name="globo[]" value="'+fechaFin+'">'+fechaFin+'</td><td><input type="hidden" name="observaciones[]" value="'+estatus+'">'+estatus+'</td> <td><a class="btn btn-danger" onclick="eliminar();">Eliminar</a></td></tr>';
 
-        $.ajax({ 
-          type: "POST",
-          url: urlImport+"/documents/guardar-detalle-nivel",
-          dataType: "json",
-          data: {
-            "_token": _token,
-            "idUsuario":usuario,
-            "idNivel":grado,
-            "Escuela":escuela,
-            "Carrera":carrera,
-            "Ingreso":fechaInicio,
-            "Egreso":fechaFin,
-            "Estatus":estatus,
-          }
-        }).done(function(resp){
-          alert("Ok")
-          $('#detalles').append(fila);
-        }).fail(function(err) {
-          alert("Error")
-        });
+
+        if(escuela.trim().length==0 || carrera.trim().length==0 || fechaInicio.trim().length==0 || fechaFin.trim().length==0 ){
+            alert("Llene todos los campos.");
+        }else{
+            $.ajax({
+            type: "POST",
+            url: urlImport+"/documents/guardar-detalle-nivel",
+            dataType: "json",
+            data: {
+                "_token": _token,
+                "idUsuario":usuario,
+                "idNivel":grado,
+                "Escuela":escuela,
+                "Carrera":carrera,
+                "Ingreso":fechaInicio,
+                "Egreso":fechaFin,
+                "Estatus":estatus,
+            }
+            }).done(function(resp){
+                alert("Ok")
+                var fila='+<tr class="selected" id="fila'+resp.responseId+'"><td><input type="hidden" value="'+grado+'">'+gradoLabel+'</td> <td><input type="hidden" value="'+escuela+'">'+escuela+'</td> <td><input type="hidden" value="'+carrera+'">'+carrera+'</td><td><input type="hidden" value="'+fechaInicio+'">'+fechaInicio+'</td><td><input type="hidden" value="'+fechaFin+'">'+fechaFin+'</td><td><input type="hidden" value="'+estatus+'">'+estatus+'</td> <td><a class="btn btn-danger" onclick="eliminar('+resp.responseId+')">Eliminar</a></td></tr>';
+
+                $('#detalles').append(fila);
+
+                $('#txtescuela').val('')
+                $('#txtcarrera').val('')
+                $('#txtfechaini').val('')
+                $('#txtfechafin').val('')
+
+            }).fail(function(err) {
+                alert("Error")
+            });
+        }
 
       }
-    })
+
+      function eliminar(id){
+        swal({
+            title: '¿Estás seguro?',
+            text: "¡No se podrán deshacer los cambios!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, eliminar',
+            cancelButtonText: 'No, cancelar',
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonClass: 'btn btn-danger',
+            buttonsStyling: false
+            })
+            .then(function () {
+            // código que elimina
+            $.ajax({
+                type: "DELETE",
+                url: urlImport+"/documents/eliminar-detalle-nivel/"+id,
+                dataType: "json",
+                data: {
+                    "_token": _token,
+                }
+                }).done(function(resp){
+                    alert("Eliminado")
+                    $('#fila'+id).remove();
+                }).fail(function(err) {
+                    alert("Error al eliminar")
+                })
+
+            .error(function(data) {
+                swal('¡Error!', 'No se pudo eliminar el registro', "error");
+            })
+            },function (dismiss) {
+                if (dismiss === 'cancel') {
+                    swal(
+                        'Cancelado',
+                        'No se han realizado cambios',
+                        'error'
+                    )
+                }
+            })
+    }
+
+
   </script>
 @endpush
 @stop
