@@ -83,11 +83,11 @@
                   <label>Sexo</label>
                   <select class="form-control" required id="Sexo" name="Sexo">
                     @if($usuario->Sexo==1)
-                        <option value="1" selected="true">Masculino</option>
-                        <option value="0" selected="false">Femenino</option>
+                        <option value="1" selected>Masculino</option>
+                        <option value="0" >Femenino</option>
                     @else
-                        <option value="1" selected="false">Masculino</option>
-                        <option value="0" selected="true">Femenino</option>
+                        <option value="1" >Masculino</option>
+                        <option value="0" selected>Femenino</option>
                     @endif
                   </select>
                 </div>
