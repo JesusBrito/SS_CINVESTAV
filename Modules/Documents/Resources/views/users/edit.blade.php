@@ -1,8 +1,7 @@
  @extends('documents::layout_documents')
-    @section ('contenido')
-
+  @section ('Contenido')
  <!--content-wrapper-->
-   <div class="content-wrapper">
+  <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
@@ -14,22 +13,17 @@
         <li class="active">Editar Usuario</li>
       </ol>
     </section>
-
     <!-- Main content -->
     <section class="content container-fluid">
-
       <!--------------------------
         | Your Page Content Here |
         -------------------------->
-
-        <div class="row">
-
+      <div class="row">
           <div class="col-md-12">
             <div class="box box-primary">
               <div class="box-header with-border">
                <h3 class="box-title">Llene los siguientes campos</h3>
               </div>
-
             <form method="POST" Action="{{ route('register') }}" role="form" enctype="multipart/form-data">
                 {{csrf_field()}}
               <div class="box-body">
@@ -190,14 +184,11 @@
 
 
                 <div class="col-md-6">
-
                   <div class="form-group has-feedback">
                     <label for="txtcorreo">Correo electrónico</label>
                     <input type="email" required class="form-control" name="Correo" id="Correo" placeholder="ejemplo@email.com" required>
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                   </div>
-
-
                 </div>
 
                 </div>
@@ -210,24 +201,9 @@
               <!-- /.box-footer -->
 
                </form>
-
               </div>
-
             </div>
           </div>
-
-
-
-   <!--------------------------
-        | Your Page Content Here |
-        -------------------------->
-
-
-
-     </section>
-    <!-- /.content -->
+    </section>
   </div>
-  <!-- /.content-wrapper -->
-
-
-  @stop
+@endsection

@@ -5,12 +5,12 @@ namespace Modules\Documents\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use App\User;
 
 class UsersControllerDocuments extends Controller
 {
      public function __construct()
     {
-
        $this->middleware('auth');//Entregable 10: agregar rol de administrador
     }
     /**
@@ -53,9 +53,10 @@ class UsersControllerDocuments extends Controller
      * Show the form for editing the specified resource.
      * @return Response
      */
-    public function edit()
+    public function edit($id)
     {
-        return view('documents::users.edit');
+        $usuario= User::find($id);
+        return view('documents::users.edit',["usuario"=>$usuario]);
     }
 
     /**

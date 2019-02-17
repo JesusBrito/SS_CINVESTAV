@@ -95,7 +95,7 @@
 
               <div class="box-footer">
 
-                <a class="btn btn-app" href="modificardatosprof.html"><i class="fa fa-edit"></i>Modificar datos</a>
+                <a class="btn btn-app" href="{{ url('documents/usuarios/'.auth()->user()->idUsuario.'/edit') }}"><i class="fa fa-edit"></i>Modificar datos</a>
 
                  <a class="btn btn-app" href="#"><i class="fa fa-file-text"></i>Generar CV</a>
               </div>
