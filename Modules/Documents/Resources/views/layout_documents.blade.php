@@ -26,7 +26,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Cambio de Título-->
 <link rel="stylesheet" href="{{asset("/admin-lte/texto.css")}}">
 
- 
+
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -106,7 +106,7 @@ desired effect
                     <a href="#">
                       <div class="pull-left">
                         <!-- User Image -->
-                        <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                        <img src="/storage/profile_pictures/{{auth()->user()->Imagen}}" class="img-circle" alt="User Image">
                       </div>
                       <!-- Message title and timestamp -->
                       <h4>
@@ -126,33 +126,33 @@ desired effect
           </li>
           <!-- /.messages-menu -->
 
-         
-          
-          
-             
+
+
+
+
           <!-- User Account Menu -->
           <li class="dropdown user user-menu">
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
-              <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+              <img src="/storage/profile_pictures/{{auth()->user()->Imagen}}" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">Nombre de Usuario</span>
+              <span class="hidden-xs">{{auth()->user()->Nombre}} {{auth()->user()->A_Paterno}}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
-                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="/storage/profile_pictures/{{auth()->user()->Imagen}}" class="img-circle" alt="User Image">
 
                 <p>
-                  Nombre de Usuario - Rol
-                 
+                    {{auth()->user()->Nombre}} {{auth()->user()->A_Paterno}} - {{auth()->user()->Tipo_Usuario}}
+
                 </p>
               </li>
-             
+
               <!-- Menu Footer-->
               <li class="user-body">
-                
+
                   <div class="pull-left text-center">
                   <a href="perfilgeneral.html" class="btn btn-default btn-flat">Perfil  </a>
                 </div>
@@ -161,13 +161,13 @@ desired effect
                 </div>
                 <div class="pull-right text-center">
                   <a href="{{ url('/logout') }}" class="btn btn-default btn-flat">Cerrar <br> sesión</a>
-                
+
               </div>
-                
+
               </li>
             </ul>
           </li>
-         
+
         </ul>
       </div>
     </nav>
@@ -181,15 +181,15 @@ desired effect
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <img src="/storage/profile_pictures/{{auth()->user()->Imagen}}" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Nombre de Usuario</p>
-          
+          <p>{{auth()->user()->Nombre}} {{auth()->user()->A_Paterno}}</p>
+
         </div>
       </div>
 
-      
+
 
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu" data-widget="tree">
@@ -205,10 +205,10 @@ desired effect
             </span>
           </a>
           <ul class="treeview-menu" style="display: all;">
-            <li class="active"><a href="registrousuarios.html"><i class="fa fa-user-plus"></i>Registro de Nuevo Usuario</a></li>  
+            <li class="active"><a href="registrousuarios.html"><i class="fa fa-user-plus"></i>Registro de Nuevo Usuario</a></li>
             <li><a href="todosalumnos.html"><i class="fa fa-list-ul"></i>Listado de Alumnos</a></li>
             <li><a href="todosgrupos.html"><i class="fa fa-list-ul"></i>Listado de Grupos</a></li>
-            <li><a href="todosprofesores.html"><i class="fa fa-list-ul"></i>Listado de Profesores</a></li> 
+            <li><a href="todosprofesores.html"><i class="fa fa-list-ul"></i>Listado de Profesores</a></li>
 
           </ul>
         </li>
@@ -242,7 +242,7 @@ desired effect
     <strong>Copyright &copy; 2018 <a href="https://www.cinvestav.mx">CINVESTAV</a>.</strong>
   </footer>
 
-  
+
   <!-- /.control-sidebar -->
   <!-- Add the sidebar's background. This div must be placed
   immediately after the control sidebar -->

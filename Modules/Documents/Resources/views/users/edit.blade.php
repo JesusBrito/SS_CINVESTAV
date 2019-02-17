@@ -1,4 +1,4 @@
- @extends('layout')
+ @extends('documents::layout_documents')
     @section ('contenido')
 
  <!--content-wrapper-->
@@ -6,13 +6,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Registro de usuarios
-        <small>Aquí se registra a cualquier usuario por el administrador</small>
+        Editar usuario
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i>Nivel</a></li>
         <li>Administrar</li>
-        <li class="active">Nuevo Usuario</li>
+        <li class="active">Editar Usuario</li>
       </ol>
     </section>
 
@@ -39,7 +38,7 @@
 
                 <div class="form-group">
                   <label>Tipo de usuario</label>
-                  <select class="form-control" id="Tipo_Usuario" required name="Tipo_Usuario">
+                  <select class="form-control" disabled id="Tipo_Usuario" required name="Tipo_Usuario">
                     <option value="Estudiante" selected="true">Estudiante</option>
                     <option value="Profesor">Profesor</option>
                     <option value="Administrador">Administrador</option>
@@ -102,13 +101,13 @@
                   <input class="form-control" type="text" pattern="[0-9]{10}" id="Celular" name="Celular" required>
 
                 </div>
-<!--
+
                  <div class="form-group">
-                  <label for="flfoto">Añadir foto</label>
+                  <label for="flfoto">Añadir foto de perfil</label>
                   <input type="file" id="Imagen" name="Imagen" >
                   <p class="help-block">Suba una fotografía en formato .jpg o .png</p>
                 </div>
-            -->
+
 
 
                  <!--<div class="form-group">
@@ -120,7 +119,7 @@
                 </div>-->
 
               </div>
-<!--
+
               <div class="form-group">
                 <div class="row">
                   <div class="col-xs-12">
@@ -187,7 +186,7 @@
                 </div>
 
                 </div>
-            -->
+
 
 
                 <div class="col-md-6">
@@ -198,18 +197,6 @@
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                   </div>
 
-                  <div class="form-group has-feedback">
-                    <label for="txtpassword1">Contraseña</label>
-                    <input type="password" required class="form-control" id="password" name="password" placeholder="Contraseña" required>
-                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                  </div>
-
-                  <div class="form-group has-feedback">
-                    <label for="txtpassword2">Repetir contraseña</label>
-                    <input type="password" required class="form-control"  id="txtpassword2" name="txtpassword2" placeholder="Contraseña" required>
-                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                    <span id="aviso_pass" hidden>* Las contraseñas no coinciden</span>
-                  </div>
 
                 </div>
 

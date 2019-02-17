@@ -10,7 +10,7 @@ class UsersControllerDocuments extends Controller
 {
      public function __construct()
     {
-       
+
        $this->middleware('auth');//Entregable 10: agregar rol de administrador
     }
     /**
@@ -55,7 +55,7 @@ class UsersControllerDocuments extends Controller
      */
     public function edit()
     {
-        return view('documents::edit');
+        return view('documents::users.edit');
     }
 
     /**
