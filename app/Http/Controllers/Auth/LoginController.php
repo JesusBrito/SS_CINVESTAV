@@ -48,7 +48,7 @@ class LoginController extends Controller
         if ( $request->Sistema=='0' ) {
             return redirect('/documents/usuarios/show');
         }
-        return redirect('/home'); //inventarios
+        return redirect('/inventory'); //inventarios
     }
     
 

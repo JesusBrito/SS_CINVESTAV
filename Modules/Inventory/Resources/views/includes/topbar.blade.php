@@ -3,7 +3,7 @@
 
         <!-- Logo -->
         <a href="#" class="logo">
-          <span class="logo-mini"><b>G</b>PI</span>
+          <span class="logo-mini"><b>S</b>CI</span>
           <span class="logo-lg">CINVESTAV</span>
         </a>
 
@@ -90,7 +90,7 @@
 
 
                      <div class="col-xs-4 text-center">
-                     <a href="#" class="btn btn-default btn-flat">Sistema <br> documentos</a>
+                     <a href="{{url('documents/usuarios/show')}}" class="btn btn-default btn-flat">Sistema <br> documentos</a>
                     </div>
                     <div class="pull-right text-center">
                       <a href="{{ url('/logout') }}" class="btn btn-default btn-flat">Cerrar <br> sesión</a>
