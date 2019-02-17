@@ -25,7 +25,7 @@
             <li><a href="#"><i class="fa fa-warning"></i> <span>Alertas</span></a></li>
             <li><a href="#"><i class="fa fa-book"></i> <span>Bitácora de desechos</span></a></li>
 
-            <li><i class="fa fa-cubes"></i><span>Insumos</span></li>
+            <li class="header"><i class="fa fa-cubes"></i><span>Insumos</span></li>
 
             <li class="treeview">
               <a href="#">
@@ -69,7 +69,7 @@
                     </ul>
             </li>
 
-            <li><i class="fa fa-users"></i><span>Gestión de usuarios</span></li>
+            <li class="header"><i class="fa fa-users"></i><span>Gestión de usuarios</span></li>
 
             <li class="treeview">
                     <a href="#">
@@ -85,7 +85,7 @@
                     </ul>
             </li>
 
-            <li><i class="fa fa-industry"></i><span>Gestión de proveedores</span></li>
+            <li class="header"><i class="fa fa-industry"></i><span>Gestión de proveedores</span></li>
 
             <li class="treeview">
                     <a href="#">
@@ -101,7 +101,7 @@
                     </ul>
             </li>
 
-            <li><i class="fa fa-archive"></i><span>Catalógos</span></li>
+            <li class="header"><i class="fa fa-archive"></i><span>Catalógos</span></li>
 
             <li class="treeview">
                     <a href="#">
