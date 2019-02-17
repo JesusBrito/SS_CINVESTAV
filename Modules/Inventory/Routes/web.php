@@ -12,5 +12,5 @@
 */
 
 Route::prefix('inventory')->group(function() {
-    Route::get('/', 'InventoryController@index');
+    Route::resource('/', 'InventoryController');
 });

@@ -7,7 +7,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Starter</title>
+  <title>Control de Inventarios</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
@@ -21,7 +21,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect. -->
   <link rel="stylesheet" href="{{asset('css/skin-green.min.css')}}">
-
+<!-- Date Picker -->
+<link rel="stylesheet" href="{{asset("/css/bootstrap-datepicker.min.css")}}">
+<!-- Cambio de Título-->
+<link rel="stylesheet" href="{{asset("/admin-lte/texto.css")}}">
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -174,6 +177,20 @@ desired effect
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->
+     <script src="{{asset("/js/jquery.slimscroll.min.js")}}"></script>
+
+<!-- bootstrap datepicker -->
+<script src="{{asset("/js/bootstrap-datepicker.min.js")}}"></script>
+
+
+<script src="{{asset("/js/bootstrap-datepicker.es.min.js")}}"></script>
+
+
+
+
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+@include('sweet::alert')
 </body>
 </html>
 

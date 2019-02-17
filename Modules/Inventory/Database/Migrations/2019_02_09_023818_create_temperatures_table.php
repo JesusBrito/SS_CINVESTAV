@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateToxicitiesTable extends Migration
+class CreateTemperaturesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateToxicitiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('toxicities', function (Blueprint $table) {
+        Schema::create('temperatures', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('toxicidad', 35);
+            $table->string('temperatura',20);
             $table->tinyInteger('estado');
             $table->timestamps();
         });
@@ -28,6 +28,6 @@ class CreateToxicitiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('toxicities');
+        Schema::dropIfExists('temperatures');
     }
 }

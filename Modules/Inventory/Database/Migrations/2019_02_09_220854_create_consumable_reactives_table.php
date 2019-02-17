@@ -1,10 +1,10 @@
-<?php
+ <?php
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateToxicitiesTable extends Migration
+class CreateConsumableReactivesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,15 @@ class CreateToxicitiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('toxicities', function (Blueprint $table) {
+        Schema::create('consumable_reactives', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('toxicidad', 35);
+            $table->unsignedInteger('idReactivo');
+            $table->unsignedInteger('idConsumible');
             $table->tinyInteger('estado');
+
+            $table->foreign('idReactivo') -> references('id') -> on('reactives');
+            $table->foreign('idConsumible') -> references('id') -> on('consumables');
+
             $table->timestamps();
         });
     }
@@ -28,6 +33,6 @@ class CreateToxicitiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('toxicities');
+        Schema::dropIfExists('consumable_reactives');
     }
 }
