@@ -134,6 +134,7 @@
                       </div>
 
                       <div class="box-body table-responsive no-padding">
+                          {{$usuario->detailLevel()}}
                         <table class="table table-hover">
                           <tbody><tr>
                             <th>Grado</th>
