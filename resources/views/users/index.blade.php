@@ -62,8 +62,6 @@
                           <th>Sexo</th>
                           <th>Teléfono</th>
                           <th>Correo electrónico</th>
-                          <th>Grado</th>
-                          <th>Estatus</th>
                           <th>Acciones</th>
 
                         </tr>
@@ -82,16 +80,14 @@
                           <td>{{$user->Sexo}}</td>
                           <td>{{$user->Celular}}</td>
                           <td>{{$user->Correo}}</td>
-                          <td>Diplomado</td>
-                          <td>Egresado</td>
                           <td>
                               
                             <div class="btn-group form-inline">
-                             <button type="button" class="btn btn-primary " id="btnEditar">Editar</button>
-                             </div>
-                             <div class="btn-group form-inline">
-                             <button type="button" class="btn btn-primary " id="btnEliminar">Eliminar</button>
-                             </div>
+                              <a class="btn btn-primary" href="{{ url('documents/usuarios/'.$user->idUsuario.'/edit') }}">Editar</a>
+                            </div>
+                            <div class="btn-group form-inline">
+                              <button type="button" class="btn btn-primary " id="btnEliminar">Eliminar</button>
+                            </div>
                             
                           
                           </td>

@@ -106,7 +106,7 @@ desired effect
                     <a href="#">
                       <div class="pull-left">
                         <!-- User Image -->
-                        <img src="/storage/profile_pictures/{{auth()->user()->Imagen}}" class="img-circle" alt="User Image">
+                        <img src="{{Storage::url(auth()->user()->Imagen)}}" class="img-circle" alt="User Image">
                       </div>
                       <!-- Message title and timestamp -->
                       <h4>
@@ -135,14 +135,14 @@ desired effect
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
-              <img src="/storage/profile_pictures/{{auth()->user()->Imagen}}" class="user-image" alt="User Image">
+              <img src="{{Storage::url(auth()->user()->Imagen)}}" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
               <span class="hidden-xs">{{auth()->user()->Nombre}} {{auth()->user()->A_Paterno}}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
-                <img src="/storage/profile_pictures/{{auth()->user()->Imagen}}" class="img-circle" alt="User Image">
+                <img src="{{Storage::url(auth()->user()->Imagen)}}" class="img-circle" alt="User Image">
 
                 <p>
                     {{auth()->user()->Nombre}} {{auth()->user()->A_Paterno}} - {{auth()->user()->Tipo_Usuario}}
@@ -181,7 +181,7 @@ desired effect
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="/storage/profile_pictures/{{auth()->user()->Imagen}}" class="img-circle" alt="User Image">
+          <img src="{{Storage::url(auth()->user()->Imagen)}}" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p>{{auth()->user()->Nombre}} {{auth()->user()->A_Paterno}}</p>
@@ -286,5 +286,7 @@ desired effect
       autoclose: true,
       language: 'es'});
 </script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+@include('sweet::alert')
 </body>
 </html>

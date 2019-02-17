@@ -29,7 +29,7 @@
           <!-- Profile Image -->
           <div class="box box-warning">
             <div class="box-body box-profile">
-            <img class="profile-user-img img-responsive img-circle" src="/storage/profile_pictures/{{auth()->user()->Imagen}}" alt="User profile picture">
+            <img class="profile-user-img img-responsive img-circle" src="{{Storage::url(auth()->user()->Imagen)}}" alt="User profile picture">
 
               <h3 class="profile-username text-center">{{auth()->user()->Nombre}} {{auth()->user()->A_Paterno}}</h3>
 

@@ -24,7 +24,8 @@
               <div class="box-header with-border">
                <h3 class="box-title">Llene los siguientes campos</h3>
               </div>
-            <form method="POST" Action="{{ route('usuarios/') }}" role="form" enctype="multipart/form-data">
+            <form method="POST" Action="{{ route('usuarios.update', $usuario->idUsuario) }}" role="form" enctype="multipart/form-data">
+              <input name="_method" type="hidden" value="PUT">
                 {{csrf_field()}}
               <div class="box-body">
 
@@ -107,7 +108,7 @@
                 </div>
                 <br>
                  <div class="form-group">
-                 <img src="/storage/profile_pictures/{{$usuario->Imagen}}" widht="30px" height="30px"alt="Foto de perfil">
+                 <img src="{{Storage::url($usuario->Imagen)}}" widht="30px" height="30px"alt="Foto de perfil">
                   <label for="flfoto">Añadir foto de perfil</label>
                   <input type="file" id="Imagen" name="Imagen" >
                   <p class="help-block">Suba una fotografía en formato .jpg o .png</p>
@@ -143,6 +144,7 @@
                             <th>Año inicio</th>
                             <th>Año término</th>
                             <th>Estatus</th>
+                            <th>Opciones</th>
                           </tr>
                           <tr>
                             <td>Diplomado</td>
@@ -151,6 +153,11 @@
                             <td>2015</td>
                             <td>2016</td>
                             <td>Egresado</td>
+                            <td>
+                              <div class="btn-group form-inline">
+                                <a class="btn btn-danger" href="">Eliminar</a>
+                              </div>
+                            </td>
                           </tr>
 
                           <tr>

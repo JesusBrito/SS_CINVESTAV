@@ -67,19 +67,25 @@ class UsersControllerDocuments extends Controller
      */
     public function update(Request $request, $id)
     {
-            $usuario= User::find($id);
-            $request->file('Imagen')->store('public/profile_pictures');
-            $options=[
-                'Correo'=>$request->Correo,
-                'Imagen'=>$request->Imagen,
-                'Nombre'=>$request->Nombre,
-                'A_Paterno'=>$request->A_Paterno,
-                'A_Materno'=>$request->A_Materno,
-                'Celular'=>$request->Celular,
-                'FechaNac'=>$request->FechaNac,
-                'Sexo'=>$request->Sexo,
-            ];
+        $usuario= User::find($id);
+        $usuario->Correo=$request->Correo;
+        if($request->hasFile('Imagen')){
+            $usuario->Imagen=$request->file('Imagen')->store('public/profile_pictures');
+        }
+        $usuario->Nombre=$request->Nombre;
+        $usuario->A_Paterno=$request->A_Paterno;
+        $usuario->A_Materno=$request->A_Materno;
+        $usuario->Celular=$request->Celular;
+        $usuario->FechaNac=$request->FechaNac;
+        $usuario->Sexo=$request->Sexo;
 
+        if($usuario->save()){
+            alert()->success('Usuario modificado correctamente', 'OK')->autoclose(2500);
+            return redirect('/documents/usuarios/show');
+        }else{
+            alert()->error('Error al modificar los campos', 'Error')->autoclose(2500);
+            return view('documents::users.edit',["usuario"=>$usuario]);
+        }
     }
 
     /**
