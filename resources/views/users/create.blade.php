@@ -31,7 +31,7 @@
                <h3 class="box-title">Llene los siguientes campos</h3>
               </div>
 
-            <form method="POST" Action="{{ route('register') }}" role="form">
+            <form method="POST" Action="{{ route('register') }}" role="form" enctype="multipart/form-data">
                 {{csrf_field()}}
               <div class="box-body">
 
@@ -105,7 +105,7 @@
 
                  <div class="form-group">
                   <label for="flfoto">Añadir foto</label>
-                  <input type="file" id="Imagen" name="Imagen">
+                  <input type="file" id="Imagen" name="Imagen" >
                   <p class="help-block">Suba una fotografía en formato .jpg o .png</p>
                 </div>
 

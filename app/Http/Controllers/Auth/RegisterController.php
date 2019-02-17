@@ -49,7 +49,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            
+
         ]);
     }
     public function showRegistrationForm()
@@ -65,7 +65,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $data->file('Imagen')->store('public/profile_pictures');
+                return User::create([
             'Correo'=>$data['Correo'],
             'password'=>Hash::make($data['password']),
             'Imagen'=>$data['Imagen'],
@@ -76,7 +77,7 @@ class RegisterController extends Controller
             'Celular'=>$data['Celular'],
             'FechaNac'=>$data['FechaNac'],
             'Sexo'=>$data['Sexo'],
-
         ]);
+
     }
 }
