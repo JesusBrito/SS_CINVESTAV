@@ -24,7 +24,7 @@
               <div class="box-header with-border">
                <h3 class="box-title">Llene los siguientes campos</h3>
               </div>
-            <form method="POST" Action="{{ route('register') }}" role="form" enctype="multipart/form-data">
+            <form method="POST" Action="{{ route('usuarios/') }}" role="form" enctype="multipart/form-data">
                 {{csrf_field()}}
               <div class="box-body">
 
@@ -76,7 +76,7 @@
 
                  <div class="form-group">
                   <label for="FechaNac">Fecha de nacimiento</label>
-                  <input class="form-control" type="text" id="FechaNac" name="FechaNac" required readonly style="background:white;" value="{{$usuario->FehaNac}}">
+                  <input class="form-control" type="text" id="FechaNac" name="FechaNac" required readonly style="background:white;" value="{{$usuario->FechaNac}}">
                 </div>
 
                 <div class="form-group">
@@ -101,7 +101,7 @@
                 <div class="form-group">
                         <div class="form-group has-feedback">
                           <label for="txtcorreo">Correo electrónico</label>
-                          <input type="email" required class="form-control" name="Correo" id="Correo" placeholder="ejemplo@email.com" required>
+                        <input type="email" required class="form-control" value="{{$usuario->Correo}}" name="Correo" id="Correo" placeholder="ejemplo@email.com" required>
                           <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                         </div>
                 </div>

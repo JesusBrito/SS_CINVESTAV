@@ -65,8 +65,21 @@ class UsersControllerDocuments extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
+            $usuario= User::find($id);
+            $request->file('Imagen')->store('public/profile_pictures');
+            $options=[
+                'Correo'=>$request->Correo,
+                'Imagen'=>$request->Imagen,
+                'Nombre'=>$request->Nombre,
+                'A_Paterno'=>$request->A_Paterno,
+                'A_Materno'=>$request->A_Materno,
+                'Celular'=>$request->Celular,
+                'FechaNac'=>$request->FechaNac,
+                'Sexo'=>$request->Sexo,
+            ];
+
     }
 
     /**
