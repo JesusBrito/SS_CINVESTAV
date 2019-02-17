@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use App\User;
+use DetailLevel;
 
 class UsersControllerDocuments extends Controller
 {
@@ -56,6 +57,7 @@ class UsersControllerDocuments extends Controller
     public function edit($id)
     {
         $usuario= User::find($id);
+        //$detalles= DetailLevel::find();
         return view('documents::users.edit',["usuario"=>$usuario]);
     }
 

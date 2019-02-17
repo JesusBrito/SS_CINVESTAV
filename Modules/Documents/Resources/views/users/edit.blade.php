@@ -33,27 +33,24 @@
                 <div class="form-group">
                   <label>Tipo de usuario</label>
                   <select class="form-control" disabled id="Tipo_Usuario" required name="Tipo_Usuario">
-                    <option value="Estudiante" selected="true">Estudiante</option>
-                    <option value="Profesor">Profesor</option>
-                    <option value="Administrador">Administrador</option>
-                    <option value="Técnico">Técnico</option>
-                    <option value="Auxiliar">Auxiliar de laboratorio</option>
+                  <option value="{{$usuario->Tipo_Usuario}}" selected="true">{{$usuario->Tipo_Usuario}}</option>
+
                   </select>
                 </div>
 
                 <div class="form-group">
                   <label for="txtnombre">Nombre(s)</label>
-                  <input class="form-control" type="text" name="Nombre" maxlegth="30" id="Nombre" placeholder="Escribe tu nombre(s)" required>
+                  <input class="form-control" type="text" name="Nombre" maxlegth="30" id="Nombre" value="{{$usuario->Nombre}}" required>
                 </div>
 
                 <div class="form-group">
                   <label for="txtappat">Apellido paterno</label>
-                  <input class="form-control" type="text" id="A_Paterno" maxlegth="20" name="A_Paterno" placeholder="Escribe tu apellido paterno" required>
+                  <input class="form-control" type="text" id="A_Paterno" maxlegth="20" name="A_Paterno" value="{{$usuario->A_Paterno}}" required>
                 </div>
 
                  <div class="form-group">
                   <label for="txtapmat">Apellido materno</label>
-                  <input class="form-control" type="text" id="A_Materno" maxlegth="20" name="A_Materno" placeholder="Escribe tu apellido materno" required>
+                  <input class="form-control" type="text" id="A_Materno" maxlegth="20" name="A_Materno" value="{{$usuario->A_Materno}}" required>
                 </div>
 
             <!--
@@ -79,24 +76,38 @@
 
                  <div class="form-group">
                   <label for="FechaNac">Fecha de nacimiento</label>
-                  <input class="form-control" type="text" id="FechaNac" name="FechaNac" required readonly style="background:white;">
+                  <input class="form-control" type="text" id="FechaNac" name="FechaNac" required readonly style="background:white;" value="{{$usuario->FehaNac}}">
                 </div>
 
                 <div class="form-group">
                   <label>Sexo</label>
                   <select class="form-control" required id="Sexo" name="Sexo">
-                    <option value="0" selected="true">Femenino</option>
-                    <option value="1">Masculino</option>
+                    @if($usuario->Sexo==1)
+                        <option value="1" selected="true">Masculino</option>
+                        <option value="0" selected="false">Femenino</option>
+                    @else
+                        <option value="1" selected="false">Masculino</option>
+                        <option value="0" selected="true">Femenino</option>
+                    @endif
                   </select>
                 </div>
 
                 <div class="form-group">
                   <label for="txtnumero">Número de teléfono</label>
-                  <input class="form-control" type="text" pattern="[0-9]{10}" id="Celular" name="Celular" required>
+                <input class="form-control" type="text" pattern="[0-9]{10}" id="Celular" value="{{$usuario->Celular}}" name="Celular" required>
 
                 </div>
 
+                <div class="form-group">
+                        <div class="form-group has-feedback">
+                          <label for="txtcorreo">Correo electrónico</label>
+                          <input type="email" required class="form-control" name="Correo" id="Correo" placeholder="ejemplo@email.com" required>
+                          <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                        </div>
+                </div>
+                <br>
                  <div class="form-group">
+                 <img src="/storage/profile_pictures/{{$usuario->Imagen}}" widht="30px" height="30px"alt="Foto de perfil">
                   <label for="flfoto">Añadir foto de perfil</label>
                   <input type="file" id="Imagen" name="Imagen" >
                   <p class="help-block">Suba una fotografía en formato .jpg o .png</p>
@@ -180,17 +191,6 @@
                 </div>
 
                 </div>
-
-
-
-                <div class="col-md-6">
-                  <div class="form-group has-feedback">
-                    <label for="txtcorreo">Correo electrónico</label>
-                    <input type="email" required class="form-control" name="Correo" id="Correo" placeholder="ejemplo@email.com" required>
-                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                  </div>
-                </div>
-
                 </div>
                 <!-- /.box-body -->
 
@@ -206,4 +206,4 @@
           </div>
     </section>
   </div>
-@endsection
+@stop
