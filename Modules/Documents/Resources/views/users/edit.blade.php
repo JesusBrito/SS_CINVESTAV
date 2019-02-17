@@ -282,7 +282,7 @@
                 "Estatus":estatus,
             }
             }).done(function(resp){
-                alert("Ok")
+              swal('Ok','Se agregó correctamente','success')
                 var fila='+<tr class="selected" id="fila'+resp.responseId+'"><td><input type="hidden" value="'+grado+'">'+gradoLabel+'</td> <td><input type="hidden" value="'+escuela+'">'+escuela+'</td> <td><input type="hidden" value="'+carrera+'">'+carrera+'</td><td><input type="hidden" value="'+fechaInicio+'">'+fechaInicio+'</td><td><input type="hidden" value="'+fechaFin+'">'+fechaFin+'</td><td><input type="hidden" value="'+estatus+'">'+estatus+'</td> <td><a class="btn btn-danger" onclick="eliminar('+resp.responseId+')">Eliminar</a></td></tr>';
 
                 $('#detalles').append(fila);
@@ -304,44 +304,34 @@
             title: '¿Estás seguro?',
             text: "¡No se podrán deshacer los cambios!",
             type: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Si, eliminar',
-            cancelButtonText: 'No, cancelar',
-            confirmButtonClass: 'btn btn-success',
-            cancelButtonClass: 'btn btn-danger',
-            buttonsStyling: false
-            })
-            .then(function () {
-            // código que elimina
-            $.ajax({
-                type: "DELETE",
-                url: urlImport+"/documents/eliminar-detalle-nivel/"+id,
-                dataType: "json",
-                data: {
-                    "_token": _token,
-                }
-                }).done(function(resp){
-                    alert("Eliminado")
-                    $('#fila'+id).remove();
-                }).fail(function(err) {
-                    alert("Error al eliminar")
-                })
-
-            .error(function(data) {
-                swal('¡Error!', 'No se pudo eliminar el registro', "error");
-            })
-            },function (dismiss) {
-                if (dismiss === 'cancel') {
-                    swal(
-                        'Cancelado',
-                        'No se han realizado cambios',
-                        'error'
-                    )
-                }
-            })
-    }
+            buttons: [
+              'No, cancelar',
+              'Si, Estoy seguro'
+            ],
+            dangerMode: true
+          }).then(function (isConfirm) {
+            if (isConfirm) {
+              // código que elimina
+              $.ajax({
+                  type: "DELETE",
+                  url: urlImport+"/documents/eliminar-detalle-nivel/"+id,
+                  dataType: "json",
+                  data: {
+                      "_token": _token,
+                  }
+                  }).done(function(resp){
+                      swal('Eliminado','Se eliminó correctamente','info')
+                      $('#fila'+id).remove();
+                  }).fail(function(err) {
+                      alert("Error al eliminar")
+                  }).error(function(data) {
+                  swal('¡Error!', 'No se pudo eliminar el registro', "error");
+              })
+            }else{
+              swal('Cancelado','No se han realizado cambios','error')
+            }
+          })
+      }
 
 
   </script>
