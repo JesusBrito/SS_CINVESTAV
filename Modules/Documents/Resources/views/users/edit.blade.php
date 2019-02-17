@@ -77,7 +77,7 @@
 
               <div class="col-md-6">
 
-                 <div class="form-group">
+                <div class="form-group">
                   <label for="FechaNac">Fecha de nacimiento</label>
                   <input class="form-control" type="text" id="FechaNac" name="FechaNac" required readonly style="background:white;" value="{{$usuario->FechaNac}}">
                 </div>
@@ -110,7 +110,7 @@
                 </div>
                 <br>
                  <div class="form-group">
-                 <img src="{{Storage::url($usuario->Imagen)}}" widht="80px" height="80px"alt="Foto de perfil">
+                 <p><img src="{{Storage::url($usuario->Imagen)}}" widht="80px" height="80px" alt="Foto de perfil"></p>
                   <label for="flfoto">Añadir foto de perfil</label>
                   <input type="file" id="Imagen" name="Imagen" >
                   <p class="help-block">Suba una fotografía en formato .jpg o .png</p>
@@ -265,7 +265,7 @@
 
 
         if(escuela.trim().length==0 || carrera.trim().length==0 || fechaInicio.trim().length==0 || fechaFin.trim().length==0 ){
-            alert("Llene todos los campos.");
+            swal('¡Error!','Llene todos los campos','error');
         }else{
             $.ajax({
             type: "POST",
@@ -282,18 +282,18 @@
                 "Estatus":estatus,
             }
             }).done(function(resp){
-              swal('Ok','Se agregó correctamente','success')
+              swal('Ok','Se agregó correctamente','success');
                 var fila='+<tr class="selected" id="fila'+resp.responseId+'"><td><input type="hidden" value="'+grado+'">'+gradoLabel+'</td> <td><input type="hidden" value="'+escuela+'">'+escuela+'</td> <td><input type="hidden" value="'+carrera+'">'+carrera+'</td><td><input type="hidden" value="'+fechaInicio+'">'+fechaInicio+'</td><td><input type="hidden" value="'+fechaFin+'">'+fechaFin+'</td><td><input type="hidden" value="'+estatus+'">'+estatus+'</td> <td><a class="btn btn-danger" onclick="eliminar('+resp.responseId+')">Eliminar</a></td></tr>';
 
                 $('#detalles').append(fila);
 
-                $('#txtescuela').val('')
-                $('#txtcarrera').val('')
-                $('#txtfechaini').val('')
-                $('#txtfechafin').val('')
+                $('#txtescuela').val('');
+                $('#txtcarrera').val('');
+                $('#txtfechaini').val('');
+                $('#txtfechafin').val('');
 
             }).fail(function(err) {
-                alert("Error")
+                swal('¡Error!','No se pudo agregar','error');
             });
         }
 
@@ -320,10 +320,10 @@
                       "_token": _token,
                   }
                   }).done(function(resp){
-                      swal('Eliminado','Se eliminó correctamente','info')
+                      swal('Eliminado','Se eliminó correctamente','info');
                       $('#fila'+id).remove();
                   }).fail(function(err) {
-                      alert("Error al eliminar")
+                      swal('¡Error!','Llene todos los campos','error');
                   }).error(function(data) {
                   swal('¡Error!', 'No se pudo eliminar el registro', "error");
               })

@@ -154,7 +154,7 @@ desired effect
               <li class="user-body">
 
                   <div class="pull-left text-center">
-                  <a href="perfilgeneral.html" class="btn btn-default btn-flat">Perfil  </a>
+                  <a href="{{url('/documents/usuarios/show')}}" class="btn btn-default btn-flat">Perfil  </a>
                 </div>
                  <div class="col-xs-4 text-center">
                   <a href="sistema.html" class="btn btn-default btn-flat">Sistema <br> inventarios</a>
@@ -281,7 +281,6 @@ desired effect
 
 <script type="text/javascript">
   $('#FechaNac').datepicker({format: 'yyyy/mm/dd',language: 'es', autoclose: true});
-  $("#FechaNac").datepicker().datepicker("setDate", new Date());
   $('.ano').datepicker({
       format: "yyyy",
       viewMode: "years",
@@ -289,6 +288,7 @@ desired effect
       autoclose: true,
       language: 'es'});
 </script>
+
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 @include('sweet::alert')
 </body>

@@ -33,7 +33,6 @@
 
               <h3 class="profile-username text-center">{{auth()->user()->Nombre}} {{auth()->user()->A_Paterno}}</h3>
 
-              <p class="text-muted text-center">Título</p>
             </div>
             <!-- /.box-body -->
           </div>
@@ -47,10 +46,16 @@
             <!-- /.box-header -->
             <div class="box-body">
               <strong><i class="fa fa-book margin-r-5"></i>Educación</strong>
-              <p class="text-muted" txt="txtEscuela">
-                Escuela IPN
-              </p>
 
+              @foreach(auth()->user()->detailLevel() as $detail)
+                    <p class="text-muted">
+                        <i class="fa fa-mortar-board margin-r-5"></i>
+                        {{$detail->Carrera}} en {{$detail->Escuela}}
+                    </p>
+                    <p class="text-muted">
+                        Generación: {{$detail->Ingreso}} - {{$detail->Egreso}}
+                    </p>
+                @endforeach
               <hr>
 
               <strong><i class="fa fa-envelope margin-r-5"></i>Correo electrónico</strong>
