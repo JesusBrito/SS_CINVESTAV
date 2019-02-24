@@ -14,7 +14,7 @@ class ToxicitiesController extends Controller
      */
     public function index()
     {
-        return view('inventory::index');
+        return view('inventory::toxicidades.listarToxicidades');
     }
 
     /**
@@ -23,7 +23,7 @@ class ToxicitiesController extends Controller
      */
     public function create()
     {
-        return view('inventory::create');
+        return view('inventory::toxicidades.agregarToxicidad');
     }
 
     /**

@@ -13,4 +13,5 @@
 
 Route::prefix('inventory')->group(function() {
     Route::resource('/', 'InventoryController');
+    Route::resource('toxicities','ToxicitiesController');
 });

@@ -112,8 +112,8 @@
                       </span>
                     </a>
                     <ul class="treeview-menu" style="display: all;">
-                      <li class="active"><a href="#"><i class="fa fa-plus-square"></i>Agregar toxicidad</a></li>
-                      <li><a href="#"><i class="fa fa-list-ul"></i>Listar toxicidades</a></li>
+                    <li class="active"><a href="{{url('inventory/toxicities/create')}}"><i class="fa fa-plus-square"></i>Agregar toxicidad</a></li>
+                    <li><a href="{{url('inventory/toxicities')}}"><i class="fa fa-list-ul"></i>Listar toxicidades</a></li>
                     </ul>
             </li>
 
