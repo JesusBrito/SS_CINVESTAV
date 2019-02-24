@@ -4,7 +4,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-          Listar toxicidades
+          Listar tipos de reactivos
           <br>
         </h1>
         <ol class="breadcrumb">
@@ -21,7 +21,7 @@
             <div class="col-md-12">
               <div class="box box-primary">
                 <div class="box-header with-border">
-                  <h3 class="box-title">A continuación, se muestra una tabla con todos los registros de toxicidades</h3>
+                  <h3 class="box-title">A continuación, se muestra una tabla con todos los tipos de reactivos</h3>
                   <br>
                   <br>
                 </div>
@@ -33,14 +33,14 @@
                           <thead>
                             <tr class="table-title-edit">
                               <th class="col-md-2">ID</th>
-                              <th class="col-md-5">Toxicidad</th>
+                              <th class="col-md-5">Tipo</th>
                               <th class="col-md-1">Opciones</th>
                             </tr>
                           </thead>
                           <tbody>
                               <tr>
                                 <td>1</td> 
-                                <td class="center-text-column">Alta</td> 
+                                <td class="center-text-column">Tipo 1</td> 
                                 <td class="table-button-center">
                                   <a class="btn boton-editar" data-toggle="modal" data-target="#myModal"><i class="fa fa-edit fa-lg"></i></a>
                                   <a class="btn boton-eliminar" onclick=""><i class="fa fa-trash fa-lg"></i></a>
@@ -48,9 +48,9 @@
                               </tr>
                               <tr>
                                   <td>2</td> 
-                                  <td class="center-text-column">Alta</td> 
+                                  <td class="center-text-column">Tipo 2</td> 
                                   <td class="table-button-center">
-                                    <a class="btn boton-editar" onclick=""><i class="fa fa-edit fa-lg"></i></a>
+                                    <a class="btn boton-editar" data-toggle="modal" data-target="#myModal"><i class="fa fa-edit fa-lg"></i></a>
                                     <a class="btn boton-eliminar" onclick=""><i class="fa fa-trash fa-lg"></i></a>
                                   </td>
                               </tr>
@@ -77,9 +77,9 @@
                 <form class="form-horizontal" action="">
                     <div>
                       <div class="form-group">
-                        <label class="control-label col-xs-4">Nombre de la toxicidad:</label>
+                        <label class="control-label col-xs-4">Tipo de reactivo:</label>
                         <div class="col-xs-8">
-                          <input type="text" class="form-control" id="inputEmail" placeholder="Toxicidad">
+                          <input type="text" class="form-control" id="inputEmail" placeholder="Tipo de reactivo">
                         </div>
                       </div>
                       <br>

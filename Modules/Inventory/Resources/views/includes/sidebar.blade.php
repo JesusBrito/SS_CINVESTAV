@@ -126,8 +126,8 @@
                       </span>
                     </a>
                     <ul class="treeview-menu" style="display: all;">
-                      <li class="active"><a href="#"><i class="fa fa-plus-square"></i>Agregar tipo</a></li>
-                      <li><a href="#"><i class="fa fa-list-ul"></i>Listar tipos</a></li>
+                      <li class="active"><a href="{{url('inventory/typeReactives/create')}}"><i class="fa fa-plus-square"></i>Agregar tipo</a></li>
+                      <li><a href="{{url('inventory/typeReactives')}}"><i class="fa fa-list-ul"></i>Listar tipos</a></li>
                     </ul>
             </li>
 
@@ -154,7 +154,7 @@
                       </span>
                     </a>
                     <ul class="treeview-menu" style="display: all;">
-                      <li class="active"><a href="#"><i class="fa fa-plus-square"></i>Agregar ubicación</a></li>
+                      <li class="active"><a href="{{url('inventory/locations/create')}}"><i class="fa fa-plus-square"></i>Agregar ubicación</a></li>
                       <li><a href="#"><i class="fa fa-list-ul"></i>Listar ubicaciones</a></li>
                     </ul>
             </li>
