@@ -12,9 +12,14 @@ class TemperaturesController extends Controller
      * Display a listing of the resource.
      * @return Response
      */
+    public function __construct()
+    {
+       $this->middleware('auth');//Entregable 10: agregar rol de administrador
+    }
+    
     public function index()
     {
-        return view('inventory::tipoReactivos.listarTipoReactivo');
+        return view('inventory::temperaturas.listarTemperaturas');
     }
 
     /**
@@ -23,7 +28,7 @@ class TemperaturesController extends Controller
      */
     public function create()
     {
-        return view('inventory::tipoReactivos.agregarTipoReactivo');
+        return view('inventory::temperaturas.agregarTemperatura');
     }
 
     /**
