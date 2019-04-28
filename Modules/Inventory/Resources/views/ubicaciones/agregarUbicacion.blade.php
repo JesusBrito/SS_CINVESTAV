@@ -23,13 +23,14 @@
                 <div class="box-header with-border">
                  <h3 class="box-title">Llene los siguientes campos</h3>
                 </div>
-                <form class="form-horizontal" action="">
+                <form class="form-horizontal" method="POST" action="{{ route('locations.store') }}">
+                  {{ csrf_field() }}
                   <div class="box-body">
                     <div class="col-md-8 col-md-offset-2">
                         <div class="form-group">
                             <label class="control-label col-xs-4">Nombre de la ubicación:</label>
                             <div class="col-xs-8">
-                              <input type="text" class="form-control" id="inputEmail" placeholder="Ubicación">
+                              <input type="text" class="form-control" id="inputEmail" name="txtUbicacion" placeholder="Ubicación">
                             </div>
                         </div>
                         <br>

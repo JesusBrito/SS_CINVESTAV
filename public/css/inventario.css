@@ -30,9 +30,28 @@
     border-width: 1.5px;
 }
 
+.boton-eliminar{
+    border-color: #e30d48;
+    color: #000000;
+    border-width: 1.5px;
+}
+
 .boton-eliminar:hover{
     border-color: #c20c3e;
     background-color: #fbbbcd;
+    color: #000000;
+    border-width: 1.5px;
+}
+
+.boton-deshabilitar{
+    border-color: #f4dc00;
+    color: #000000;
+    border-width: 1.5px;
+}
+
+.boton-deshabilitar:hover{
+    border-color: #ddc800;
+    background-color: #fff7ae;
     color: #000000;
     border-width: 1.5px;
 }

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 
+use Modules\Inventory\Entities\Temperature as Temperature;
+
 class TemperaturesController extends Controller
 {
     /**
@@ -19,7 +21,8 @@ class TemperaturesController extends Controller
     
     public function index()
     {
-        return view('inventory::temperaturas.listarTemperaturas');
+        $temperatures= Temperature::all();
+        return view('inventory::temperaturas.listarTemperaturas',["temperatures"=>$temperatures]);
     }
 
     /**
@@ -38,6 +41,15 @@ class TemperaturesController extends Controller
      */
     public function store(Request $request)
     {
+        $temperature= new Temperature;
+        $temperature->temperatura = $request->txtTemperatura;
+        $temperature->estado = 1;
+        if($temperature->save()){
+            alert()->success('El registro se agregó correctamente', 'OK')->autoclose(2500);
+        }else{
+            alert()->error('Error al agregar el registro', 'Error')->autoclose(2500);
+        }
+        return view('inventory::temperaturas.agregarTemperatura');
     }
 
     /**
@@ -63,15 +75,43 @@ class TemperaturesController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
+        $temperature = Temperature::find($id);
+        $temperature->temperatura = $request->txtTemperatura;
+        if($temperature->save()){
+            return response()->json(array('success' => true), 200);
+        }else{
+            return Response::json("{message:'Error'}");
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      * @return Response
      */
-    public function destroy()
+    public function destroy($id)
     {
+        if(Temperature::destroy($id)){
+            return response()->json(array('success' => true), 200);
+        }else{
+            return Response::json("{message:'Error'}");
+        }
+    }
+
+    public function changeStatus(Request $request)
+    {
+        $temperature = Temperature::find($request->txtIdTemperatura);
+        if($temperature->estado==1){
+            $temperature->estado = 0;
+        }else{
+            $temperature->estado = 1;
+        }
+
+        if($temperature->save()){
+            return response()->json(array('success' => true), 200);
+        }else{
+            return Response::json("{message:'Error'}");
+        }
     }
 }

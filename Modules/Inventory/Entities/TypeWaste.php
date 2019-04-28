@@ -4,7 +4,7 @@ namespace Modules\Inventory\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Type_waste extends Model
+class TypeWaste extends Model
 {
     protected $fillable = [];
 }

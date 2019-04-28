@@ -4,7 +4,7 @@ namespace Modules\Inventory\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Contact_provider extends Model
+class ContactProvider extends Model
 {
     protected $fillable = [];
 }

@@ -196,6 +196,7 @@ desired effect
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 @include('sweet::alert')
+@stack('scripts')
 </body>
 </html>
 

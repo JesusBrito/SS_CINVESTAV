@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 
+use Modules\Inventory\Entities\Location as Location;
+
 class LocationsController extends Controller
 {
     /**
@@ -14,7 +16,8 @@ class LocationsController extends Controller
      */
     public function index()
     {
-        return view('inventory::ubicaciones.listarUbicaciones');
+        $locations= Location::all();
+        return view('inventory::ubicaciones.listarUbicaciones',["locations"=>$locations]);
     }
 
     /**
@@ -33,6 +36,15 @@ class LocationsController extends Controller
      */
     public function store(Request $request)
     {
+        $location= new Location;
+        $location->ubicacion = $request->txtUbicacion;
+        $location->estado = 1;
+        if($location->save()){
+            alert()->success('El registro se agregó correctamente', 'OK')->autoclose(2500);
+        }else{
+            alert()->error('Error al agregar el registro', 'Error')->autoclose(2500);
+        }
+        return view('inventory::ubicaciones.agregarUbicacion');
     }
 
     /**
@@ -58,15 +70,44 @@ class LocationsController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
+        $location = Location::find($id);
+        $location->ubicacion = $request->txtUbicacion;
+
+        if($location->save()){
+            return response()->json(array('success' => true), 200);
+        }else{
+            return Response::json("{message:'Error'}");
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      * @return Response
      */
-    public function destroy()
+    public function destroy($id)
     {
+        if(Location::destroy($id)){
+            return response()->json(array('success' => true), 200);
+        }else{
+            return Response::json("{message:'Error'}");
+        }
+    }
+
+    public function changeStatus(Request $request)
+    {
+        $location = Location::find($request->txtIdUbicacion);
+        if($location->estado==1){
+            $location->estado = 0;
+        }else{
+            $location->estado = 1;
+        }
+
+        if($location->save()){
+            return response()->json(array('success' => true), 200);
+        }else{
+            return Response::json("{message:'Error'}");
+        }
     }
 }

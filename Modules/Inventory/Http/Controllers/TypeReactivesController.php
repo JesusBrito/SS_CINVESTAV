@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 
+use Modules\Inventory\Entities\TypeReactive as TypeReactive;
+
 class TypeReactivesController extends Controller
 {
     /**
@@ -14,7 +16,8 @@ class TypeReactivesController extends Controller
      */
     public function index()
     {
-        return view('inventory::tipoReactivos.listarTipoReactivo');
+        $typeReactives= TypeReactive::all();
+        return view('inventory::tipoReactivos.listarTipoReactivo',["typeReactives"=>$typeReactives]);
     }
 
     /**
@@ -33,6 +36,15 @@ class TypeReactivesController extends Controller
      */
     public function store(Request $request)
     {
+        $typeReactive= new TypeReactive;
+        $typeReactive->tipo = $request->txtTypeReactive;
+        $typeReactive->estado = 1;
+        if($typeReactive->save()){
+            alert()->success('El registro se agregó correctamente', 'OK')->autoclose(2500);
+        }else{
+            alert()->error('Error al agregar el registro', 'Error')->autoclose(2500);
+        }
+        return view('inventory::tipoReactivos.agregarTipoReactivo');
     }
 
     /**
@@ -58,15 +70,44 @@ class TypeReactivesController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
+        $typeReactive = TypeReactive::find($id);
+        $typeReactive->tipo = $request->txtTipoReactivo;
+
+        if($typeReactive->save()){
+            return response()->json(array('success' => true), 200);
+        }else{
+            return Response::json("{message:'Error'}");
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      * @return Response
      */
-    public function destroy()
+    public function destroy($id)
     {
+        if(TypeReactive::destroy($id)){
+            return response()->json(array('success' => true), 200);
+        }else{
+            return Response::json("{message:'Error'}");
+        }
+    }
+
+    public function changeStatus(Request $request)
+    {
+        $typeReactive = TypeReactive::find($request->txtIdTipoReactivo);
+        if($typeReactive->estado==1){
+            $typeReactive->estado = 0;
+        }else{
+            $typeReactive->estado = 1;
+        }
+
+        if($typeReactive->save()){
+            return response()->json(array('success' => true), 200);
+        }else{
+            return Response::json("{message:'Error'}");
+        }
     }
 }

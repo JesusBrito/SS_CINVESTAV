@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 
+use Modules\Inventory\Entities\Toxicity as Toxicity;
+
 class ToxicitiesController extends Controller
 {
     /**
@@ -19,7 +21,8 @@ class ToxicitiesController extends Controller
     
     public function index()
     {
-        return view('inventory::toxicidades.listarToxicidades');
+        $toxicities= Toxicity::all();
+        return view('inventory::toxicidades.listarToxicidades',["toxicities"=>$toxicities]);
     }
 
     /**
@@ -38,6 +41,15 @@ class ToxicitiesController extends Controller
      */
     public function store(Request $request)
     {
+        $toxicity= new Toxicity;
+        $toxicity->toxicidad = $request->txtToxicidad;
+        $toxicity->estado = 1;
+        if($toxicity->save()){
+            alert()->success('El registro se agregó correctamente', 'OK')->autoclose(2500);
+        }else{
+            alert()->error('Error al agregar el registro', 'Error')->autoclose(2500);
+        }
+        return view('inventory::toxicidades.agregarToxicidad');
     }
 
     /**
@@ -63,15 +75,44 @@ class ToxicitiesController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
+        $toxicity = Toxicity::find($id);
+        $toxicity->toxicidad = $request->txtToxicidad;
+
+        if($toxicity->save()){
+            return response()->json(array('success' => true), 200);
+        }else{
+            return Response::json("{message:'Error'}");
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      * @return Response
      */
-    public function destroy()
+    public function destroy($id)
     {
+        if(Toxicity::destroy($id)){
+            return response()->json(array('success' => true), 200);
+        }else{
+            return Response::json("{message:'Error'}");
+        }
+    }
+
+    public function changeStatus(Request $request)
+    {
+        $toxicity = Toxicity::find($request->txtIdToxicidad);
+        if($toxicity->estado==1){
+            $toxicity->estado = 0;
+        }else{
+            $toxicity->estado = 1;
+        }
+
+        if($toxicity->save()){
+            return response()->json(array('success' => true), 200);
+        }else{
+            return Response::json("{message:'Error'}");
+        }
     }
 }

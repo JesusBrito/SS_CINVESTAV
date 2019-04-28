@@ -28,32 +28,29 @@
                   <div class="box-body">
                     <br>
                     <br>
-                    <div class="col-md-8 col-md-offset-2 table-responsive no-padding"> 
+                    <div class="col-md-12 table-responsive no-padding"> 
                       <table id="tableToxicidades" class="table table-striped table-bordered">
                           <thead>
                             <tr class="table-title-edit">
-                              <th class="col-md-2">ID</th>
+                              <th class="col-md-2">Id</th>
                               <th class="col-md-5">Ubicación</th>
-                              <th class="col-md-1">Opciones</th>
+                              <th class="col-md-2">Estatus</th>
+                              <th class="col-md-3">Opciones</th>
                             </tr>
                           </thead>
                           <tbody>
-                              <tr>
-                                <td>1</td> 
-                                <td class="center-text-column">Refrigerador</td> 
+                            @foreach ($locations as $location)
+                              <tr id="fila{{$location->id}}">
+                                <td>{{$location->id}}</td> 
+                                <td class="center-text-column" id="nombre{{$location->id}}">{{$location->ubicacion}}</td> 
+                                <td class="center-text-column" id="estatus{{$location->id}}">@if($location->estado == 1) Habilidado @else Deshabilitado @endif</td> 
                                 <td class="table-button-center">
-                                  <a class="btn boton-editar" data-toggle="modal" data-target="#myModal"><i class="fa fa-edit fa-lg"></i></a>
-                                  <a class="btn boton-eliminar" onclick=""><i class="fa fa-trash fa-lg"></i></a>
+                                  <a class="btn boton-editar openModalEdit" data-id="{{$location->id}}" data-name="{{$location->ubicacion}}"><i class="fa fa-edit fa-lg"></i></a>
+                                  <a class="btn boton-deshabilitar" id="btn-des{{$location->id}}" onclick="cambiarEstatusUbicacion({{$location->id}})"> @if($location->estado == 1) <i class="fa fa-eye-slash fa-lg" aria-hidden="true"></i>@else <i class="fa fa-eye fa-lg" aria-hidden="true"></i> @endif </a>
+                                  <a class="btn boton-eliminar" onclick="eliminarUbicacion({{$location->id}})"><i class="fa fa-trash fa-lg"></i></a>
                                 </td>
                               </tr>
-                              <tr>
-                                  <td>2</td> 
-                                  <td class="center-text-column">Estante</td> 
-                                  <td class="table-button-center">
-                                    <a class="btn boton-editar" data-toggle="modal" data-target="#myModal"><i class="fa fa-edit fa-lg"></i></a>
-                                    <a class="btn boton-eliminar" onclick=""><i class="fa fa-trash fa-lg"></i></a>
-                                  </td>
-                              </tr>
+                            @endforeach
                           </tbody>
                       </table>
                     </div>
@@ -64,7 +61,7 @@
       </section>
 
 
-      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -75,11 +72,19 @@
 
 
                 <form class="form-horizontal" action="">
+                  <input name="_token" value="{{ csrf_token() }}" type="hidden">
+                  <input name="_asset" value="{{ url('/') }}" type="hidden">
                     <div>
-                      <div class="form-group">
-                        <label class="control-label col-xs-4">Ubicación:</label>
+                      <<div class="form-group">
+                        <label class="control-label col-xs-4">Id de la ubicación:</label>
                         <div class="col-xs-8">
-                          <input type="text" class="form-control" id="inputEmail" placeholder="Ubicación">
+                          <input type="text" class="form-control" readonly id="inputIdUbicacion" placeholder="Toxicidad">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-xs-4">Nombre de la ubicación:</label>
+                        <div class="col-xs-8">
+                          <input type="text" class="form-control" id="inputUbicacion" placeholder="Toxicidad">
                         </div>
                       </div>
                       <br>
@@ -90,9 +95,123 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-              <button type="button" class="btn btn-primary">Guardar Cambios</button>
+              <button type="button" onclick="editarUbicacion()" class="btn btn-primary">Guardar Cambios</button>
             </div>
           </div>
         </div>
       </div>
+  @push ('scripts')
+  <script>
+      var _token = $('input[name="_token"]').val()
+      var urlImport = $('input[name="_asset"]').val()
+
+      $(".openModalEdit").click(function () {
+        var id = $(this).attr('data-id')
+        $('#inputUbicacion').val($('#nombre'+id).html());
+        $('#inputIdUbicacion').val(id);
+        console.log($(this))
+        $('#modalEdit').modal('show');
+      });
+
+      function editarUbicacion(){
+        var id = $('#inputIdUbicacion').val()
+        var txtUbicacion = $('#inputUbicacion').val()
+        swal({
+            title: 'Guardar cambios',
+            text: "¿Estás seguro?",
+            type: 'warning',
+            buttons: [
+              'No, cancelar',
+              'Si, Estoy seguro'
+            ],
+            dangerMode: true
+          }).then(function (isConfirm) {
+            if (isConfirm) {
+              // código que elimina
+              $.ajax({
+                  type: "PUT",
+                  url: urlImport+"/inventory/locations/"+id,
+                  dataType: "json",
+                  data: {
+                      "_token": _token,
+                      "txtUbicacion": txtUbicacion,
+                      "txtIdToxicidad": id
+                  }
+                  }).done(function(resp){
+                      swal('Ok','Se editó correctamente el registro','info');
+                      $('#nombre'+id).html(txtUbicacion)
+                  }).fail(function(err) {
+                      swal('¡Error!','No se pudo modificar el registro','error');
+                  }).error(function(data) {
+                  swal('¡Error!', 'No se pudo modificar el registro', "error");
+              })
+            }else{
+              swal('Cancelado','No se han realizado cambios','error')
+            }
+          })
+      }
+
+      function cambiarEstatusUbicacion(id){
+        if($('#estatus'+id).html().trim()=="Habilidado"){
+          var txtEstatusUbicacion = "Deshabilidado"
+        }else{
+          var txtEstatusUbicacion = "Habilidado"
+        }
+        console.log($('#estatus'+id).html())
+        $.ajax({
+          type: "PUT",
+          url: urlImport+"/inventory/location/change-status",
+          dataType: "json",
+          data: {
+            "_token": _token,
+            "txtIdUbicacion": id
+          }
+        }).done(function(resp){
+          swal('Ok','Es estatus se modificó correctamente','info');
+          $('#estatus'+id).html(txtEstatusUbicacion)
+          if($('#estatus'+id).html().trim()=="Habilidado"){
+            $('#btn-des'+id).html('<i class="fa fa-eye-slash fa-lg" aria-hidden="true"></i>')
+          }else{
+            $('#btn-des'+id).html('<i class="fa fa-eye fa-lg" aria-hidden="true"></i> ')
+          }
+
+        }).fail(function(err) {
+          swal('¡Error!','No se pudo modificar el estatus','error');
+                 
+        })
+      }
+
+      function eliminarUbicacion(id){
+        swal({
+            title: '¿Estás seguro?',
+            text: "¡No se podrán deshacer los cambios!",
+            type: 'warning',
+            buttons: [
+              'No, cancelar',
+              'Si, Estoy seguro'
+            ],
+            dangerMode: true
+          }).then(function (isConfirm) {
+            if (isConfirm) {
+              // código que elimina
+              $.ajax({
+                  type: "DELETE",
+                  url: urlImport+"/inventory/locations/"+id,
+                  dataType: "json",
+                  data: {
+                      "_token": _token,
+                  }
+                  }).done(function(resp){
+                      swal('Eliminado','Se eliminó correctamente','info');
+                      $('#fila'+id).remove();
+                  }).fail(function(err) {
+                      swal('¡Error!','Error al eliminar el registro','error');
+                  })
+            }else{
+              swal('Cancelado','No se han realizado cambios','error')
+            }
+          })
+      }
+  </script>
+@endpush
 @stop
