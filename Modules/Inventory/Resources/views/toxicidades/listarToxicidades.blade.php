@@ -204,7 +204,7 @@
                   }
                   }).done(function(resp){
                       swal('Eliminado','Se eliminó correctamente','info');
-                      $('#fila'+id).remove();
+                      $('#tableToxicidades').DataTable().row("#fila"+id).remove().draw();
                   }).fail(function(err) {
                       swal('¡Error!','Error al eliminar el registro','error');
                   })

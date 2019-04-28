@@ -105,6 +105,7 @@
       var _token = $('input[name="_token"]').val()
       var urlImport = $('input[name="_asset"]').val()
 
+     
       $(".openModalEdit").click(function () {
         var id = $(this).attr('data-id')
         $('#inputTemperatura').val($('#nombre'+id).html());
@@ -203,7 +204,7 @@
                   }
                   }).done(function(resp){
                       swal('Eliminado','Se eliminó correctamente','info');
-                      $('#fila'+id).remove();
+                      $('#tableToxicidades').DataTable().row("#fila"+id).remove().draw();
                   }).fail(function(err) {
                       swal('¡Error!','Error al eliminar el registro','error');
                   })
@@ -212,6 +213,8 @@
             }
           })
       }
+
+
   </script>
 @endpush
 @stop
