@@ -4,7 +4,7 @@ namespace Modules\Inventory\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Detail_consumable extends Model
+class DetailConsumable extends Model
 {
     protected $fillable = [];
 }

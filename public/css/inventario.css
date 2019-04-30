@@ -1,0 +1,61 @@
+.table-title-edit{
+    background-color:#66CDAA;
+    color:black;
+    text-align: center;
+    font-size:14px;
+}
+
+.center-text-column{
+    text-align: center;
+    font-size: 14px;
+}
+
+.boton-editar{
+    border-color: #0080ff;
+    color: black;
+    border-width: 1.5px;
+}
+
+.boton-eliminar{
+    border-color: #e30d48;
+    color: #000000;
+    border-width: 1.5px;
+}
+
+
+.boton-editar:hover{
+    border-color: #0078f0;
+    background-color: #aed7ff;
+    color: #000000;
+    border-width: 1.5px;
+}
+
+.boton-eliminar{
+    border-color: #e30d48;
+    color: #000000;
+    border-width: 1.5px;
+}
+
+.boton-eliminar:hover{
+    border-color: #c20c3e;
+    background-color: #fbbbcd;
+    color: #000000;
+    border-width: 1.5px;
+}
+
+.boton-deshabilitar{
+    border-color: #f4dc00;
+    color: #000000;
+    border-width: 1.5px;
+}
+
+.boton-deshabilitar:hover{
+    border-color: #ddc800;
+    background-color: #fff7ae;
+    color: #000000;
+    border-width: 1.5px;
+}
+
+.table-button-center{
+    text-align: center;
+}

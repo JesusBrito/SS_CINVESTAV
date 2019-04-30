@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 
-use Modules\Inventory\Entities\Toxicity as Toxicity;
+use Modules\Inventory\Entities\Temperature as Temperature;
 
-class ToxicitiesController extends Controller
+class TemperaturesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,8 +21,8 @@ class ToxicitiesController extends Controller
     
     public function index()
     {
-        $toxicities= Toxicity::all();
-        return view('inventory::toxicidades.listarToxicidades',["toxicities"=>$toxicities]);
+        $temperatures= Temperature::all();
+        return view('inventory::temperaturas.listarTemperaturas',["temperatures"=>$temperatures]);
     }
 
     /**
@@ -31,7 +31,7 @@ class ToxicitiesController extends Controller
      */
     public function create()
     {
-        return view('inventory::toxicidades.agregarToxicidad');
+        return view('inventory::temperaturas.agregarTemperatura');
     }
 
     /**
@@ -41,15 +41,15 @@ class ToxicitiesController extends Controller
      */
     public function store(Request $request)
     {
-        $toxicity= new Toxicity;
-        $toxicity->toxicidad = $request->txtToxicidad;
-        $toxicity->estado = 1;
-        if($toxicity->save()){
+        $temperature= new Temperature;
+        $temperature->temperatura = $request->txtTemperatura;
+        $temperature->estado = 1;
+        if($temperature->save()){
             alert()->success('El registro se agregó correctamente', 'OK')->autoclose(2500);
         }else{
             alert()->error('Error al agregar el registro', 'Error')->autoclose(2500);
         }
-        return view('inventory::toxicidades.agregarToxicidad');
+        return view('inventory::temperaturas.agregarTemperatura');
     }
 
     /**
@@ -77,10 +77,9 @@ class ToxicitiesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $toxicity = Toxicity::find($id);
-        $toxicity->toxicidad = $request->txtToxicidad;
-
-        if($toxicity->save()){
+        $temperature = Temperature::find($id);
+        $temperature->temperatura = $request->txtTemperatura;
+        if($temperature->save()){
             return response()->json(array('success' => true), 200);
         }else{
             return Response::json("{message:'Error'}");
@@ -93,7 +92,7 @@ class ToxicitiesController extends Controller
      */
     public function destroy($id)
     {
-        if(Toxicity::destroy($id)){
+        if(Temperature::destroy($id)){
             return response()->json(array('success' => true), 200);
         }else{
             return Response::json("{message:'Error'}");
@@ -102,14 +101,14 @@ class ToxicitiesController extends Controller
 
     public function changeStatus(Request $request)
     {
-        $toxicity = Toxicity::find($request->txtIdToxicidad);
-        if($toxicity->estado==1){
-            $toxicity->estado = 0;
+        $temperature = Temperature::find($request->txtIdTemperatura);
+        if($temperature->estado==1){
+            $temperature->estado = 0;
         }else{
-            $toxicity->estado = 1;
+            $temperature->estado = 1;
         }
 
-        if($toxicity->save()){
+        if($temperature->save()){
             return response()->json(array('success' => true), 200);
         }else{
             return Response::json("{message:'Error'}");

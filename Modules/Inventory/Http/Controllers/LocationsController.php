@@ -6,23 +6,18 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 
-use Modules\Inventory\Entities\Toxicity as Toxicity;
+use Modules\Inventory\Entities\Location as Location;
 
-class ToxicitiesController extends Controller
+class LocationsController extends Controller
 {
     /**
      * Display a listing of the resource.
      * @return Response
      */
-    public function __construct()
-    {
-       $this->middleware('auth');//Entregable 10: agregar rol de administrador
-    }
-    
     public function index()
     {
-        $toxicities= Toxicity::all();
-        return view('inventory::toxicidades.listarToxicidades',["toxicities"=>$toxicities]);
+        $locations= Location::all();
+        return view('inventory::ubicaciones.listarUbicaciones',["locations"=>$locations]);
     }
 
     /**
@@ -31,7 +26,7 @@ class ToxicitiesController extends Controller
      */
     public function create()
     {
-        return view('inventory::toxicidades.agregarToxicidad');
+        return view('inventory::ubicaciones.agregarUbicacion');
     }
 
     /**
@@ -41,15 +36,15 @@ class ToxicitiesController extends Controller
      */
     public function store(Request $request)
     {
-        $toxicity= new Toxicity;
-        $toxicity->toxicidad = $request->txtToxicidad;
-        $toxicity->estado = 1;
-        if($toxicity->save()){
+        $location= new Location;
+        $location->ubicacion = $request->txtUbicacion;
+        $location->estado = 1;
+        if($location->save()){
             alert()->success('El registro se agregó correctamente', 'OK')->autoclose(2500);
         }else{
             alert()->error('Error al agregar el registro', 'Error')->autoclose(2500);
         }
-        return view('inventory::toxicidades.agregarToxicidad');
+        return view('inventory::ubicaciones.agregarUbicacion');
     }
 
     /**
@@ -77,10 +72,10 @@ class ToxicitiesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $toxicity = Toxicity::find($id);
-        $toxicity->toxicidad = $request->txtToxicidad;
+        $location = Location::find($id);
+        $location->ubicacion = $request->txtUbicacion;
 
-        if($toxicity->save()){
+        if($location->save()){
             return response()->json(array('success' => true), 200);
         }else{
             return Response::json("{message:'Error'}");
@@ -93,7 +88,7 @@ class ToxicitiesController extends Controller
      */
     public function destroy($id)
     {
-        if(Toxicity::destroy($id)){
+        if(Location::destroy($id)){
             return response()->json(array('success' => true), 200);
         }else{
             return Response::json("{message:'Error'}");
@@ -102,14 +97,14 @@ class ToxicitiesController extends Controller
 
     public function changeStatus(Request $request)
     {
-        $toxicity = Toxicity::find($request->txtIdToxicidad);
-        if($toxicity->estado==1){
-            $toxicity->estado = 0;
+        $location = Location::find($request->txtIdUbicacion);
+        if($location->estado==1){
+            $location->estado = 0;
         }else{
-            $toxicity->estado = 1;
+            $location->estado = 1;
         }
 
-        if($toxicity->save()){
+        if($location->save()){
             return response()->json(array('success' => true), 200);
         }else{
             return Response::json("{message:'Error'}");

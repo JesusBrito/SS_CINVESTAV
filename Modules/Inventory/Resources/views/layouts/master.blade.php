@@ -25,7 +25,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <link rel="stylesheet" href="{{asset("/css/bootstrap-datepicker.min.css")}}">
 <!-- Cambio de Título-->
 <link rel="stylesheet" href="{{asset("/admin-lte/texto.css")}}">
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+<link rel="stylesheet" href="{{asset("/css/inventario.css")}}">
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -182,8 +184,11 @@ desired effect
 <!-- bootstrap datepicker -->
 <script src="{{asset("/js/bootstrap-datepicker.min.js")}}"></script>
 
-
 <script src="{{asset("/js/bootstrap-datepicker.es.min.js")}}"></script>
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+<script src="{{asset("/js/inventario/toxicidades.js")}}"></script>
 
 
 
@@ -191,6 +196,7 @@ desired effect
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 @include('sweet::alert')
+@stack('scripts')
 </body>
 </html>
 
