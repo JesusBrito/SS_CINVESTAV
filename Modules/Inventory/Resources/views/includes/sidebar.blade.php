@@ -168,8 +168,8 @@
                       </span>
                     </a>
                     <ul class="treeview-menu" style="display: all;">
-                      <li class="active"><a href="#"><i class="fa fa-plus-square"></i>Agregar marca</a></li>
-                      <li><a href="#"><i class="fa fa-list-ul"></i>Listar marcas</a></li>
+                      <li class="active"><a href="{{url('inventory/brands/create')}}"><i class="fa fa-plus-square"></i>Agregar marca</a></li>
+                      <li><a href="{{url('inventory/brands')}}"><i class="fa fa-list-ul"></i>Listar marcas</a></li>
                     </ul>
             </li>
 

@@ -17,6 +17,7 @@ Route::prefix('inventory')->group(function() {
     Route::resource('typeReactives','TypeReactivesController');
     Route::resource('locations','LocationsController');
     Route::resource('temperatures','TemperaturesController');
+    Route::resource('brands','BrandsController');
 
     //Rutas AJAX
     Route::put('toxicity/change-status', 'ToxicitiesController@changeStatus');
