@@ -24,7 +24,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Date Picker -->
   <link rel="stylesheet" href="{{asset("/css/bootstrap-datepicker.min.css")}}">
   <!-- Cambio de Título-->
-<link rel="stylesheet" href="{{asset("/admin-lte/texto.css")}}">
+<!-- <link rel="stylesheet" href="{{asset("/admin-lte/texto.css")}}"> -->
 
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
