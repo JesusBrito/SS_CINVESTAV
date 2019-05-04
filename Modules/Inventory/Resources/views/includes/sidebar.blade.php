@@ -210,8 +210,8 @@
                       </span>
                     </a>
                     <ul class="treeview-menu" style="display: all;">
-                      <li class="active"><a href="#"><i class="fa fa-plus-square"></i>Agregar unidad</a></li>
-                      <li><a href="#"><i class="fa fa-list-ul"></i>Listar unidades</a></li>
+                      <li class="active"><a href="{{url('inventory/unities/create')}}"><i class="fa fa-plus-square"></i>Agregar unidad</a></li>
+                      <li><a href="{{url('inventory/unities')}}"><i class="fa fa-list-ul"></i>Listar unidades</a></li>
                     </ul>
             </li>
 
