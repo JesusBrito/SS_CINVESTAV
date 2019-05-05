@@ -50,8 +50,8 @@
                       </span>
                     </a>
                     <ul class="treeview-menu" style="display: all;">
-                      <li class="active"><a href="#"><i class="fa fa-plus-square"></i>Agregar consumible</a></li>
-                      <li><a href="#"><i class="fa fa-list-ul"></i>Listar consumibles</a></li>
+                      <li class="active"><a href="{{url('inventory/consumables/create')}}"><i class="fa fa-plus-square"></i>Agregar consumible</a></li>
+                      <li><a href="{{url('inventory/consumables')}}"><i class="fa fa-list-ul"></i>Listar consumibles</a></li>
                     </ul>
             </li>
 
@@ -196,8 +196,8 @@
                       </span>
                     </a>
                     <ul class="treeview-menu" style="display: all;">
-                      <li class="active"><a href="#"><i class="fa fa-plus-square"></i>Agregar categoría</a></li>
-                      <li><a href="#"><i class="fa fa-list-ul"></i>Listar categorías</a></li>
+                      <li class="active"><a href="{{url('inventory/wastes/create')}}"><i class="fa fa-plus-square"></i>Agregar categoría</a></li>
+                      <li><a href="{{url('inventory/wastes')}}"><i class="fa fa-list-ul"></i>Listar categorías</a></li>
                     </ul>
             </li>
 
