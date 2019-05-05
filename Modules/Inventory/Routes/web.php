@@ -20,6 +20,11 @@ Route::prefix('inventory')->group(function() {
     Route::resource('brands','BrandsController');
     Route::resource('unities','UnitiesController');
     
+    Route::resource('consumables','ConsumablesController');
+    Route::resource('wastes','WastesController');
+
+
+
     //Rutas AJAX
     Route::put('toxicity/change-status', 'ToxicitiesController@changeStatus');
     Route::put('typeReactive/change-status', 'TypeReactivesController@changeStatus');
