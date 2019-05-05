@@ -30,7 +30,7 @@
                         <div class="form-group">
                             <label class="control-label col-xs-4">Nombre de la unidad:</label>
                             <div class="col-xs-8">
-                              <input type="text" class="form-control" name="txtUnidad" placeholder="Unidad">
+                              <input type="text" required class="form-control" name="txtUnidad" placeholder="Unidad">
                             </div>
                         </div>
                         <br>

@@ -30,7 +30,7 @@
                         <div class="form-group">
                             <label class="control-label col-xs-4">Temperatura:</label>
                             <div class="col-xs-8">
-                              <input type="text" class="form-control" name="txtTemperatura" id="inputEmail" placeholder="Temperatura">
+                              <input type="text" required class="form-control" name="txtTemperatura" placeholder="Temperatura">
                             </div>
                         </div>
                         <br>

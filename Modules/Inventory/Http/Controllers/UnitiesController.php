@@ -40,6 +40,15 @@ class UnitiesController extends Controller
      */
     public function store(Request $request)
     {
+        $unity= new Unity;
+        $unity->unidad = $request->txtUnidad;
+        $unity->estado = 1;
+        if($unity->save()){
+            alert()->success('El registro se agregó correctamente', 'OK')->autoclose(2500);
+        }else{
+            alert()->error('Error al agregar el registro', 'Error')->autoclose(2500);
+        }
+        return view('inventory::unidades.agregarUnidad');
     }
 
     /**
@@ -65,15 +74,44 @@ class UnitiesController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
+        $unity = Unity::find($id);
+        $unity->unidad = $request->txtUnidad;
+
+        if($unity->save()){
+            return response()->json(array('success' => true), 200);
+        }else{
+            return Response::json("{message:'Error'}");
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      * @return Response
      */
-    public function destroy()
+    public function destroy($id)
     {
+        if(Unity::destroy($id)){
+            return response()->json(array('success' => true), 200);
+        }else{
+            return Response::json("{message:'Error'}");
+        }
+    }
+
+    public function changeStatus(Request $request)
+    {
+        $unity = Unity::find($request->txtIdUnidad);
+        if($unity->estado==1){
+            $unity->estado = 0;
+        }else{
+            $unity->estado = 1;
+        }
+
+        if($unity->save()){
+            return response()->json(array('success' => true), 200);
+        }else{
+            return Response::json("{message:'Error'}");
+        }
     }
 }

@@ -42,10 +42,10 @@
                             @foreach ($brands as $brand)
                               <tr id="fila{{$brand->id}}">
                                 <td>{{$brand->id}}</td> 
-                                <td class="center-text-column" id="nombre{{$brand->id}}">{{$brand->temperatura}}</td> 
+                                <td class="center-text-column" id="nombre{{$brand->id}}">{{$brand->nombre}}</td> 
                                 <td class="center-text-column" id="estatus{{$brand->id}}">@if($brand->estado == 1) Habilidado @else Deshabilitado @endif</td> 
                                 <td class="table-button-center">
-                                  <a class="btn boton-editar openModalEdit" data-id="{{$brand->id}}" data-name="{{$brand->marca}}"><i class="fa fa-edit fa-lg"></i></a>
+                                  <a class="btn boton-editar openModalEdit" data-id="{{$brand->id}}" data-name="{{$brand->nombre}}"><i class="fa fa-edit fa-lg"></i></a>
                                   <a class="btn boton-deshabilitar" id="btn-des{{$brand->id}}" onclick="cambiarEstatusMarca({{$brand->id}})"> @if($brand->estado == 1) <i class="fa fa-eye-slash fa-lg" aria-hidden="true"></i>@else <i class="fa fa-eye fa-lg" aria-hidden="true"></i> @endif </a>
                                   <a class="btn boton-eliminar" onclick="eliminarMarca({{$brand->id}})"><i class="fa fa-trash fa-lg"></i></a>
                                 </td>
@@ -78,13 +78,13 @@
                       <div class="form-group">
                         <label class="control-label col-xs-4">Id de la marca:</label>
                         <div class="col-xs-8">
-                          <input type="text" class="form-control" readonly id="inputIdTemperatura" placeholder="Id">
+                          <input type="text" class="form-control" readonly id="inputIdMarca" placeholder="Id">
                         </div>
                       </div>
                       <div class="form-group">
                         <label class="control-label col-xs-4">Marca:</label>
                         <div class="col-xs-8">
-                          <input type="text" class="form-control" id="inputTemperatura" placeholder="Temperatura">
+                          <input type="text" class="form-control" id="inputMarca" placeholder="Marca">
                         </div>
                       </div>
                       <br>
@@ -95,7 +95,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-              <button type="button" onclick="editarTemperatura()" class="btn btn-primary">Guardar Cambios</button>
+              <button type="button" onclick="editarMarca()" class="btn btn-primary">Guardar Cambios</button>
             </div>
           </div>
         </div>
@@ -107,68 +107,72 @@
 
       $(".openModalEdit").click(function () {
         var id = $(this).attr('data-id')
-        $('#inputTemperatura').val($('#nombre'+id).html());
-        $('#inputIdTemperatura').val(id);
+        $('#inputMarca').val($('#nombre'+id).html());
+        $('#inputIdMarca').val(id);
         console.log($(this))
         $('#modalEdit').modal('show');
       });
 
-      function editarTemperatura(){
-        var id = $('#inputIdTemperatura').val()
-        var txtTemperatura = $('#inputTemperatura').val()
-        swal({
-            title: 'Guardar cambios',
-            text: "¿Estás seguro?",
-            type: 'warning',
-            buttons: [
-              'No, cancelar',
-              'Si, Estoy seguro'
-            ],
-            dangerMode: true
-          }).then(function (isConfirm) {
-            if (isConfirm) {
-              // código que elimina
-              $.ajax({
-                  type: "PUT",
-                  url: urlImport+"/inventory/temperatures/"+id,
-                  dataType: "json",
-                  data: {
-                      "_token": _token,
-                      "txtTemperatura": txtTemperatura,
-                      "txtIdTemperatura": id
-                  }
-                  }).done(function(resp){
-                      swal('Ok','Se editó correctamente el registro','info');
-                      $('#nombre'+id).html(txtTemperatura)
-                  }).fail(function(err) {
-                      swal('¡Error!','No se pudo modificar el registro','error');
-                  }).error(function(data) {
-                  swal('¡Error!', 'No se pudo modificar el registro', "error");
-              })
-            }else{
-              swal('Cancelado','No se han realizado cambios','error')
-            }
-          })
+      function editarMarca(){
+        var id = $('#inputIdMarca').val()
+        var txtMarca = $('#inputMarca').val().trim()
+
+        if(!(txtMarca.length > 0)){
+          swal('¡Error!','No se puede enviar el campo vacío','error');
+        }
+        else{ 
+          swal({
+              title: 'Guardar cambios',
+              text: "¿Estás seguro?",
+              type: 'warning',
+              buttons: [
+                'No, cancelar',
+                'Si, Estoy seguro'
+              ],
+              dangerMode: true
+            }).then(function (isConfirm) {
+              if (isConfirm) {
+                // código que elimina
+                $.ajax({
+                    type: "PUT",
+                    url: urlImport+"/inventory/brands/"+id,
+                    dataType: "json",
+                    data: {
+                        "_token": _token,
+                        "txtMarca": txtMarca,
+                        "txtIdMarca": id
+                    }
+                    }).done(function(resp){
+                        swal('Ok','Se editó correctamente el registro','info');
+                        $('#nombre'+id).html(txtMarca)
+                    }).fail(function(err) {
+                        swal('¡Error!','No se pudo modificar el registro','error');
+                    })
+              }else{
+                swal('Cancelado','No se han realizado cambios','error')
+              }
+            })
+        }
       }
 
-      function cambiarEstatusTemperatura(id){
+      function cambiarEstatusMarca(id){
         if($('#estatus'+id).html().trim()=="Habilidado"){
-          var txtEstatusTemperatura = "Deshabilidado"
+          var txtEstatusMarca = "Deshabilidado"
         }else{
-          var txtEstatusTemperatura = "Habilidado"
+          var txtEstatusMarca = "Habilidado"
         }
         console.log($('#estatus'+id).html())
         $.ajax({
           type: "PUT",
-          url: urlImport+"/inventory/temperature/change-status",
+          url: urlImport+"/inventory/brand/change-status",
           dataType: "json",
           data: {
             "_token": _token,
-            "txtIdTemperatura": id
+            "txtIdMarca": id
           }
         }).done(function(resp){
           swal('Ok','Es estatus se modificó correctamente','info');
-          $('#estatus'+id).html(txtEstatusTemperatura)
+          $('#estatus'+id).html(txtEstatusMarca)
           if($('#estatus'+id).html().trim()=="Habilidado"){
             $('#btn-des'+id).html('<i class="fa fa-eye-slash fa-lg" aria-hidden="true"></i>')
           }else{
@@ -181,7 +185,7 @@
         })
       }
 
-      function eliminarTemperatura(id){
+      function eliminarMarca(id){
         swal({
             title: '¿Estás seguro?',
             text: "¡No se podrán deshacer los cambios!",
@@ -196,7 +200,7 @@
               // código que elimina
               $.ajax({
                   type: "DELETE",
-                  url: urlImport+"/inventory/temperatures/"+id,
+                  url: urlImport+"/inventory/brands/"+id,
                   dataType: "json",
                   data: {
                       "_token": _token,

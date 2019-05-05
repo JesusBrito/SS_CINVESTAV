@@ -116,40 +116,46 @@
 
       function editarTipoReactivo(){
         var id = $('#inputIdTipo').val()
-        var txtTipo = $('#inputTipo').val()
-        swal({
-            title: 'Guardar cambios',
-            text: "¿Estás seguro?",
-            type: 'warning',
-            buttons: [
-              'No, cancelar',
-              'Si, Estoy seguro'
-            ],
-            dangerMode: true
-          }).then(function (isConfirm) {
-            if (isConfirm) {
-              // código que elimina
-              $.ajax({
-                  type: "PUT",
-                  url: urlImport+"/inventory/typeReactives/"+id,
-                  dataType: "json",
-                  data: {
-                      "_token": _token,
-                      "txtTipoReactivo": txtTipo,
-                      "txtIdTipo": id
-                  }
-                  }).done(function(resp){
-                      swal('Ok','Se editó correctamente el registro','info');
-                      $('#nombre'+id).html(txtTipo)
-                  }).fail(function(err) {
-                      swal('¡Error!','No se pudo modificar el registro','error');
-                  }).error(function(data) {
-                  swal('¡Error!', 'No se pudo modificar el registro', "error");
-              })
-            }else{
-              swal('Cancelado','No se han realizado cambios','error')
-            }
-          })
+        var txtTipo = $('#inputTipo').val().trim()
+        
+        if(!(txtTipo.length > 0)){
+          swal('¡Error!','No se puede enviar el campo vacío','error');
+        }
+        else{ 
+          swal({
+              title: 'Guardar cambios',
+              text: "¿Estás seguro?",
+              type: 'warning',
+              buttons: [
+                'No, cancelar',
+                'Si, Estoy seguro'
+              ],
+              dangerMode: true
+            }).then(function (isConfirm) {
+              if (isConfirm) {
+                // código que elimina
+                $.ajax({
+                    type: "PUT",
+                    url: urlImport+"/inventory/typeReactives/"+id,
+                    dataType: "json",
+                    data: {
+                        "_token": _token,
+                        "txtTipoReactivo": txtTipo,
+                        "txtIdTipo": id
+                    }
+                    }).done(function(resp){
+                        swal('Ok','Se editó correctamente el registro','info');
+                        $('#nombre'+id).html(txtTipo)
+                    }).fail(function(err) {
+                        swal('¡Error!','No se pudo modificar el registro','error');
+                    }).error(function(data) {
+                    swal('¡Error!', 'No se pudo modificar el registro', "error");
+                })
+              }else{
+                swal('Cancelado','No se han realizado cambios','error')
+              }
+            })
+        }
       }
 
       function cambiarEstatusTipoReactivo(id){

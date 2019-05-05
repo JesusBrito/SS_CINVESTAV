@@ -30,7 +30,7 @@
                         <div class="form-group">
                             <label class="control-label col-xs-4">Nombre de la toxicidad:</label>
                             <div class="col-xs-8">
-                              <input type="text" class="form-control" id="inputEmail" name="txtToxicidad" placeholder="Toxicidad">
+                              <input type="text" required class="form-control" name="txtToxicidad" placeholder="Toxicidad">
                             </div>
                         </div>
                         <br>

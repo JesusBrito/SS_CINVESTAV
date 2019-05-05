@@ -30,7 +30,7 @@
                         <div class="form-group">
                             <label class="control-label col-xs-4">Tipo de reactivo:</label>
                             <div class="col-xs-8">
-                              <input type="text" class="form-control" name="txtTypeReactive" id="inputTypeReactive placeholder="Tipo de reactivo">
+                              <input type="text" required class="form-control" name="txtTypeReactive" id="inputTypeReactive placeholder="Tipo de reactivo">
                             </div>
                         </div>
                         <br>

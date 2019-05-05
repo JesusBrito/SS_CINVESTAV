@@ -40,6 +40,15 @@ class BrandsController extends Controller
      */
     public function store(Request $request)
     {
+        $brandCompany= new BrandCompany;
+        $brandCompany->nombre = $request->txtMarca;
+        $brandCompany->estado = 1;
+        if($brandCompany->save()){
+            alert()->success('El registro se agregó correctamente', 'OK')->autoclose(2500);
+        }else{
+            alert()->error('Error al agregar el registro', 'Error')->autoclose(2500);
+        }
+        return view('inventory::marcas.agregarMarca');
     }
 
     /**
@@ -65,15 +74,43 @@ class BrandsController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
+        $brandCompany = BrandCompany::find($id);
+        $brandCompany->nombre = $request->txtMarca;
+        if($brandCompany->save()){
+            return response()->json(array('success' => true), 200);
+        }else{
+            return Response::json("{message:'Error'}");
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      * @return Response
      */
-    public function destroy()
+    public function destroy($id)
     {
+        if(BrandCompany::destroy($id)){
+            return response()->json(array('success' => true), 200);
+        }else{
+            return Response::json("{message:'Error'}");
+        }
+    }
+
+    public function changeStatus(Request $request)
+    {
+        $brandCompany = BrandCompany::find($request->txtIdMarca);
+        if($brandCompany->estado==1){
+            $brandCompany->estado = 0;
+        }else{
+            $brandCompany->estado = 1;
+        }
+
+        if($brandCompany->save()){
+            return response()->json(array('success' => true), 200);
+        }else{
+            return Response::json("{message:'Error'}");
+        }
     }
 }

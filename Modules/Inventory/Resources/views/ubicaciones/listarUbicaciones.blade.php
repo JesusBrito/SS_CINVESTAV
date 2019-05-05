@@ -78,13 +78,13 @@
                       <<div class="form-group">
                         <label class="control-label col-xs-4">Id de la ubicación:</label>
                         <div class="col-xs-8">
-                          <input type="text" class="form-control" readonly id="inputIdUbicacion" placeholder="Toxicidad">
+                          <input type="text" class="form-control" readonly id="inputIdUbicacion" placeholder="Id">
                         </div>
                       </div>
                       <div class="form-group">
                         <label class="control-label col-xs-4">Nombre de la ubicación:</label>
                         <div class="col-xs-8">
-                          <input type="text" class="form-control" id="inputUbicacion" placeholder="Toxicidad">
+                          <input type="text" class="form-control" id="inputUbicacion" placeholder="Ubicación">
                         </div>
                       </div>
                       <br>
@@ -115,40 +115,46 @@
 
       function editarUbicacion(){
         var id = $('#inputIdUbicacion').val()
-        var txtUbicacion = $('#inputUbicacion').val()
-        swal({
-            title: 'Guardar cambios',
-            text: "¿Estás seguro?",
-            type: 'warning',
-            buttons: [
-              'No, cancelar',
-              'Si, Estoy seguro'
-            ],
-            dangerMode: true
-          }).then(function (isConfirm) {
-            if (isConfirm) {
-              // código que elimina
-              $.ajax({
-                  type: "PUT",
-                  url: urlImport+"/inventory/locations/"+id,
-                  dataType: "json",
-                  data: {
-                      "_token": _token,
-                      "txtUbicacion": txtUbicacion,
-                      "txtIdToxicidad": id
-                  }
-                  }).done(function(resp){
-                      swal('Ok','Se editó correctamente el registro','info');
-                      $('#nombre'+id).html(txtUbicacion)
-                  }).fail(function(err) {
-                      swal('¡Error!','No se pudo modificar el registro','error');
-                  }).error(function(data) {
-                  swal('¡Error!', 'No se pudo modificar el registro', "error");
-              })
-            }else{
-              swal('Cancelado','No se han realizado cambios','error')
-            }
-          })
+        var txtUbicacion = $('#inputUbicacion').val().trim()
+
+        if(!(txtUbicacion.length > 0)){
+          swal('¡Error!','No se puede enviar el campo vacío','error');
+        }
+        else{ 
+          swal({
+              title: 'Guardar cambios',
+              text: "¿Estás seguro?",
+              type: 'warning',
+              buttons: [
+                'No, cancelar',
+                'Si, Estoy seguro'
+              ],
+              dangerMode: true
+            }).then(function (isConfirm) {
+              if (isConfirm) {
+                // código que elimina
+                $.ajax({
+                    type: "PUT",
+                    url: urlImport+"/inventory/locations/"+id,
+                    dataType: "json",
+                    data: {
+                        "_token": _token,
+                        "txtUbicacion": txtUbicacion,
+                        "txtIdToxicidad": id
+                    }
+                    }).done(function(resp){
+                        swal('Ok','Se editó correctamente el registro','info');
+                        $('#nombre'+id).html(txtUbicacion)
+                    }).fail(function(err) {
+                        swal('¡Error!','No se pudo modificar el registro','error');
+                    }).error(function(data) {
+                    swal('¡Error!', 'No se pudo modificar el registro', "error");
+                })
+              }else{
+                swal('Cancelado','No se han realizado cambios','error')
+              }
+            })
+        }
       }
 
       function cambiarEstatusUbicacion(id){

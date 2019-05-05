@@ -30,7 +30,7 @@
                         <div class="form-group">
                             <label class="control-label col-xs-4">Nombre de la ubicación:</label>
                             <div class="col-xs-8">
-                              <input type="text" class="form-control" id="inputEmail" name="txtUbicacion" placeholder="Ubicación">
+                              <input type="text" class="form-control" required name="txtUbicacion" placeholder="Ubicación">
                             </div>
                         </div>
                         <br>

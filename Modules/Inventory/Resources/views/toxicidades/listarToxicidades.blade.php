@@ -116,40 +116,46 @@
 
       function editarToxicidad(){
         var id = $('#inputIdToxicidad').val()
-        var txtToxicidad = $('#inputToxicidad').val()
-        swal({
-            title: 'Guardar cambios',
-            text: "¿Estás seguro?",
-            type: 'warning',
-            buttons: [
-              'No, cancelar',
-              'Si, Estoy seguro'
-            ],
-            dangerMode: true
-          }).then(function (isConfirm) {
-            if (isConfirm) {
-              // código que elimina
-              $.ajax({
-                  type: "PUT",
-                  url: urlImport+"/inventory/toxicities/"+id,
-                  dataType: "json",
-                  data: {
-                      "_token": _token,
-                      "txtToxicidad": txtToxicidad,
-                      "txtIdToxicidad": id
-                  }
-                  }).done(function(resp){
-                      swal('Ok','Se editó correctamente el registro','info');
-                      $('#nombre'+id).html(txtToxicidad)
-                  }).fail(function(err) {
-                      swal('¡Error!','No se pudo modificar el registro','error');
-                  }).error(function(data) {
-                  swal('¡Error!', 'No se pudo modificar el registro', "error");
-              })
-            }else{
-              swal('Cancelado','No se han realizado cambios','error')
-            }
-          })
+        var txtToxicidad = $('#inputToxicidad').val().trim()
+        
+        if(!(txtToxicidad.length > 0)){
+          swal('¡Error!','No se puede enviar el campo vacío','error');
+        }
+        else{ 
+          swal({
+              title: 'Guardar cambios',
+              text: "¿Estás seguro?",
+              type: 'warning',
+              buttons: [
+                'No, cancelar',
+                'Si, Estoy seguro'
+              ],
+              dangerMode: true
+            }).then(function (isConfirm) {
+              if (isConfirm) {
+                // código que elimina
+                $.ajax({
+                    type: "PUT",
+                    url: urlImport+"/inventory/toxicities/"+id,
+                    dataType: "json",
+                    data: {
+                        "_token": _token,
+                        "txtToxicidad": txtToxicidad,
+                        "txtIdToxicidad": id
+                    }
+                    }).done(function(resp){
+                        swal('Ok','Se editó correctamente el registro','info');
+                        $('#nombre'+id).html(txtToxicidad)
+                    }).fail(function(err) {
+                        swal('¡Error!','No se pudo modificar el registro','error');
+                    }).error(function(data) {
+                    swal('¡Error!', 'No se pudo modificar el registro', "error");
+                })
+              }else{
+                swal('Cancelado','No se han realizado cambios','error')
+              }
+            })
+        }
       }
 
       function cambiarEstatusToxicidad(id){

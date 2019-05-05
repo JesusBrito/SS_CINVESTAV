@@ -78,13 +78,13 @@
                       <div class="form-group">
                         <label class="control-label col-xs-4">Id de la toxicidad:</label>
                         <div class="col-xs-8">
-                          <input type="text" class="form-control" readonly id="inputIdToxicidad" placeholder="Toxicidad">
+                          <input type="text" class="form-control" readonly id="inputIdUnidad" placeholder="Id">
                         </div>
                       </div>
                       <div class="form-group">
                         <label class="control-label col-xs-4">Nombre de la toxicidad:</label>
                         <div class="col-xs-8">
-                          <input type="text" class="form-control" id="inputToxicidad" placeholder="Toxicidad">
+                          <input type="text" class="form-control" id="inputUnidad" placeholder="Unidad">
                         </div>
                       </div>
                       <br>
@@ -95,7 +95,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-              <button type="button" onclick="editarToxicidad()" class="btn btn-primary">Guardar Cambios</button>
+              <button type="button" onclick="editarUnidad()" class="btn btn-primary">Guardar Cambios</button>
             </div>
           </div>
         </div>
@@ -108,68 +108,74 @@
 
       $(".openModalEdit").click(function () {
         var id = $(this).attr('data-id')
-        $('#inputToxicidad').val($('#nombre'+id).html());
-        $('#inputIdToxicidad').val(id);
+        $('#inputUnidad').val($('#nombre'+id).html());
+        $('#inputIdUnidad').val(id);
         console.log($(this))
         $('#modalEdit').modal('show');
       });
 
-      function editarToxicidad(){
-        var id = $('#inputIdToxicidad').val()
-        var txtToxicidad = $('#inputToxicidad').val()
-        swal({
-            title: 'Guardar cambios',
-            text: "¿Estás seguro?",
-            type: 'warning',
-            buttons: [
-              'No, cancelar',
-              'Si, Estoy seguro'
-            ],
-            dangerMode: true
-          }).then(function (isConfirm) {
-            if (isConfirm) {
-              // código que elimina
-              $.ajax({
-                  type: "PUT",
-                  url: urlImport+"/inventory/toxicities/"+id,
-                  dataType: "json",
-                  data: {
-                      "_token": _token,
-                      "txtToxicidad": txtToxicidad,
-                      "txtIdToxicidad": id
-                  }
-                  }).done(function(resp){
-                      swal('Ok','Se editó correctamente el registro','info');
-                      $('#nombre'+id).html(txtToxicidad)
-                  }).fail(function(err) {
-                      swal('¡Error!','No se pudo modificar el registro','error');
-                  }).error(function(data) {
-                  swal('¡Error!', 'No se pudo modificar el registro', "error");
-              })
-            }else{
-              swal('Cancelado','No se han realizado cambios','error')
-            }
-          })
+      function editarUnidad(){
+        var id = $('#inputIdUnidad').val()
+        var txtUnidad = $('#inputUnidad').val().trim()
+
+        if(!(txtUnidad.length > 0)){
+          swal('¡Error!','No se puede enviar el campo vacío','error');
+        }
+        else{ 
+          swal({
+              title: 'Guardar cambios',
+              text: "¿Estás seguro?",
+              type: 'warning',
+              buttons: [
+                'No, cancelar',
+                'Si, Estoy seguro'
+              ],
+              dangerMode: true
+            }).then(function (isConfirm) {
+              if (isConfirm) {
+                // código que elimina
+                $.ajax({
+                    type: "PUT",
+                    url: urlImport+"/inventory/unities/"+id,
+                    dataType: "json",
+                    data: {
+                        "_token": _token,
+                        "txtUnidad": txtUnidad,
+                        "txtIdUnidad": id
+                    }
+                    }).done(function(resp){
+                        swal('Ok','Se editó correctamente el registro','info');
+                        $('#nombre'+id).html(txtUnidad)
+                    }).fail(function(err) {
+                        swal('¡Error!','No se pudo modificar el registro','error');
+                    }).error(function(data) {
+                    swal('¡Error!', 'No se pudo modificar el registro', "error");
+                })
+              }else{
+                swal('Cancelado','No se han realizado cambios','error')
+              }
+            })
+        }
       }
 
-      function cambiarEstatusToxicidad(id){
+      function cambiarEstatusUnidad(id){
         if($('#estatus'+id).html().trim()=="Habilidado"){
-          var txtEstatusToxicidad = "Deshabilidado"
+          var txtEstatusUnidad = "Deshabilidado"
         }else{
-          var txtEstatusToxicidad = "Habilidado"
+          var txtEstatusUnidad = "Habilidado"
         }
         console.log($('#estatus'+id).html())
         $.ajax({
           type: "PUT",
-          url: urlImport+"/inventory/toxicity/change-status",
+          url: urlImport+"/inventory/unity/change-status",
           dataType: "json",
           data: {
             "_token": _token,
-            "txtIdToxicidad": id
+            "txtIdUnidad": id
           }
         }).done(function(resp){
           swal('Ok','Es estatus se modificó correctamente','info');
-          $('#estatus'+id).html(txtEstatusToxicidad)
+          $('#estatus'+id).html(txtEstatusUnidad)
           if($('#estatus'+id).html().trim()=="Habilidado"){
             $('#btn-des'+id).html('<i class="fa fa-eye-slash fa-lg" aria-hidden="true"></i>')
           }else{
@@ -182,7 +188,7 @@
         })
       }
 
-      function eliminarToxicidad(id){
+      function eliminarUnidad(id){
         swal({
             title: '¿Estás seguro?',
             text: "¡No se podrán deshacer los cambios!",
@@ -197,14 +203,14 @@
               // código que elimina
               $.ajax({
                   type: "DELETE",
-                  url: urlImport+"/inventory/typeReactives/"+id,
+                  url: urlImport+"/inventory/unities/"+id,
                   dataType: "json",
                   data: {
                       "_token": _token,
                   }
                   }).done(function(resp){
                       swal('Eliminado','Se eliminó correctamente','info');
-                      $('#tableUnidades').DataTable().row("#fila"+id).remove().draw();
+                      $('#tableToxicidades').DataTable().row("#fila"+id).remove().draw();
                   }).fail(function(err) {
                       swal('¡Error!','Error al eliminar el registro','error');
                   })

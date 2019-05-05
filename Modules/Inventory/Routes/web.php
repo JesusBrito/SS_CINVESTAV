@@ -25,4 +25,6 @@ Route::prefix('inventory')->group(function() {
     Route::put('typeReactive/change-status', 'TypeReactivesController@changeStatus');
     Route::put('location/change-status', 'LocationsController@changeStatus');
     Route::put('temperature/change-status', 'TemperaturesController@changeStatus');
+    Route::put('brand/change-status', 'BrandsController@changeStatus');
+    Route::put('unity/change-status', 'UnitiesController@changeStatus');
 });
