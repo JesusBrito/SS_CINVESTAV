@@ -13,11 +13,10 @@ class CreateLevelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('Levels', function (Blueprint $table) {
-            $table->increments('idNivel');
-            $table->string('Grado',30);
+        Schema::create('levels', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('grado', 30);
             $table->timestamps();
-            
         });
     }
 
@@ -28,6 +27,6 @@ class CreateLevelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Levels');
+        Schema::dropIfExists('levels');
     }
 }

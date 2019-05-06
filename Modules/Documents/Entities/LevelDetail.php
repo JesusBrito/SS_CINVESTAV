@@ -8,18 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class LevelDetail extends Model
 {
     protected $fillable = [
-        'idUsuario',
-        'idNivel',
-        'Carrera',
-        'Escuela',
-        'Ingreso',
-        'Egreso',
-        'Estatus',
+        'id_usuario',
+        'id_nivel',
+        'carrera',
+        'escuela',
+        'ingreso',
+        'egreso',
+        'estatus',
     ];
     public function user(){
-        return $this-> belongsTo('App\User', 'idUsuario')->get();
+        return $this-> belongsTo('App\User', 'id_usuario')->get();
     }
     public function level(){
-        return $this-> belongsTo('Modules\Documents\Entities\Level', 'idNivel', 'idNivel')->get();
+        return $this-> belongsTo('Modules\Documents\Entities\Level', 'id_nivel', 'id_nivel')->get();
 	}
 }

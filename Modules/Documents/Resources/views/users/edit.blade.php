@@ -24,36 +24,36 @@
               <div class="box-header with-border">
                <h3 class="box-title">Llene los siguientes campos</h3>
               </div>
-            <form method="POST" Action="{{ route('usuarios.update', $usuario->idUsuario) }}" role="form" enctype="multipart/form-data">
+            <form method="POST" Action="{{ route('usuarios.update', $usuario) }}" role="form" enctype="multipart/form-data">
               <input name="_method" type="hidden" value="PUT">
               <input name="_token" value="{{ csrf_token() }}" type="hidden">
               <input name="_asset" value="{{ url('/') }}" type="hidden">
-              <input name="_idUsuario" value="{{ $usuario->idUsuario }}" type="hidden">
+              <input name="_idUsuario" value="{{ $usuario->id }}" type="hidden">
               <div class="box-body">
 
               <div class="col-md-6">
 
                 <div class="form-group">
                   <label>Tipo de usuario</label>
-                  <select class="form-control" disabled id="Tipo_Usuario" required name="Tipo_Usuario">
-                  <option value="{{$usuario->Tipo_Usuario}}" selected="true">{{$usuario->Tipo_Usuario}}</option>
+                  <select class="form-control" disabled id="tipo_usuario" required name="tipo_usuario">
+                  <option value="{{$usuario->tipo_usuario}}" selected="true">{{$usuario->tipo_usuario}}</option>
 
                   </select>
                 </div>
 
                 <div class="form-group">
                   <label for="txtnombre">Nombre(s)</label>
-                  <input class="form-control" type="text" name="Nombre" maxlegth="30" id="Nombre" value="{{$usuario->Nombre}}" required>
+                  <input class="form-control" type="text" name="nombre" maxlegth="30" id="nombre" value="{{$usuario->nombre}}" required>
                 </div>
 
                 <div class="form-group">
                   <label for="txtappat">Apellido paterno</label>
-                  <input class="form-control" type="text" id="A_Paterno" maxlegth="20" name="A_Paterno" value="{{$usuario->A_Paterno}}" required>
+                  <input class="form-control" type="text" id="a_paterno" maxlegth="20" name="a_paterno" value="{{$usuario->a_paterno}}" required>
                 </div>
 
                  <div class="form-group">
                   <label for="txtapmat">Apellido materno</label>
-                  <input class="form-control" type="text" id="A_Materno" maxlegth="20" name="A_Materno" value="{{$usuario->A_Materno}}" required>
+                  <input class="form-control" type="text" id="a_materno" maxlegth="20" name="a_materno" value="{{$usuario->a_materno}}" required>
                 </div>
 
             <!--
@@ -78,14 +78,14 @@
               <div class="col-md-6">
 
                 <div class="form-group">
-                  <label for="FechaNac">Fecha de nacimiento</label>
-                  <input class="form-control" type="text" id="FechaNac" name="FechaNac" required readonly style="background:white;" value="{{$usuario->FechaNac}}">
+                  <label for="fecha_nacimiento">Fecha de nacimiento</label>
+                  <input class="form-control" type="text" id="fecha_nacimiento" name="fecha_nacimiento" required readonly style="background:white;" value="{{$usuario->fecha_nacimiento}}">
                 </div>
 
                 <div class="form-group">
                   <label>Sexo</label>
-                  <select class="form-control" required id="Sexo" name="Sexo">
-                    @if($usuario->Sexo==1)
+                  <select class="form-control" required id="sexo" name="sexo">
+                    @if($usuario->sexo==1)
                         <option value="1" selected>Masculino</option>
                         <option value="0" >Femenino</option>
                     @else
@@ -97,22 +97,22 @@
 
                 <div class="form-group">
                   <label for="txtnumero">Número de teléfono</label>
-                <input class="form-control" type="text" pattern="[0-9]{10}" id="Celular" value="{{$usuario->Celular}}" name="Celular" required>
+                <input class="form-control" type="text" pattern="[0-9]{10}" id="celular" value="{{$usuario->celular}}" name="Celular" required>
 
                 </div>
 
                 <div class="form-group">
                         <div class="form-group has-feedback">
                           <label for="txtcorreo">Correo electrónico</label>
-                        <input type="email" required class="form-control" value="{{$usuario->Correo}}" name="Correo" id="Correo" placeholder="ejemplo@email.com" required>
+                        <input type="email" required class="form-control" value="{{$usuario->email}}" name="email" id="email" placeholder="ejemplo@email.com" required>
                           <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                         </div>
                 </div>
                 <br>
                  <div class="form-group">
-                 <p><img src="{{Storage::url($usuario->Imagen)}}" widht="80px" height="80px" alt="Foto de perfil"></p>
+                 <p><img src="{{Storage::url($usuario->imagen)}}" widht="80px" height="80px" alt="Foto de perfil"></p>
                   <label for="flfoto">Añadir foto de perfil</label>
-                  <input type="file" id="Imagen" name="Imagen" >
+                  <input type="file" id="imagen" name="imagen" >
                   <p class="help-block">Suba una fotografía en formato .jpg o .png</p>
                 </div>
 
@@ -152,12 +152,12 @@
                           <tbody>
                             @foreach($detailLevels as $detail)
                                 <tr id="fila{{$detail->id}}">
-                                <td>{{($detail->level())[0]->Grado}}</td>
-                                <td>{{$detail->Escuela}}</td>
-                                <td>{{$detail->Carrera}}</td>
-                                <td>{{$detail->Ingreso}}</td>
-                                <td>{{$detail->Egreso}}</td>
-                                <td>{{$detail->Estatus}}</td>
+                                <td>{{($detail->level())[0]->grado}}</td>
+                                <td>{{$detail->escuela}}</td>
+                                <td>{{$detail->carrera}}</td>
+                                <td>{{$detail->ingreso}}</td>
+                                <td>{{$detail->egreso}}</td>
+                                <td>{{$detail->estatus}}</td>
                                 <td>
                                   <div class="btn-group form-inline">
                                     <a class="btn btn-danger" onclick="eliminar({{$detail->id}})">Eliminar</a>
@@ -195,7 +195,7 @@
                                 <td>
                                   <select class="form-control" id=slgrado>
                                     @foreach($levels as $level)
-                                      <option value="{{$level->idNivel}}">{{$level->Grado}}</option>
+                                      <option value="{{$level->id_nivel}}">{{$level->Grado}}</option>
                                     @endforeach
                                   </select>
                                 </td>
@@ -273,13 +273,13 @@
             dataType: "json",
             data: {
                 "_token": _token,
-                "idUsuario":usuario,
-                "idNivel":grado,
-                "Escuela":escuela,
-                "Carrera":carrera,
-                "Ingreso":fechaInicio,
-                "Egreso":fechaFin,
-                "Estatus":estatus,
+                "id_usuario":usuario,
+                "id_nivel":grado,
+                "escuela":escuela,
+                "carrera":carrera,
+                "ingreso":fechaInicio,
+                "egreso":fechaFin,
+                "estatus":estatus,
             }
             }).done(function(resp){
               swal('Ok','Se agregó correctamente','success');

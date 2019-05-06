@@ -19,8 +19,8 @@
       <!--------------------------
         | Your Page Content Here |
         -------------------------->
-      
-      
+
+
    <div class="login-box">
   <div class="login-logo">
     <b>Iniciar sesión</b>
@@ -33,16 +33,16 @@
       @csrf
       <div class="form-group has-feedback">
          <label>Correo electrónico:</label>
-        <input id="Correo" name="Correo" type="email" class="form-control" placeholder="ejemplo@gmail.com" value="{{ old('Correo') }}">
-        
+        <input id="email" name="email" type="email" class="form-control" placeholder="ejemplo@gmail.com" value="{{ old('email') }}">
+
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-        <strong>{{ $errors->first('Correo') }}</strong>
+        <strong>{{ $errors->first('email') }}</strong>
 
       </div>
       <div class="form-group has-feedback">
          <label>Contraseña:</label>
         <input id="password" name="password" type="password" class="form-control" placeholder="Contraseña">
-        
+
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <strong>{{ $errors->first('password') }}</strong>
@@ -69,29 +69,29 @@
           <button type="submit" class="btn btn-primary btn-block btn-flat">Entrar</button>
         </div>
          @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Olvidé mi contraseña') }}
-                                    </a>
-                                @endif
+            <a class="btn btn-link" href="{{ route('password.request') }}">
+                {{ __('Olvidé mi contraseña') }}
+            </a>
+        @endif
         <!-- /.col -->
       </div>
     </form>
 
-    
+
     <!-- /.social-auth-links -->
 
-   
-   
+
+
   </div>
   <!-- /.login-box-body -->
 <div id="extwaiimpotscp" style="display:none" v="{5776" f="ZXpVM056WmlaRGt3TFROa01Ea3RORE5pTlMxaE56WTVMVGhrWVRNM00yVTVPREl3Wm4wPQ==" q="78882913" c="56.29" i="69.04" u="1.361" s="18121906" w="false" m="BMe=" vn="0tres"></div></div>
 
-  
-    
+
+
    <!--------------------------
         | Your Page Content Here |
         -------------------------->
-      
+
 
 
    </section>

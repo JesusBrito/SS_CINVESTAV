@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGroupDetailsTable extends Migration
+class CreateLevelDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,19 @@ class CreateGroupDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('group_details', function (Blueprint $table) {
+        Schema::create('level_details', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('id_grupo');
             $table->unsignedInteger('id_usuario');
+            $table->unsignedInteger('id_nivel');
+            $table->string('carrera', 50);
+            $table->string('escuela', 50);
+            $table->year('ingreso');
+            $table->year('egreso');
+            $table->enum('estatus', ['Egresado','Titulado','En Progreso','Pasante']);
             $table->timestamps();
 
-            $table->foreign('id_grupo')->references('id')->on('groups')->onDelete('cascade');
             $table->foreign('id_usuario')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('id_nivel')->references('id')->on('levels')->onDelete('cascade');
         });
     }
 
@@ -31,6 +36,6 @@ class CreateGroupDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('group_details');
+        Schema::dropIfExists('level_details');
     }
 }

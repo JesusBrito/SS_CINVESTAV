@@ -7,7 +7,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Bienvenido(a) {{auth()->user()->Nombre}} {{auth()->user()->A_Paterno}}
+        Bienvenido(a) {{auth()->user()->nombre}} {{auth()->user()->a_paterno}}
 
       </h1>
       <ol class="breadcrumb">
@@ -29,9 +29,9 @@
           <!-- Profile Image -->
           <div class="box box-warning">
             <div class="box-body box-profile">
-            <img class="profile-user-img img-responsive img-circle" src="{{Storage::url(auth()->user()->Imagen)}}" alt="User profile picture">
+            <img class="profile-user-img img-responsive img-circle" src="{{Storage::url(auth()->user()->imagen)}}" alt="User profile picture">
 
-              <h3 class="profile-username text-center">{{auth()->user()->Nombre}} {{auth()->user()->A_Paterno}}</h3>
+              <h3 class="profile-username text-center">{{auth()->user()->nombre}} {{auth()->user()->a_paterno}}</h3>
 
             </div>
             <!-- /.box-body -->
@@ -50,38 +50,38 @@
               @foreach(auth()->user()->detailLevel() as $detail)
                     <p class="text-muted">
                         <i class="fa fa-mortar-board margin-r-5"></i>
-                        {{$detail->Carrera}} en {{$detail->Escuela}}
+                        {{ $detail->carrera }} en {{ $detail->escuela }}
                     </p>
                     <p class="text-muted">
-                        Generación: {{$detail->Ingreso}} - {{$detail->Egreso}}
+                        Generación: {{ $detail->ingreso }} - {{ $detail->egreso }}
                     </p>
                 @endforeach
               <hr>
 
               <strong><i class="fa fa-envelope margin-r-5"></i>Correo electrónico</strong>
              <p class="text-muted" id="txtCorreo">
-                {{auth()->user()->Correo}}
+                {{auth()->user()->email}}
               </p>
 
               <hr>
 
               <strong><i class="fa fa-phone margin-r-5"></i>Número</strong>
              <p class="text-muted" id="txtNumero">
-                {{auth()->user()->Celular}}
+                {{auth()->user()->celular}}
               </p>
 
               <hr>
 
               <strong><i class="fa fa-calendar margin-r-5"></i>Fecha de nacimiento</strong>
              <p class="text-muted" id="txtFecha">
-                {{auth()->user()->FechaNac}}
+                {{auth()->user()->fecha_nacimiento}}
               </p>
 
               <hr>
 
               <strong><i class="fa fa-user margin-r-5"></i>Sexo</strong>
              <p class="text-muted" id="txtSexo">
-                @if(auth()->user()->Sexo==1)
+                @if(auth()->user()->sexo==1)
                     Hombre
                 @else
                     Mujer
@@ -100,7 +100,7 @@
 
               <div class="box-footer">
 
-                <a class="btn btn-app" href="{{ url('documents/usuarios/'.auth()->user()->idUsuario.'/edit') }}"><i class="fa fa-edit"></i>Modificar datos</a>
+                <a class="btn btn-app" href="{{ url('documents/usuarios/'.auth()->user()->id.'/edit') }}"><i class="fa fa-edit"></i>Modificar datos</a>
 
                  <a class="btn btn-app" href="#"><i class="fa fa-file-text"></i>Generar CV</a>
               </div>

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
 use App\Http\Controllers\Controller;
+use App\User;
+use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
@@ -19,7 +19,7 @@ class RegisterController extends Controller
     | validation and creation. By default this controller uses a trait to
     | provide this functionality without requiring any additional code.
     |
-    */
+     */
 
     use RegistersUsers;
 
@@ -65,16 +65,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-            return User::create([
-            'Correo'=>$data['Correo'],
-            'password'=>Hash::make($data['password']),
-            'Nombre'=>$data['Nombre'],
-            'A_Paterno'=>$data['A_Paterno'],
-            'A_Materno'=>$data['A_Materno'],
-            'Tipo_Usuario'=>$data['Tipo_Usuario'],
-            'Celular'=>$data['Celular'],
-            'FechaNac'=>$data['FechaNac'],
-            'Sexo'=>$data['Sexo'],
+        return User::create([
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'nombre' => $data['nombre'],
+            'a_paterno' => $data['a_paterno'],
+            'a_materno' => $data['a_materno'],
+            'tipo_usuario' => $data['tipo_usuario'],
+            'celular' => $data['celular'],
+            'fecha_nacimiento' => $data['fecha_nacimiento'],
+            'sexo' => $data['sexo'],
         ]);
 
     }
