@@ -110,7 +110,7 @@
                 </div>
                 <br>
                  <div class="form-group">
-                 <p><img src="{{Storage::url($usuario->imagen)}}" widht="80px" height="80px" alt="Foto de perfil"></p>
+                 <p><img src="{{ auth()->user()->imagen }}" widht="80px" height="80px" alt="Foto de perfil"></p>
                   <label for="flfoto">Añadir foto de perfil</label>
                   <input type="file" id="imagen" name="imagen" >
                   <p class="help-block">Suba una fotografía en formato .jpg o .png</p>

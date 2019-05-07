@@ -106,7 +106,7 @@ desired effect
                     <a href="#">
                       <div class="pull-left">
                         <!-- User Image -->
-                        <img src="{{Storage::url(auth()->user()->imagen)}}" class="img-circle" alt="User Image">
+                        <img src="{{ auth()->user()->imagen }}" class="img-circle" alt="User Image">
                       </div>
                       <!-- Message title and timestamp -->
                       <h4>
@@ -135,17 +135,17 @@ desired effect
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
-              <img src="{{Storage::url(auth()->user()->imagen)}}" class="user-image" alt="User Image">
+              <img src="{{ auth()->user()->imagen }}" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">{{auth()->user()->nombre}} {{auth()->user()->a_paterno}}</span>
+              <span class="hidden-xs">{{ auth()->user()->nombre_completo }}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
-                <img src="{{Storage::url(auth()->user()->imagen)}}" class="img-circle" alt="User Image">
+                <img src="{{ auth()->user()->imagen }}" class="img-circle" alt="User Image">
 
                 <p>
-                    {{auth()->user()->nombre}} {{auth()->user()->a_paterno}} - {{auth()->user()->tipo_usuario}}
+                    {{ auth()->user()->nombre_completo }} - {{auth()->user()->tipo_usuario}}
 
                 </p>
               </li>
@@ -181,10 +181,10 @@ desired effect
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="{{Storage::url(auth()->user()->imagen)}}" class="img-circle" alt="User Image">
+          <img src="{{ auth()->user()->imagen }}" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>{{auth()->user()->nombre}} {{auth()->user()->a_paterno}}</p>
+          <p>{{ auth()->user()->nombre_completo }}</p>
 
         </div>
       </div>

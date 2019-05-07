@@ -74,7 +74,7 @@ class UsersControllerDocuments extends Controller
         // $usuario= User::find($id);
         $usuario->email=$request->email;
         if($request->hasFile('imagen')){
-            $usuario->imagen=$request->file('imagen')->store('public/profile_pictures');
+            $usuario->imagen=$request->file('imagen')->store('profile_pictures');
         }
         $usuario->nombre=$request->nombre;
         $usuario->a_paterno=$request->a_paterno;

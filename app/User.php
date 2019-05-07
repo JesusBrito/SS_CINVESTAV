@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
@@ -38,8 +38,21 @@ class User extends Authenticatable
         'password',
     ];
 
+    // ACCESSORS
+    public function getNombreCompletoAttribute()
+    {
+        return "{$this->nombre} {$this->a_paterno}";
+    }
+
+    public function getImagenAttribute($value)
+    {
+        $url = $value ?: 'public/profile_pictures/default-user.png';
+        return Storage::url($url);
+    }
+
+    // RELATIONS
     public function detailLevel()
     {
         return $this->hasMany('Modules\Documents\Entities\LevelDetail', 'id_usuario')->get();
-	}
+    }
 }

@@ -7,7 +7,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Bienvenido(a) {{auth()->user()->nombre}} {{auth()->user()->a_paterno}}
+        Bienvenido(a) {{ auth()->user()->nombre_completo }}
 
       </h1>
       <ol class="breadcrumb">
@@ -29,9 +29,9 @@
           <!-- Profile Image -->
           <div class="box box-warning">
             <div class="box-body box-profile">
-            <img class="profile-user-img img-responsive img-circle" src="{{Storage::url(auth()->user()->imagen)}}" alt="User profile picture">
+            <img class="profile-user-img img-responsive img-circle" src="{{ auth()->user()->imagen }}" alt="User profile picture">
 
-              <h3 class="profile-username text-center">{{auth()->user()->nombre}} {{auth()->user()->a_paterno}}</h3>
+              <h3 class="profile-username text-center">{{ auth()->user()->nombre_completo }}</h3>
 
             </div>
             <!-- /.box-body -->
