@@ -47,7 +47,7 @@
             <div class="box-body">
               <strong><i class="fa fa-book margin-r-5"></i>Educación</strong>
 
-              @foreach(auth()->user()->detailLevel() as $detail)
+              @foreach(auth()->user()->detalleNiveles() as $detail)
                     <p class="text-muted">
                         <i class="fa fa-mortar-board margin-r-5"></i>
                         {{ $detail->carrera }} en {{ $detail->escuela }}

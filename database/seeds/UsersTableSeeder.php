@@ -1,8 +1,9 @@
 <?php
 
+use App\User;
+use App\UserType;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use App\User;
 
 class UsersTableSeeder extends Seeder
 {
@@ -13,26 +14,30 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        User::create([
+        $lfcg = User::create([
             'nombre' => 'Luis',
             'a_paterno' => 'Cabello',
             'a_materno' => 'Galicia',
-            'tipo_usuario' => 'Administrador',
             'fecha_nacimiento' => '1996-12-26',
-            'sexo' => 1,
+            'sexo' => 'Hombre',
             'email' => 'lfcg.programador@gmail.com',
             'password' => bcrypt('password'),
         ]);
 
-        User::create([
+        $fer = User::create([
             'nombre' => 'Fernando',
             'a_paterno' => 'García',
             'a_materno' => 'Vázquez',
-            'tipo_usuario' => 'Administrador',
             'fecha_nacimiento' => '1997-09-05',
-            'sexo' => 1,
+            'sexo' => 'Hombre',
             'email' => 'jfer.garciav@gmail.com',
             'password' => bcrypt('admin1234'),
         ]);
+
+        $tipoAdmin = UserType::whereNombre('Administrador')->first();
+        $lfcg->tipoUsuario()->associate($tipoAdmin);
+        $lfcg->save();
+        $fer->tipoUsuario()->associate($tipoAdmin);
+        $fer->save();
     }
 }

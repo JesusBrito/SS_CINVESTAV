@@ -36,24 +36,23 @@
                 <div class="form-group">
                   <label>Tipo de usuario</label>
                   <select class="form-control" disabled id="tipo_usuario" required name="tipo_usuario">
-                  <option value="{{$usuario->tipo_usuario}}" selected="true">{{$usuario->tipo_usuario}}</option>
-
+                      <option value="{{ $usuario->tipoUsuario->id }}" selected="true">{{ $usuario->tipoUsuario }}</option>
                   </select>
                 </div>
 
                 <div class="form-group">
                   <label for="txtnombre">Nombre(s)</label>
-                  <input class="form-control" type="text" name="nombre" maxlegth="30" id="nombre" value="{{$usuario->nombre}}" required>
+                  <input class="form-control" type="text" name="nombre" maxlegth="30" id="nombre" value="{{ $usuario->nombre }}" required>
                 </div>
 
                 <div class="form-group">
                   <label for="txtappat">Apellido paterno</label>
-                  <input class="form-control" type="text" id="a_paterno" maxlegth="20" name="a_paterno" value="{{$usuario->a_paterno}}" required>
+                  <input class="form-control" type="text" id="a_paterno" maxlegth="20" name="a_paterno" value="{{ $usuario->a_paterno }}" required>
                 </div>
 
                  <div class="form-group">
                   <label for="txtapmat">Apellido materno</label>
-                  <input class="form-control" type="text" id="a_materno" maxlegth="20" name="a_materno" value="{{$usuario->a_materno}}" required>
+                  <input class="form-control" type="text" id="a_materno" maxlegth="20" name="a_materno" value="{{ $usuario->a_materno }}" required>
                 </div>
 
             <!--
@@ -79,32 +78,27 @@
 
                 <div class="form-group">
                   <label for="fecha_nacimiento">Fecha de nacimiento</label>
-                  <input class="form-control" type="text" id="fecha_nacimiento" name="fecha_nacimiento" required readonly style="background:white;" value="{{$usuario->fecha_nacimiento}}">
+                  <input class="form-control" type="text" id="fecha_nacimiento" name="fecha_nacimiento" required readonly style="background:white;" value="{{ $usuario->fecha_nacimiento }}">
                 </div>
 
                 <div class="form-group">
                   <label>Sexo</label>
                   <select class="form-control" required id="sexo" name="sexo">
-                    @if($usuario->sexo==1)
-                        <option value="1" selected>Masculino</option>
-                        <option value="0" >Femenino</option>
-                    @else
-                        <option value="1" >Masculino</option>
-                        <option value="0" selected>Femenino</option>
-                    @endif
+                      <option value="Hombre" @if($usuario->sexo == 'Hombre') selected @endif>Hombre</option>
+                      <option value="Mujer" @if($usuario->sexo == 'Mujer') selected @endif>Mujer</option>
                   </select>
                 </div>
 
                 <div class="form-group">
                   <label for="txtnumero">Número de teléfono</label>
-                <input class="form-control" type="text" pattern="[0-9]{10}" id="celular" value="{{$usuario->celular}}" name="Celular" required>
+                <input class="form-control" type="text" pattern="[0-9]{10}" id="celular" value="{{ $usuario->celular }}" name="Celular">
 
                 </div>
 
                 <div class="form-group">
                         <div class="form-group has-feedback">
                           <label for="txtcorreo">Correo electrónico</label>
-                        <input type="email" required class="form-control" value="{{$usuario->email}}" name="email" id="email" placeholder="ejemplo@email.com" required>
+                        <input type="email" required class="form-control" value="{{ $usuario->email }}" name="email" id="email" placeholder="ejemplo@email.com" required>
                           <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                         </div>
                 </div>
@@ -112,7 +106,7 @@
                  <div class="form-group">
                  <p><img src="{{ auth()->user()->imagen }}" widht="80px" height="80px" alt="Foto de perfil"></p>
                   <label for="flfoto">Añadir foto de perfil</label>
-                  <input type="file" id="imagen" name="imagen" >
+                  <input type="file" id="imagen" name="imagen" accept="image/*" >
                   <p class="help-block">Suba una fotografía en formato .jpg o .png</p>
                 </div>
 
@@ -150,17 +144,17 @@
                           </thead>
 
                           <tbody>
-                            @foreach($detailLevels as $detail)
-                                <tr id="fila{{$detail->id}}">
-                                <td>{{($detail->level())[0]->grado}}</td>
-                                <td>{{$detail->escuela}}</td>
-                                <td>{{$detail->carrera}}</td>
-                                <td>{{$detail->ingreso}}</td>
-                                <td>{{$detail->egreso}}</td>
-                                <td>{{$detail->estatus}}</td>
+                            @foreach($usuario->detalleNiveles as $detalle)
+                                <tr id="fila{{ $detalle->id }}">
+                                <td>{{ $detalle->nivel->grado }}</td>
+                                <td>{{ $detalle->escuela }}</td>
+                                <td>{{ $detalle->carrera }}</td>
+                                <td>{{ $detalle->ingreso }}</td>
+                                <td>{{ $detalle->egreso }}</td>
+                                <td>{{ $detalle->estatus }}</td>
                                 <td>
                                   <div class="btn-group form-inline">
-                                    <a class="btn btn-danger" onclick="eliminar({{$detail->id}})">Eliminar</a>
+                                    <a class="btn btn-danger" onclick="eliminar({{ $detalle->id }})">Eliminar</a>
                                   </div>
                                 </td>
                               </tr>
@@ -193,9 +187,9 @@
 
                               <tr>
                                 <td>
-                                  <select class="form-control" id=slgrado>
-                                    @foreach($levels as $level)
-                                      <option value="{{$level->id_nivel}}">{{$level->Grado}}</option>
+                                  <select class="form-control" id="slgrado">
+                                    @foreach($niveles as $nivel)
+                                      <option value="{{ $nivel->id }}">{{ $nivel->grado }}</option>
                                     @endforeach
                                   </select>
                                 </td>
@@ -243,8 +237,7 @@
   </div>
   @push ('scripts')
   <script>
-    var detailLevels = {!! json_encode($detailLevels->toArray()) !!};
-
+      var detalleNiveles = @json($usuario->detalleNiveles)
       var _token = $('input[name="_token"]').val()
       var urlImport = $('input[name="_asset"]').val()
       var usuario = $('input[name="_idUsuario"]').val()

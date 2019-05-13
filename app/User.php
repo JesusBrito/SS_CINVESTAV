@@ -2,10 +2,13 @@
 
 namespace App;
 
+use App\UserType;
+use Modules\Documents\Entities\LevelDetail;
+
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
@@ -46,13 +49,18 @@ class User extends Authenticatable
 
     public function getImagenAttribute($value)
     {
-        $url = $value ?: 'public/profile_pictures/default-user.png';
+        $url = $value ?: 'default/user.png';
         return Storage::url($url);
     }
 
     // RELATIONS
-    public function detailLevel()
+    public function tipoUsuario()
     {
-        return $this->hasMany('Modules\Documents\Entities\LevelDetail', 'id_usuario')->get();
+        return $this->belongsTo(UserType::class, 'id_tipo_usuario');
+    }
+
+    public function detalleNiveles()
+    {
+        return $this->hasMany(LevelDetail::class, 'id_usuario');
     }
 }
