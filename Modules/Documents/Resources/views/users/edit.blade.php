@@ -1,7 +1,5 @@
- @extends('documents::layout_documents')
-  @section ('Contenido')
- <!--content-wrapper-->
-  <div class="content-wrapper">
+@extends('documents::layouts.app')
+@section ('content')
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
@@ -36,24 +34,24 @@
                 <div class="form-group">
                   <label>Tipo de usuario</label>
                   <select class="form-control" disabled id="tipo_usuario" required name="tipo_usuario">
-                  <option value="{{$usuario->tipo_usuario}}" selected="true">{{$usuario->tipo_usuario}}</option>
+                  <option value="{{ $usuario->tipo_usuario }}" selected="true">{{ $usuario->tipo_usuario }}</option>
 
                   </select>
                 </div>
 
                 <div class="form-group">
                   <label for="txtnombre">Nombre(s)</label>
-                  <input class="form-control" type="text" name="nombre" maxlegth="30" id="nombre" value="{{$usuario->nombre}}" required>
+                  <input class="form-control" type="text" name="nombre" maxlegth="30" id="nombre" value="{{ $usuario->nombre }}" required>
                 </div>
 
                 <div class="form-group">
                   <label for="txtappat">Apellido paterno</label>
-                  <input class="form-control" type="text" id="a_paterno" maxlegth="20" name="a_paterno" value="{{$usuario->a_paterno}}" required>
+                  <input class="form-control" type="text" id="a_paterno" maxlegth="20" name="a_paterno" value="{{ $usuario->a_paterno }}" required>
                 </div>
 
                  <div class="form-group">
                   <label for="txtapmat">Apellido materno</label>
-                  <input class="form-control" type="text" id="a_materno" maxlegth="20" name="a_materno" value="{{$usuario->a_materno}}" required>
+                  <input class="form-control" type="text" id="a_materno" maxlegth="20" name="a_materno" value="{{ $usuario->a_materno }}" required>
                 </div>
 
             <!--
@@ -79,7 +77,7 @@
 
                 <div class="form-group">
                   <label for="fecha_nacimiento">Fecha de nacimiento</label>
-                  <input class="form-control" type="text" id="fecha_nacimiento" name="fecha_nacimiento" required readonly style="background:white;" value="{{$usuario->fecha_nacimiento}}">
+                  <input class="form-control" type="text" id="fecha_nacimiento" name="fecha_nacimiento" required readonly style="background:white;" value="{{ $usuario->fecha_nacimiento }}">
                 </div>
 
                 <div class="form-group">
@@ -97,14 +95,14 @@
 
                 <div class="form-group">
                   <label for="txtnumero">Número de teléfono</label>
-                <input class="form-control" type="text" pattern="[0-9]{10}" id="celular" value="{{$usuario->celular}}" name="Celular" required>
+                <input class="form-control" type="text" pattern="[0-9]{10}" id="celular" value="{{ $usuario->celular }}" name="Celular" required>
 
                 </div>
 
                 <div class="form-group">
                         <div class="form-group has-feedback">
                           <label for="txtcorreo">Correo electrónico</label>
-                        <input type="email" required class="form-control" value="{{$usuario->email}}" name="email" id="email" placeholder="ejemplo@email.com" required>
+                        <input type="email" required class="form-control" value="{{ $usuario->email }}" name="email" id="email" placeholder="ejemplo@email.com" required>
                           <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                         </div>
                 </div>
@@ -152,15 +150,15 @@
                           <tbody>
                             @foreach($detailLevels as $detail)
                                 <tr id="fila{{$detail->id}}">
-                                <td>{{($detail->level())[0]->grado}}</td>
-                                <td>{{$detail->escuela}}</td>
-                                <td>{{$detail->carrera}}</td>
-                                <td>{{$detail->ingreso}}</td>
-                                <td>{{$detail->egreso}}</td>
-                                <td>{{$detail->estatus}}</td>
+                                <td>{{ ($detail->level())[0]->grado }}</td>
+                                <td>{{ $detail->escuela }}</td>
+                                <td>{{ $detail->carrera }}</td>
+                                <td>{{ $detail->ingreso }}</td>
+                                <td>{{ $detail->egreso }}</td>
+                                <td>{{ $detail->estatus }}</td>
                                 <td>
                                   <div class="btn-group form-inline">
-                                    <a class="btn btn-danger" onclick="eliminar({{$detail->id}})">Eliminar</a>
+                                    <a class="btn btn-danger" onclick="eliminar({{ $detail->id }})">Eliminar</a>
                                   </div>
                                 </td>
                               </tr>
@@ -168,10 +166,6 @@
                           </tbody>
                       </table>
                       </div>
-
-
-
-
                       <hr/>
                       <div class="box-header">
                           <h3 class="box-title">Agregar grado de estudios</h3>
@@ -188,9 +182,7 @@
                                 <th>Estatus</th>
                               </tr>
                             </thead>
-
                             <tbody>
-
                               <tr>
                                 <td>
                                   <select class="form-control" id=slgrado>
@@ -220,11 +212,9 @@
                          <button type="button" class="btn btn-block btn-default" id="btnagregar"><i class="fa fa-plus-circle"></i> Agregar</button>
                         </div>
                       </div>
-
                     </div>
                   </div>
                 </div>
-
                 </div>
                 </div>
                 <!-- /.box-body -->
@@ -240,7 +230,8 @@
             </div>
           </div>
     </section>
-  </div>
+
+
   @push ('scripts')
   <script>
     var detailLevels = {!! json_encode($detailLevels->toArray()) !!};
