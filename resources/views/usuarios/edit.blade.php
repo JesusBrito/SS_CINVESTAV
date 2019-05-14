@@ -319,5 +319,5 @@
 
 
   </script>
-@endpush
-@stop
+  @endpush
+@endsection

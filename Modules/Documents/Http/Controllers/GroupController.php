@@ -4,6 +4,8 @@ namespace Modules\Documents\Http\Controllers;
 
 use App\Group;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Routing\Controller;
 
 class GroupController extends Controller
 {
@@ -14,7 +16,7 @@ class GroupController extends Controller
      */
     public function index()
     {
-        
+
     }
 
     /**

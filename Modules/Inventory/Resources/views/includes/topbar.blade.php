@@ -93,8 +93,8 @@
                      <a href="{{url('documents/usuarios/show')}}" class="btn btn-default btn-flat">Sistema <br> documentos</a>
                     </div>
                     <div class="pull-right text-center">
-                      <a href="{{ url('/logout') }}" class="btn btn-default btn-flat">Cerrar <br> sesión</a>
-
+                        <a class="btn btn-default btn-flat" onclick="document.querySelector('#form-logout').submit()">Cerrar <br> sesión</a>
+                        <form action="{{ route('logout') }}" method="post" id="form-logout">@csrf</form>
                   </div>
 
                   </li>

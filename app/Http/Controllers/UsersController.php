@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Http\Request;
+use Modules\Documents\Entities\Level;
 
 class UsersController extends Controller
 {
-
     public function __construct()
     {
-       
-       $this->middleware('auth');//Entregable 10: agregar rol de administrador
+        $this->middleware('auth');
     }
 
     /**
@@ -21,9 +20,8 @@ class UsersController extends Controller
      */
     public function index()
     {
-       
-        $users=\App\User::all();
-        return view('users.index', compact('users'));
+        $usuarios = User::all();
+        return view('usuarios.index', compact('usuarios'));
     }
 
     /**
@@ -33,7 +31,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        return view('usuarios.create');
     }
 
     /**
@@ -44,26 +42,7 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-       /* $options=[
-            'Correo'=>$request->txtNombre,
-            'Clave'=>bcrypt($request->txtpassword1),
-            'Imagen'=>$request->flfoto,
-            'Nombre'=>$request->txtNombre,
-            'A_Paterno'=>$request->txtappat,
-            'A_Materno'=>$request->txtapmat,
-            'Tipo_Usuario'=>$request->slTipoUsuario,
-            'Celular'=>$request->txtnumero,
-            'Permisos'=>"1234456",
-            'FechaNac'=>date("Y-m-d", strtotime($request->txtfecha)),
-            'Sexo'=>$request->slsexo,
-            'Estatus'=>1
-        ];
 
-        if(User::create($options)){
-            return view('users.index');
-        }else{
-            return view('users.create');
-        }*/
     }
 
     /**
@@ -72,9 +51,9 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $usuario)
     {
-        //
+        return view('usuarios.show');
     }
 
     /**
@@ -83,9 +62,10 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $usuario)
     {
-
+        $niveles = Level::all();
+        return view('usuarios.edit', compact('usuario', 'niveles'));
     }
 
     /**
@@ -95,7 +75,7 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $usuario)
     {
         //
     }
@@ -106,8 +86,18 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $usuario)
     {
         //
+    }
+
+    public function guardarDetalle()
+    {
+
+    }
+
+    public function eliminarDetalle()
+    {
+
     }
 }

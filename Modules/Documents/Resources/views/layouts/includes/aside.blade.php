@@ -26,7 +26,7 @@
                 </a>
                 <ul class="treeview-menu" style="display: all;">
                 <li class="active"><a href="registrousuarios.html"><i class="fa fa-user-plus"></i>Registrar Nuevo Usuario</a></li>
-                <li><a href="{{ route('groups.create') }}"><i class="fa fa-user-plus"></i>Registrar Nuevo Grupo</a></li>
+                <li><a href="{{ route('grupos.create') }}"><i class="fa fa-user-plus"></i>Registrar Nuevo Grupo</a></li>
                 <li><a href="todosalumnos.html"><i class="fa fa-list-ul"></i>Listado de Alumnos</a></li>
                 <li><a href="todosgrupos.html"><i class="fa fa-list-ul"></i>Listado de Grupos</a></li>
                 <li><a href="todosprofesores.html"><i class="fa fa-list-ul"></i>Listado de Profesores</a></li>

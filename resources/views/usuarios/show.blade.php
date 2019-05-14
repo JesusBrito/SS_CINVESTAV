@@ -99,7 +99,7 @@
 
               <div class="box-footer">
 
-                <a class="btn btn-app" href="{{ url('documents/usuarios/'.auth()->user()->id.'/edit') }}"><i class="fa fa-edit"></i>Modificar datos</a>
+                <a class="btn btn-app" href="{{ route('usuarios.edit', auth()->user()) }}"><i class="fa fa-edit"></i>Modificar datos</a>
 
                  <a class="btn btn-app" href="#"><i class="fa fa-file-text"></i>Generar CV</a>
               </div>
@@ -195,5 +195,5 @@
 
     </section>
     <!-- /.content -->
-  
+
 @stop

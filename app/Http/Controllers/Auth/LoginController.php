@@ -41,8 +41,8 @@ class LoginController extends Controller
     protected function authenticated(Request $request, $user)
     {
         if ($request->Sistema == '0') {
-            return redirect('/documents/usuarios/show');
+            return redirect(route('usuarios.show', auth()->user()));
         }
-        return redirect('/inventory'); //inventarios
+        return redirect(route('inventory.index')); //inventarios
     }
 }

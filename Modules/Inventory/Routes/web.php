@@ -12,6 +12,7 @@
 */
 
 Route::prefix('inventory')->group(function() {
+    Route::view('/', 'inventory::index')->name('inventory.index');
     Route::resource('/', 'InventoryController');
     Route::resource('toxicities','ToxicitiesController');
     Route::resource('typeReactives','TypeReactivesController');
@@ -19,7 +20,7 @@ Route::prefix('inventory')->group(function() {
     Route::resource('temperatures','TemperaturesController');
     Route::resource('brands','BrandsController');
     Route::resource('unities','UnitiesController');
-    
+
     Route::resource('consumables','ConsumablesController');
     Route::resource('wastes','WastesController');
 
