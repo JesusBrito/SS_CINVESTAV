@@ -1,7 +1,5 @@
- @extends('documents::layout_documents')
-  @section ('Contenido')
- <!--content-wrapper-->
-  <div class="content-wrapper">
+@extends('documents::layouts.app')
+@section ('content')
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
@@ -162,10 +160,6 @@
                           </tbody>
                       </table>
                       </div>
-
-
-
-
                       <hr/>
                       <div class="box-header">
                           <h3 class="box-title">Agregar grado de estudios</h3>
@@ -182,9 +176,7 @@
                                 <th>Estatus</th>
                               </tr>
                             </thead>
-
                             <tbody>
-
                               <tr>
                                 <td>
                                   <select class="form-control" id="slgrado">
@@ -214,11 +206,9 @@
                          <button type="button" class="btn btn-block btn-default" id="btnagregar"><i class="fa fa-plus-circle"></i> Agregar</button>
                         </div>
                       </div>
-
                     </div>
                   </div>
                 </div>
-
                 </div>
                 </div>
                 <!-- /.box-body -->
@@ -234,7 +224,8 @@
             </div>
           </div>
     </section>
-  </div>
+
+
   @push ('scripts')
   <script>
       var detalleNiveles = @json($usuario->detalleNiveles)

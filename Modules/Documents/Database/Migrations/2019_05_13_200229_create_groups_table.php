@@ -15,9 +15,12 @@ class CreateGroupsTable extends Migration
     {
         Schema::create('groups', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre', 20);
+            $table->string('nombre')->unique();
             $table->text('descripcion');
             $table->timestamps();
+            $table->unsignedInteger('id_profesor')->nullable();
+
+            $table->foreign('id_profesor')->references('id')->on('users')->onDelete('set null');
         });
     }
 

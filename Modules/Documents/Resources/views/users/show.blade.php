@@ -1,9 +1,8 @@
-@extends('documents::layout_documents')
+@extends('documents::layouts.app')
 
-@section('Contenido')
+@section('content')
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
@@ -60,21 +59,21 @@
 
               <strong><i class="fa fa-envelope margin-r-5"></i>Correo electrónico</strong>
              <p class="text-muted" id="txtCorreo">
-                {{auth()->user()->email}}
+                {{ auth()->user()->email }}
               </p>
 
               <hr>
 
               <strong><i class="fa fa-phone margin-r-5"></i>Número</strong>
              <p class="text-muted" id="txtNumero">
-                {{auth()->user()->celular}}
+                {{ auth()->user()->celular }}
               </p>
 
               <hr>
 
               <strong><i class="fa fa-calendar margin-r-5"></i>Fecha de nacimiento</strong>
              <p class="text-muted" id="txtFecha">
-                {{auth()->user()->fecha_nacimiento}}
+                {{ auth()->user()->fecha_nacimiento }}
               </p>
 
               <hr>
@@ -185,11 +184,6 @@
           </div>
         </div>
 
-
-
-
-
-
         <!-- /.col -->
       </div>
 
@@ -201,6 +195,5 @@
 
     </section>
     <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
+  
 @stop
