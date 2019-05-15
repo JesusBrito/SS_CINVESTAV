@@ -22,7 +22,7 @@ class LocationsController extends Controller
     public function index()
     {
         $locations= Location::all();
-        return view('inventory::ubicaciones.listarUbicaciones',["locations"=>$locations]);
+        return view('inventory::ubicaciones.listarUbicaciones',compact('locations'));
     }
 
     /**

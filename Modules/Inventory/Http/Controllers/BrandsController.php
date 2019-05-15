@@ -21,7 +21,7 @@ class BrandsController extends Controller
     public function index()
     {
         $brands= BrandCompany::all();
-        return view('inventory::marcas.listarMarcas',["brands"=>$brands]);
+        return view('inventory::marcas.listarMarcas',compact('brands'));
     }
 
     /**

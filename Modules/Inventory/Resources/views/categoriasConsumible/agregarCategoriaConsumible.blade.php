@@ -4,7 +4,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-          Agregar consumible
+          Agregar categoría de consumible
           <small>Optional description</small>
         </h1>
         <ol class="breadcrumb">
@@ -23,37 +23,14 @@
                 <div class="box-header with-border">
                  <h3 class="box-title">Llene los siguientes campos</h3>
                 </div>
-                  <form class="form-horizontal" method="POST" action="{{ route('consumables.store') }}">
+                  <form class="form-horizontal" method="POST" action="{{ route('categoryConsumables.store') }}">
                   {{ csrf_field() }}
                   <div class="box-body">
                     <div class="col-md-8 col-md-offset-2">
                         <div class="form-group">
-                            <label class="control-label col-xs-4">Nombre:</label>
+                            <label class="control-label col-xs-4">Categoría Consumible:</label>
                             <div class="col-xs-8">
-                              <input type="text" required class="form-control" name="txtNombre"  placeholder="Nombre Consumible">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="form-group">
-                            <label class="control-label col-xs-4">Categoria:</label>
-                            <div class="col-xs-8">
-                              <select>
-                                <option disabled selected>Seleccionar</option>
-                              </select>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="form-group">
-                            <label class="control-label col-xs-4">Existencia mínima:</label>
-                            <div class="col-xs-8">
-                              <input type="text" required class="form-control" name="txtExistenciaMinima">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="form-group">
-                            <label class="control-label col-xs-4">Descripción:</label>
-                            <div class="col-xs-8">
-                              <input type="text" required class="form-control" name="txtDescripcion">
+                              <input type="text" required class="form-control" name="txtCategoriaConsumible" placeholder="Categoría">
                             </div>
                         </div>
                         <br>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\Inventory\Entities\Consumable as Consumable;
+use Modules\Inventory\Entities\CategoryConsumable as CategoryConsumable;
 
 class ConsumablesController extends Controller
 {
@@ -21,7 +22,7 @@ class ConsumablesController extends Controller
     public function index()
     {
         $consumables= Consumable::all();
-        return view('inventory::Consumibles.listarConsumibles',["consumables"=>$consumables]);
+        return view('inventory::consumibles.listarConsumibles',compact('consumables'));
     }
 
     /**
@@ -30,7 +31,8 @@ class ConsumablesController extends Controller
      */
     public function create()
     {
-        return view('inventory::Consumibles.agregarConsumible');
+        $categoriesConsumable= CategoryConsumable::all();
+        return view('inventory::consumibles.agregarConsumible',compact('categoriesConsumable'));
     }
 
     /**
@@ -40,6 +42,20 @@ class ConsumablesController extends Controller
      */
     public function store(Request $request)
     {
+        $consumable = new Consumable;
+        $consumable->nombreConsumible = $request->txtNombre;
+        $consumable->idCategoria = $request->txtCategoria;
+        $consumable->existencia = $request->txtExistencia;
+        $consumable->puntoReorden = $request->txtExistenciaMinima;
+        $consumable->descripcion = $request->txtDescripcion;
+        $consumable->estado = 1;
+        if($consumable->save()){
+            alert()->success('El registro se agregó correctamente', 'OK')->autoclose(2500);
+        }else{
+            alert()->error('Error al agregar el registro', 'Error')->autoclose(2500);
+        }
+        $categoriesConsumable= CategoryConsumable::all();
+        return view('inventory::consumibles.agregarConsumible',compact('categoriesConsumable'));
     }
 
     /**

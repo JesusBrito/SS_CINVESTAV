@@ -22,7 +22,7 @@ class TypeReactivesController extends Controller
     public function index()
     {
         $typeReactives= TypeReactive::all();
-        return view('inventory::tipoReactivos.listarTipoReactivo',["typeReactives"=>$typeReactives]);
+        return view('inventory::tipoReactivos.listarTipoReactivo',compact('typeReactives'));
     }
 
     /**

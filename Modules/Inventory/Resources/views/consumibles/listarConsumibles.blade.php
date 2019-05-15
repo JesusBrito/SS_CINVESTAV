@@ -32,18 +32,23 @@
                       <table id="tableToxicidades" class="table table-striped table-bordered">
                           <thead>
                             <tr class="table-title-edit">
-                              <th class="col-md-2">Nombre</th>
-                              <th class="col-md-1">Categoria</th>
-                              <th class="col-md-1">Existencia mínima</th>
+                              <th class="col-md-1">Id</th>
+                              <th class="col-md-2">Consumible</th>
+                              <th class="col-md-2">Categoria de consumible</th>
                               <th class="col-md-1">Existencia</th>
-                              <th class="col-md-5">Opciones</th>
+                              <th class="col-md-1">Existencia mínima</th>
+                              <th class="col-md-2">Estatus</th>
+                              <th class="col-md-3">Opciones</th>
                             </tr>
                           </thead>
                           <tbody>
                             @foreach ($consumables as $consumable)
                               <tr id="fila{{$consumable->id}}">
                                 <td>{{$consumable->id}}</td> 
-                                <td class="center-text-column" id="nombre{{$consumable->id}}">{{$consumable->temperatura}}</td> 
+                                <td class="center-text-column" id="nombre{{$consumable->id}}">{{$consumable->nombreConsumible}}</td>
+                                <td class="center-text-column" >{{$consumable->categoryConsumable->id}}</td>
+                                <td class="center-text-column" >{{$consumable->existencia}}</td>
+                                <td class="center-text-column" >{{$consumable->puntoReorden}}</td>  
                                 <td class="center-text-column" id="estatus{{$consumable->id}}">@if($consumable->estado == 1) Habilidado @else Deshabilitado @endif</td> 
                                 <td class="table-button-center">
                                   <a class="btn boton-editar openModalEdit" data-id="{{$consumable->id}}" data-name="{{$consumable->marca}}"><i class="fa fa-edit fa-lg"></i></a>

@@ -19,6 +19,7 @@ Route::prefix('inventory')->group(function() {
     Route::resource('temperatures','TemperaturesController');
     Route::resource('brands','BrandsController');
     Route::resource('unities','UnitiesController');
+    Route::resource('categoryConsumables','CategoryConsumablesController');
     
     Route::resource('consumables','ConsumablesController');
     Route::resource('wastes','WastesController');
@@ -32,4 +33,7 @@ Route::prefix('inventory')->group(function() {
     Route::put('temperature/change-status', 'TemperaturesController@changeStatus');
     Route::put('brand/change-status', 'BrandsController@changeStatus');
     Route::put('unity/change-status', 'UnitiesController@changeStatus');
+    Route::put('categoryConsumable/change-status', 'CategoryConsumablesController@changeStatus');
+    Route::put('consumable/change-status', 'ConsumablesController@changeStatus');
+    Route::put('waste/change-status', 'WastesController@changeStatus');
 });

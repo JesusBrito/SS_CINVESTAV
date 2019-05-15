@@ -22,7 +22,7 @@ class TemperaturesController extends Controller
     public function index()
     {
         $temperatures= Temperature::all();
-        return view('inventory::temperaturas.listarTemperaturas',["temperatures"=>$temperatures]);
+        return view('inventory::temperaturas.listarTemperaturas',compact('temperatures'));
     }
 
     /**

@@ -21,7 +21,7 @@ class UnitiesController extends Controller
     public function index()
     {
         $unities= Unity::all();
-        return view('inventory::unidades.listarUnidades',["unities"=>$unities]);
+        return view('inventory::unidades.listarUnidades',compact('unities'));
     }
 
     /**

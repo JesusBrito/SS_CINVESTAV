@@ -36,6 +36,7 @@
                               <th class="col-md-2">Tipo</th>
                               <th class="col-md-2">Recipiente</th>
                               <th class="col-md-2">Horario</th>
+                              <th class="col-md-2">Estatus</th>
                               <th class="col-md-4">Opciones</th>
                             </tr>
                           </thead>

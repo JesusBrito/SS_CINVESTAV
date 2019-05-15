@@ -5,10 +5,9 @@ namespace Modules\Inventory\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Modules\Inventory\Entities\CategoryConsumable as CategoryConsumable;
 
-use Modules\Inventory\Entities\Toxicity as Toxicity;
-
-class ToxicitiesController extends Controller
+class CategoryConsumablesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,13 +15,13 @@ class ToxicitiesController extends Controller
      */
     public function __construct()
     {
-       $this->middleware('auth');//Entregable 10: agregar rol de administrador
+       $this->middleware('auth');
     }
     
     public function index()
     {
-        $toxicities= Toxicity::all();
-        return view('inventory::toxicidades.listarToxicidades',compact('toxicities'));
+        $categoriesConsumable= CategoryConsumable::all();
+        return view('inventory::categoriasConsumible.listarCategoriasConsumible',compact('categoriesConsumable'));
     }
 
     /**
@@ -31,7 +30,7 @@ class ToxicitiesController extends Controller
      */
     public function create()
     {
-        return view('inventory::toxicidades.agregarToxicidad');
+        return view('inventory::categoriasConsumible.agregarCategoriaConsumible');
     }
 
     /**
@@ -41,15 +40,16 @@ class ToxicitiesController extends Controller
      */
     public function store(Request $request)
     {
-        $toxicity= new Toxicity;
-        $toxicity->toxicidad = $request->txtToxicidad;
-        $toxicity->estado = 1;
-        if($toxicity->save()){
+
+        $categoryConsumable= new CategoryConsumable;
+        $categoryConsumable->categoria = $request->txtCategoriaConsumible;
+        $categoryConsumable->estado = 1;
+        if($categoryConsumable->save()){
             alert()->success('El registro se agregó correctamente', 'OK')->autoclose(2500);
         }else{
             alert()->error('Error al agregar el registro', 'Error')->autoclose(2500);
         }
-        return view('inventory::toxicidades.agregarToxicidad');
+        return view('inventory::categoriasConsumible.agregarCategoriaConsumible');
     }
 
     /**
@@ -77,10 +77,10 @@ class ToxicitiesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $toxicity = Toxicity::find($id);
-        $toxicity->toxicidad = $request->txtToxicidad;
+        $categoryConsumable = CategoryConsumable::find($id);
+        $categoryConsumable->categoria = $request->txtCategoria;
 
-        if($toxicity->save()){
+        if($categoryConsumable->save()){
             return response()->json(array('success' => true), 200);
         }else{
             return Response::json("{message:'Error'}");
@@ -93,7 +93,7 @@ class ToxicitiesController extends Controller
      */
     public function destroy($id)
     {
-        if(Toxicity::destroy($id)){
+        if(CategoryConsumable::destroy($id)){
             return response()->json(array('success' => true), 200);
         }else{
             return Response::json("{message:'Error'}");
@@ -102,14 +102,14 @@ class ToxicitiesController extends Controller
 
     public function changeStatus(Request $request)
     {
-        $toxicity = Toxicity::find($request->txtIdToxicidad);
-        if($toxicity->estado==1){
-            $toxicity->estado = 0;
+        $categoryConsumable = CategoryConsumable::find($request->txtIdCategoria);
+        if($categoryConsumable->estado==1){
+            $categoryConsumable->estado = 0;
         }else{
-            $toxicity->estado = 1;
+            $categoryConsumable->estado = 1;
         }
 
-        if($toxicity->save()){
+        if($categoryConsumable->save()){
             return response()->json(array('success' => true), 200);
         }else{
             return Response::json("{message:'Error'}");
