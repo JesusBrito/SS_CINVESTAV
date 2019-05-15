@@ -46,7 +46,7 @@
                               <tr id="fila{{$consumable->id}}">
                                 <td>{{$consumable->id}}</td> 
                                 <td class="center-text-column" id="nombre{{$consumable->id}}">{{$consumable->nombreConsumible}}</td>
-                                <td class="center-text-column" >{{$consumable->categoryConsumable->id}}</td>
+                                <td class="center-text-column" >{{$consumable->categoryConsumable->categoria}}</td>
                                 <td class="center-text-column" >{{$consumable->existencia}}</td>
                                 <td class="center-text-column" >{{$consumable->puntoReorden}}</td>  
                                 <td class="center-text-column" id="estatus{{$consumable->id}}">@if($consumable->estado == 1) Habilidado @else Deshabilitado @endif</td> 
