@@ -11,6 +11,6 @@ class Consumable extends Model
 
     public function categoryConsumable()
     {
-        return $this->hasOne(CategoryConsumable::class, "id");
+        return $this->belongsTo(CategoryConsumable::class, "idCategoria");
     }
 }
