@@ -11,13 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
-})->middleware('guest');
-
-Route::resource('usuarios', 'UsersController');
-
 Auth::routes();
-Route::get('/logout', 'Auth\LoginController@logout');
+Route::redirect('/', 'login', 301);
 
+Route::group(['middleware' => ['auth']], function () {
+    Route::resource('usuarios', 'UsersController');
 
+    // RUTAS AJAX
+    Route::group(['prefix' => 'usuarios'], function () {
+        Route::post('detalle-nivel', 'UsersControllerDocuments@guardarDetalle')->name('usuarios.guardarDetalle');
+        Route::delete('detalle-nivel/{id}', 'UsersControllerDocuments@eliminarDetalle')->name('detalle.eliminarDetalle');
+    });
+});

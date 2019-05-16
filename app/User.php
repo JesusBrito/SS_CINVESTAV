@@ -2,10 +2,13 @@
 
 namespace App;
 
+use App\UserType;
+use Modules\Documents\Entities\LevelDetail;
+
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
 
 class User extends Authenticatable
 {
@@ -17,20 +20,17 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'Correo',
-        'password',
-        'Imagen',
-        'Nombre',
-        'A_Paterno',
-        'A_Materno',
-        'Tipo_Usuario',
-        'Celular',
-        'Permisos',
-        'FechaNac',
-        'Sexo',
-        'Estatus'
+        'email',
+        'imagen',
+        'nombre',
+        'a_paterno',
+        'a_materno',
+        'tipo_usuario',
+        'celular',
+        'fecha_nacimiento',
+        'sexo',
+        'estatus'
     ];
-    protected $primaryKey = 'idUsuario';
 
     /**
      * The attributes that should be hidden for arrays.
@@ -38,21 +38,29 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-    
+        'password',
     ];
-    public function getEmailAttribute() {
-        return $this->attributes['Correo'];
+
+    // ACCESSORS
+    public function getNombreCompletoAttribute()
+    {
+        return "{$this->nombre} {$this->a_paterno}";
     }
 
-    public function setEmailAttribute($value) {
-        $this->attributes['Correo'] = $value;
-    }
-    public function getEmailForPasswordReset()
+    public function getImagenAttribute($value)
     {
-        return $this->Correo;
+        $url = $value ?: 'default/user.png';
+        return Storage::url($url);
     }
-    
-    public function detailLevel(){
-        return $this-> hasMany('Modules\Documents\Entities\LevelDetail', 'idUsuario')->get();
-	}
+
+    // RELATIONS
+    public function tipoUsuario()
+    {
+        return $this->belongsTo(UserType::class, 'id_tipo_usuario');
+    }
+
+    public function detalleNiveles()
+    {
+        return $this->hasMany(LevelDetail::class, 'id_usuario');
+    }
 }

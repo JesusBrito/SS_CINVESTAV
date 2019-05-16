@@ -12,6 +12,7 @@
 */
 
 Route::prefix('inventory')->group(function() {
+    Route::view('/', 'inventory::index')->name('inventory.index');
     Route::resource('/', 'InventoryController');
     Route::resource('toxicities','ToxicitiesController');
     Route::resource('typeReactives','TypeReactivesController');

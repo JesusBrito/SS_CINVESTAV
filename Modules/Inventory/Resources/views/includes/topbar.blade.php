@@ -41,7 +41,7 @@
                         <a href="#">
                           <div class="pull-left">
                             <!-- User Image -->
-                            <img src="{{Storage::url(auth()->user()->Imagen)}}" class="img-circle" alt="User Image">
+                            <img src="{{ auth()->user()->imagen }}" class="img-circle" alt="User Image">
                           </div>
                           <!-- Message title and timestamp -->
                           <h4>
@@ -70,14 +70,14 @@
                 <!-- Menu Toggle Button -->
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <!-- The user image in the navbar-->
-                  <img src="{{Storage::url(auth()->user()->Imagen)}}" class="user-image" alt="User Image">
+                  <img src="{{ auth()->user()->imagen }}" class="user-image" alt="User Image">
                   <!-- hidden-xs hides the username on small devices so only the image appears. -->
                   <span class="hidden-xs">{{auth()->user()->Nombre}} {{auth()->user()->A_Paterno}}</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- The user image in the menu -->
                   <li class="user-header">
-                    <img src="{{Storage::url(auth()->user()->Imagen)}}" class="img-circle" alt="User Image">
+                    <img src="{{ auth()->user()->imagen }}" class="img-circle" alt="User Image">
 
                     <p>
                         {{auth()->user()->Nombre}} {{auth()->user()->A_Paterno}} - {{auth()->user()->Tipo_Usuario}}
@@ -93,8 +93,8 @@
                      <a href="{{url('documents/usuarios/show')}}" class="btn btn-default btn-flat">Sistema <br> documentos</a>
                     </div>
                     <div class="pull-right text-center">
-                      <a href="{{ url('/logout') }}" class="btn btn-default btn-flat">Cerrar <br> sesión</a>
-
+                        <a class="btn btn-default btn-flat" onclick="document.querySelector('#form-logout').submit()">Cerrar <br> sesión</a>
+                        <form action="{{ route('logout') }}" method="post" id="form-logout">@csrf</form>
                   </div>
 
                   </li>

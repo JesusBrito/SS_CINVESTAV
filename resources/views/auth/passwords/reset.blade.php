@@ -9,7 +9,7 @@
                 <div class="box box-primary">
                     <div class="box-header with-border content-header">
                     <h3 >{{ __('Reestablece tu Contraseña') }}</h3> Llene los siguientes campos
-                
+
                 </div>
 
                     <div class="box-body">
@@ -19,14 +19,14 @@
                             <input type="hidden" name="token" value="{{ $token }}">
 
                             <div class="form-group row ">
-                                <label for="Correo" class="col-md-4 col-form-label text-md-right">{{ __('Correo eléctronico') }}</label>
+                                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Correo eléctronico') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="Correo" type="Correo" class="form-control{{ $errors->has('Correo') ? ' is-invalid' : '' }}" name="Correo" value="{{ $Correo ?? old('Correo') }}" required autofocus>
+                                    <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $email ?? old('email') }}" required autofocus>
 
-                                    @if ($errors->has('Correo'))
+                                    @if ($errors->has('email'))
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('Correo') }}</strong>
+                                            <strong>{{ $errors->first('email') }}</strong>
                                         </span>
                                     @endif
                                 </div>

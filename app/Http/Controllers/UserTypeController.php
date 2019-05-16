@@ -2,17 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\UserType;
 use Illuminate\Http\Request;
-use Modules\Documents\Entities\Level;
 
-class UsersController extends Controller
+class UserTypeController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -20,8 +14,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $usuarios = User::all();
-        return view('usuarios.index', compact('usuarios'));
+        //
     }
 
     /**
@@ -31,7 +24,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('usuarios.create');
+        //
     }
 
     /**
@@ -42,40 +35,39 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\UserType  $userType
      * @return \Illuminate\Http\Response
      */
-    public function show(User $usuario)
+    public function show(UserType $userType)
     {
-        return view('usuarios.show');
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\UserType  $userType
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $usuario)
+    public function edit(UserType $userType)
     {
-        $niveles = Level::all();
-        return view('usuarios.edit', compact('usuario', 'niveles'));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\UserType  $userType
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $usuario)
+    public function update(Request $request, UserType $userType)
     {
         //
     }
@@ -83,21 +75,11 @@ class UsersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\UserType  $userType
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $usuario)
+    public function destroy(UserType $userType)
     {
         //
-    }
-
-    public function guardarDetalle()
-    {
-
-    }
-
-    public function eliminarDetalle()
-    {
-
     }
 }

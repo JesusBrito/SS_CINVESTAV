@@ -2,19 +2,18 @@
 
 namespace Modules\Documents\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use App\User;
 use Modules\Documents\Entities\Level as Level;
 use Modules\Documents\Entities\LevelDetail as LevelDetail;
-
 use Response;
 
 class UsersControllerDocuments extends Controller
 {
-     public function __construct()
+    public function __construct()
     {
-       $this->middleware('auth');//Entregable 10: agregar rol de administrador
+        $this->middleware('auth'); //Entregable 10: agregar rol de administrador
     }
     /**
      * Display a listing of the resource.
@@ -56,12 +55,11 @@ class UsersControllerDocuments extends Controller
      * Show the form for editing the specified resource.
      * @return Response
      */
-    public function edit($id)
+    public function edit(User $usuario)
     {
-        $usuario= User::find($id);
-        $detailLevels= $usuario->detailLevel();
-        $levels= Level::all();
-        return view('documents::users.edit',["usuario"=>$usuario,"detailLevels"=>$detailLevels,"levels"=>$levels]);
+        dd($usuario);
+        $niveles = Level::all();
+        return view('documents::users.edit', compact('usuario', 'niveles'));
     }
 
     /**
@@ -69,26 +67,25 @@ class UsersControllerDocuments extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $usuario)
     {
-        $usuario= User::find($id);
-        $usuario->Correo=$request->Correo;
-        if($request->hasFile('Imagen')){
-            $usuario->Imagen=$request->file('Imagen')->store('public/profile_pictures');
+        $usuario->email = $request->email;
+        if ($request->hasFile('imagen')) {
+            $usuario->imagen = $request->file('imagen')->store('profile');
         }
-        $usuario->Nombre=$request->Nombre;
-        $usuario->A_Paterno=$request->A_Paterno;
-        $usuario->A_Materno=$request->A_Materno;
-        $usuario->Celular=$request->Celular;
-        $usuario->FechaNac=$request->FechaNac;
-        $usuario->Sexo=$request->Sexo;
+        $usuario->nombre = $request->nombre;
+        $usuario->a_paterno = $request->a_paterno;
+        $usuario->a_materno = $request->a_materno;
+        $usuario->celular = $request->celular;
+        $usuario->fecha_nacimiento = $request->fecha_nacimiento;
+        $usuario->sexo = $request->sexo;
 
-        if($usuario->save()){
+        if ($usuario->save()) {
             alert()->success('Usuario modificado correctamente', 'OK')->autoclose(2500);
             return redirect('/documents/usuarios/show');
-        }else{
+        } else {
             alert()->error('Error al modificar los campos', 'Error')->autoclose(2500);
-            return view('documents::users.edit',["usuario"=>$usuario]);
+            return view('documents::users.edit', ["usuario" => $usuario]);
         }
     }
 
@@ -100,30 +97,31 @@ class UsersControllerDocuments extends Controller
     {
     }
 
-
     //AJAX
-    public function saveDetailLevel(Request $request){
+    public function savedetalleNiveles(Request $request)
+    {
 
-        $detailLevel = new LevelDetail;
-        $detailLevel->idUsuario=$request->idUsuario;
-        $detailLevel->idNivel=$request->idNivel;
-        $detailLevel->Carrera=$request->Carrera;
-        $detailLevel->Escuela=$request->Escuela;
-        $detailLevel->Ingreso=$request->Ingreso;
-        $detailLevel->Egreso=$request->Egreso;
-        $detailLevel->Estatus=$request->Estatus;
+        $detalleNiveles = new LevelDetail;
+        $detalleNiveles->id_usuario = $request->id_usuario;
+        $detalleNiveles->id_nivel = $request->id_nivel;
+        $detalleNiveles->carrera = $request->carrera;
+        $detalleNiveles->escuela = $request->escuela;
+        $detalleNiveles->ingreso = $request->ingreso;
+        $detalleNiveles->egreso = $request->egreso;
+        $detalleNiveles->estatus = $request->estatus;
 
-        if($detailLevel->save()){
-            return response()->json(array('success' => true, 'responseId' => $detailLevel->id), 200);
-        }else{
+        if ($detalleNiveles->save()) {
+            return response()->json(array('success' => true, 'responseId' => $detalleNiveles->id), 200);
+        } else {
             return Response::json("{message:'Error'}");
         }
     }
 
-    public function deleteDetailLevel(Request $request, $id){
-        if(LevelDetail::destroy($id)){
+    public function deletedetalleNiveles(Request $request, $id)
+    {
+        if (LevelDetail::destroy($id)) {
             return response()->json(array('success' => true), 200);
-        }else{
+        } else {
             return Response::json("{message:'Error'}");
         }
     }

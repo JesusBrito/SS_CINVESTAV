@@ -1,14 +1,12 @@
- 
-    @extends('layout')
-    @section ('contenido')
-
+@extends('layout')
+@section ('contenido')
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Listado de Usuarios 
+        Listado de Usuarios
         <small>Aquí se muestran todos los usuarios del sistema</small>
       </h1>
       <ol class="breadcrumb">
@@ -24,15 +22,15 @@
       <!--------------------------
         | Your Page Content Here |
         -------------------------->
-      
+
         <div class="row">
-          
+
           <div class="col-md-12">
             <div class="box box-primary">
               <div class="box-header with-border">
                <h3 class="box-title">Usuarios</h3>
               </div>
-              
+
               <form role="form">
 
               <div class="box-body">
@@ -52,91 +50,59 @@
 
                       <thead>
                         <tr role="row">
-
                           <th>Tipo de usuario</th>
-                          <th >Nombre(s)</th>
+                          <th>Nombre(s)</th>
                           <th>Apellido paterno</th>
                           <th>Apellido materno</th>
                           <th>Grupo</th>
-                          <th >Fecha de nacimiento</th>
+                          <th>Fecha de nacimiento</th>
                           <th>Sexo</th>
                           <th>Teléfono</th>
                           <th>Correo electrónico</th>
                           <th>Acciones</th>
-
                         </tr>
                       </thead>
 
                       <tbody>
                         @foreach($users as $user)
                         <tr role="row" class="odd">
-                          <td class="sorting_1">{{$user->Tipo_Usuario}}</td>
+                          <td class="sorting_1">{{$user->tipo_usuario}}</td>
                           <!--luego lo agrego, XD-->
-                          <td>{{$user->Nombre}}</td>
-                          <td>{{$user->A_Paterno}}</td>
-                          <td>{{$user->A_Materno}}</td>
+                          <td>{{$user->nombre}}</td>
+                          <td>{{$user->a_paterno}}</td>
+                          <td>{{$user->a_materno}}</td>
                           <td>Grupo</td>
-                          <td>{{$user->FechaNac}}</td>
-                          <td>{{$user->Sexo}}</td>
-                          <td>{{$user->Celular}}</td>
-                          <td>{{$user->Correo}}</td>
+                          <td>{{$user->fecha_nacimiento}}</td>
+                          <td>{{$user->sexo}}</td>
+                          <td>{{$user->celular}}</td>
+                          <td>{{$user->email}}</td>
                           <td>
-                              
                             <div class="btn-group form-inline">
-                              <a class="btn btn-primary" href="{{ url('documents/usuarios/'.$user->idUsuario.'/edit') }}">Editar</a>
+                              <a class="btn btn-primary" href="{{ url('documents/usuarios/'.$user->id.'/edit') }}">Editar</a>
                             </div>
                             <div class="btn-group form-inline">
-                              <button type="button" class="btn btn-primary " id="btnEliminar">Eliminar</button>
+                              <button type="button" class="btn btn-primary" id="btnEliminar">Eliminar</button>
                             </div>
-                            
-                          
                           </td>
                         </tr>
                         @endforeach
-
-                      
-
                       </tbody>
-
-                      
-
                     </table>
                   </div>
-
-                   
-
                 </div>
               </div>
-
-                
-               
-
               </div>
-
-      
                 </div>
                 <!-- /.box-body -->
-
-               
-
                </form>
-
               </div>
-
             </div>
           </div>
-        
-
-    
    <!--------------------------
         | Your Page Content Here |
         -------------------------->
-      
-
-
      </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  
   @stop

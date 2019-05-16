@@ -27,7 +27,7 @@ class CreateDetailEquipmentsTable extends Migration
 
             $table->foreign('idProveedor')->references('id')->on('providers');
             $table->foreign('idEquipo')->references('id')->on('equipments');
-            $table->foreign('idEncargado')->references('idUsuario')->on('users'); 
+            $table->foreign('idEncargado')->references('id')->on('users');
         });
     }
 
