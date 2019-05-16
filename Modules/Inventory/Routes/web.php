@@ -20,7 +20,6 @@ Route::prefix('inventory')->group(function() {
     Route::resource('brands','BrandsController');
     Route::resource('unities','UnitiesController');
     Route::resource('categoryConsumables','CategoryConsumablesController');
-    
     Route::resource('consumables','ConsumablesController');
     Route::resource('wastes','WastesController');
 

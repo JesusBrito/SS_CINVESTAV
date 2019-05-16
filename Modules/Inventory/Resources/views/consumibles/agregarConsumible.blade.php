@@ -63,7 +63,7 @@
                         <div class="form-group">
                             <label class="control-label col-xs-4">Descripción:</label>
                             <div class="col-xs-8">
-                              <textarea class="form-control" rows="5" name="txtDescripcion" placeholder="Descripción"></textarea>
+                              <textarea class="form-control" required rows="5" name="txtDescripcion" placeholder="Descripción"></textarea>
                             </div>
                         </div>
 

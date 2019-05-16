@@ -21,8 +21,9 @@ class ConsumablesController extends Controller
     
     public function index()
     {
+        $categoriesConsumable= CategoryConsumable::all();
         $consumables= Consumable::all();
-        return view('inventory::consumibles.listarConsumibles',compact('consumables'));
+        return view('inventory::consumibles.listarConsumibles',compact('consumables','categoriesConsumable'));
     }
 
     /**
@@ -81,15 +82,49 @@ class ConsumablesController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
+        $consumable = Consumable::find($id);
+        $consumable->nombreConsumible = $request->txtConsumible;
+        $consumable->idCategoria = $request->txtCategoria;
+        $consumable->existencia = $request->txtExistencia;
+        $consumable->puntoReorden = $request->txtExistenciaMinima;
+        $consumable->descripcion = $request->txtDescripcion;
+
+        if($consumable->save()){
+            return response()->json(array('success' => true), 200);
+        }else{
+            return Response::json("{message:'Error'}");
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      * @return Response
      */
-    public function destroy()
+    public function destroy($id)
     {
+        if(Consumable::destroy($id)){
+            return response()->json(array('success' => true), 200);
+        }else{
+            return Response::json("{message:'Error'}");
+        }
     }
+
+    public function changeStatus(Request $request)
+    {
+        $consumable = Consumable::find($request->txtIdConsumible);
+        if($consumable->estado==1){
+            $consumable->estado = 0;
+        }else{
+            $consumable->estado = 1;
+        }
+
+        if($consumable->save()){
+            return response()->json(array('success' => true), 200);
+        }else{
+            return Response::json("{message:'Error'}");
+        }
+    }
+
 }
