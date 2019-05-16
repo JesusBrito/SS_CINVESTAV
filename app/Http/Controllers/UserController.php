@@ -1,106 +1,110 @@
 <?php
 
-namespace Modules\Documents\Http\Controllers;
+namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
-use Modules\Documents\Entities\Level as Level;
-use Modules\Documents\Entities\LevelDetail as LevelDetail;
-use Response;
+use Modules\Documents\Entities\Level;
 
-class UsersControllerDocuments extends Controller
+class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth'); //Entregable 10: agregar rol de administrador
+        $this->middleware('auth');
     }
+
     /**
      * Display a listing of the resource.
-     * @return Response
+     *
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return view('documents::index');
+        $usuarios = User::all();
+        return view('usuarios.index', compact('usuarios'));
     }
 
     /**
      * Show the form for creating a new resource.
-     * @return Response
+     *
+     * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        return view('documents::create');
+        return view('usuarios.create');
     }
 
     /**
      * Store a newly created resource in storage.
-     * @param  Request $request
-     * @return Response
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
+
     }
 
     /**
-     * Show the specified resource.
-     * @return Response
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show(User $usuario)
     {
-        return view('documents::users.show');
+        return view('usuarios.show');
     }
 
     /**
      * Show the form for editing the specified resource.
-     * @return Response
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
     public function edit(User $usuario)
     {
-        dd($usuario);
         $niveles = Level::all();
-        return view('documents::users.edit', compact('usuario', 'niveles'));
+        return view('usuarios.edit', compact('usuario', 'niveles'));
     }
 
     /**
      * Update the specified resource in storage.
-     * @param  Request $request
-     * @return Response
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, User $usuario)
     {
-        $usuario->email = $request->email;
+        $usuario->update($request->all());
+
         if ($request->hasFile('imagen')) {
             $usuario->imagen = $request->file('imagen')->store('profile');
         }
-        $usuario->nombre = $request->nombre;
-        $usuario->a_paterno = $request->a_paterno;
-        $usuario->a_materno = $request->a_materno;
-        $usuario->celular = $request->celular;
-        $usuario->fecha_nacimiento = $request->fecha_nacimiento;
-        $usuario->sexo = $request->sexo;
 
         if ($usuario->save()) {
             alert()->success('Usuario modificado correctamente', 'OK')->autoclose(2500);
-            return redirect('/documents/usuarios/show');
+            return redirect(route('usuarios.show', $usuario));
         } else {
             alert()->error('Error al modificar los campos', 'Error')->autoclose(2500);
-            return view('documents::users.edit', ["usuario" => $usuario]);
+            return back();
         }
     }
 
     /**
      * Remove the specified resource from storage.
-     * @return Response
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
-    public function destroy()
+    public function destroy(User $usuario)
     {
+        //
     }
 
-    //AJAX
-    public function savedetalleNiveles(Request $request)
+    public function guardarDetalle()
     {
-
         $detalleNiveles = new LevelDetail;
         $detalleNiveles->id_usuario = $request->id_usuario;
         $detalleNiveles->id_nivel = $request->id_nivel;
@@ -117,7 +121,7 @@ class UsersControllerDocuments extends Controller
         }
     }
 
-    public function deletedetalleNiveles(Request $request, $id)
+    public function eliminarDetalle()
     {
         if (LevelDetail::destroy($id)) {
             return response()->json(array('success' => true), 200);
@@ -125,5 +129,4 @@ class UsersControllerDocuments extends Controller
             return Response::json("{message:'Error'}");
         }
     }
-
 }

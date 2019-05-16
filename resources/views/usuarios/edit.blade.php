@@ -6,7 +6,7 @@
         Editar usuario
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i>Nivel</a></li>
+        <li><a href="{{ url('/') }}"><i class="fa fa-dashboard"></i>Inicio</a></li>
         <li>Administrar</li>
         <li class="active">Editar Usuario</li>
       </ol>
@@ -30,11 +30,10 @@
               <div class="box-body">
 
               <div class="col-md-6">
-
                 <div class="form-group">
                   <label>Tipo de usuario</label>
                   <select class="form-control" disabled id="tipo_usuario" required name="tipo_usuario">
-                      <option value="{{ $usuario->tipoUsuario->id }}" selected="true">{{ $usuario->tipoUsuario }}</option>
+                      <option value="{{ $usuario->tipoUsuario->id }}" selected="true">{{ $usuario->tipoUsuario->nombre }}</option>
                   </select>
                 </div>
 
@@ -52,7 +51,6 @@
                   <label for="txtapmat">Apellido materno</label>
                   <input class="form-control" type="text" id="a_materno" maxlegth="20" name="a_materno" value="{{ $usuario->a_materno }}" required>
                 </div>
-
             <!--
                 <div class="form-group">
                   <label>Grupo</label>
@@ -69,14 +67,12 @@
                       <option value="g2">Grupo 2</option>
                     </select>
                 </div>-->
-
               </div>
 
               <div class="col-md-6">
-
                 <div class="form-group">
                   <label for="fecha_nacimiento">Fecha de nacimiento</label>
-                  <input class="form-control" type="text" id="fecha_nacimiento" name="fecha_nacimiento" required readonly style="background:white;" value="{{ $usuario->fecha_nacimiento }}">
+                  <input class="form-control" type="date" id="fecha_nacimiento" name="fecha_nacimiento" required readonly value="{{ $usuario->fecha_nacimiento }}">
                 </div>
 
                 <div class="form-group">
@@ -89,27 +85,23 @@
 
                 <div class="form-group">
                   <label for="txtnumero">Número de teléfono</label>
-                <input class="form-control" type="text" pattern="[0-9]{10}" id="celular" value="{{ $usuario->celular }}" name="Celular">
-
+                  <input class="form-control" type="text" pattern="[0-9]{10}" id="celular" value="{{ $usuario->celular }}" name="Celular" maxlength="10" placeholder="5512345678">
                 </div>
 
                 <div class="form-group">
-                        <div class="form-group has-feedback">
-                          <label for="txtcorreo">Correo electrónico</label>
-                        <input type="email" required class="form-control" value="{{ $usuario->email }}" name="email" id="email" placeholder="ejemplo@email.com" required>
-                          <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                        </div>
+                    <div class="form-group has-feedback">
+                      <label for="txtcorreo">Correo electrónico</label>
+                      <input type="email" required class="form-control" value="{{ $usuario->email }}" name="email" id="email" placeholder="ejemplo@email.com" required>
+                      <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                    </div>
                 </div>
                 <br>
-                 <div class="form-group">
-                 <p><img src="{{ auth()->user()->imagen }}" widht="80px" height="80px" alt="Foto de perfil"></p>
+                <div class="form-group">
+                  <p><img src="{{ auth()->user()->imagen }}" widht="80px" height="80px" alt="Foto de perfil"></p>
                   <label for="flfoto">Añadir foto de perfil</label>
                   <input type="file" id="imagen" name="imagen" accept="image/*" >
                   <p class="help-block">Suba una fotografía en formato .jpg o .png</p>
                 </div>
-
-
-
                  <!--<div class="form-group">
                     <label>Grupo al que está incrito actualmente</label>
                     <select class="form-control" disabled="" id="slgrupo">
@@ -117,7 +109,6 @@
                       <option value="g2">Grupo 2</option>
                     </select>
                 </div>-->
-
               </div>
 
               <div class="form-group">
@@ -229,8 +220,6 @@
   @push ('scripts')
   <script>
       var detalleNiveles = @json($usuario->detalleNiveles)
-      var _token = $('input[name="_token"]').val()
-      var urlImport = $('input[name="_asset"]').val()
       var usuario = $('input[name="_idUsuario"]').val()
 
       $('#btnagregar').click(function(){

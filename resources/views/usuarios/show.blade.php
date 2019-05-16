@@ -10,7 +10,7 @@
 
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Nivel</a></li>
+        <li><a href="{{ url('/') }}"><i class="fa fa-dashboard"></i>Inicio</a></li>
         <li class="active">Perfil</li>
       </ol>
     </section>

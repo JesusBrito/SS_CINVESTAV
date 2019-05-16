@@ -12,5 +12,10 @@
  */
 
 Route::prefix('documentos')->group(function () {
+    Route::get('/', function() {
+        session(['sistema' => 'documentos']);
+        return redirect()->route('usuarios.show', auth()->user());
+    })->name('documentos.index');
+
     Route::resource('grupos', 'GroupController');
 });
