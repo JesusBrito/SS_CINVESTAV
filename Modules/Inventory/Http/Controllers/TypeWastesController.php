@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 
-use Modules\Inventory\Entities\Toxicity as Toxicity;
+use Modules\Inventory\Entities\TypeWaste as TypeWaste;
 
-class ToxicitiesController extends Controller
+class TypeWastesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,13 +16,13 @@ class ToxicitiesController extends Controller
      */
     public function __construct()
     {
-       $this->middleware('auth');//Entregable 10: agregar rol de administrador
+       $this->middleware('auth');
     }
     
     public function index()
     {
-        $toxicities= Toxicity::all();
-        return view('inventory::toxicidades.listarToxicidades',compact('toxicities'));
+        $wastes= TypeWaste::all();
+        return view('inventory::desechos.listarDesechos',compact('wastes'));
     }
 
     /**
@@ -31,7 +31,7 @@ class ToxicitiesController extends Controller
      */
     public function create()
     {
-        return view('inventory::toxicidades.agregarToxicidad');
+        return view('inventory::desechos.agregarDesecho');
     }
 
     /**
@@ -41,14 +41,21 @@ class ToxicitiesController extends Controller
      */
     public function store(Request $request)
     {
-        $toxicity= new Toxicity;
-        $toxicity->toxicidad = $request->txtToxicidad;
-        if($toxicity->save()){
+        $typeWaste = new TypeWaste;
+        $typeWaste->categoria = $request->txtCategoria;
+        $typeWaste->tipo = $request->txtTipo;
+        $typeWaste->recipiente = $request->txtRecipiente;
+        $typeWaste->equipoSeguridad = $request->txtEquipoSeguridad;
+        $typeWaste->procedimiento = $request->txtProcedimiento;
+        $typeWaste->horario = $request->txtHorario;
+        if($typeWaste->save()){
             alert()->success('El registro se agregó correctamente', 'OK')->autoclose(2500);
         }else{
             alert()->error('Error al agregar el registro', 'Error')->autoclose(2500);
         }
-        return view('inventory::toxicidades.agregarToxicidad');
+        $categoriesConsumable= CategoryConsumable::all();
+        return view('inventory::consumibles.agregarConsumible',compact('categoriesConsumable'));
+
     }
 
     /**
@@ -74,12 +81,16 @@ class ToxicitiesController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $toxicity = Toxicity::find($id);
-        $toxicity->toxicidad = $request->txtToxicidad;
+        $typeWaste = TypeWaste::find($id);
+        $typeWaste->nombreConsumible = $request->txtConsumible;
+        $typeWaste->idCategoria = $request->txtCategoria;
+        $typeWaste->existencia = $request->txtExistencia;
+        $typeWaste->puntoReorden = $request->txtExistenciaMinima;
+        $typeWaste->descripcion = $request->txtDescripcion;
 
-        if($toxicity->save()){
+        if($typeWaste->save()){
             return response()->json(array('success' => true), 200);
         }else{
             return Response::json("{message:'Error'}");
@@ -92,7 +103,7 @@ class ToxicitiesController extends Controller
      */
     public function destroy($id)
     {
-        if(Toxicity::destroy($id)){
+        if(TypeWaste::destroy($id)){
             return response()->json(array('success' => true), 200);
         }else{
             return Response::json("{message:'Error'}");
@@ -101,17 +112,18 @@ class ToxicitiesController extends Controller
 
     public function changeStatus(Request $request)
     {
-        $toxicity = Toxicity::find($request->txtIdToxicidad);
-        if($toxicity->estado==1){
-            $toxicity->estado = 0;
+        $typeWaste = TypeWaste::find($request->txtIdDesecho);
+        if($typeWaste->estado==1){
+            $typeWaste->estado = 0;
         }else{
-            $toxicity->estado = 1;
+            $typeWaste->estado = 1;
         }
 
-        if($toxicity->save()){
+        if($typeWaste->save()){
             return response()->json(array('success' => true), 200);
         }else{
             return Response::json("{message:'Error'}");
         }
     }
+
 }

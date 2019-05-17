@@ -42,7 +42,6 @@ class BrandsController extends Controller
     {
         $brandCompany= new BrandCompany;
         $brandCompany->nombre = $request->txtMarca;
-        $brandCompany->estado = 1;
         if($brandCompany->save()){
             alert()->success('El registro se agregó correctamente', 'OK')->autoclose(2500);
         }else{

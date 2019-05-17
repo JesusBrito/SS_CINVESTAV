@@ -21,7 +21,6 @@ class CreateLevelDetailsTable extends Migration
             $table->year('egreso');
             $table->enum('estatus', ['Egresado','Titulado','En Progreso','Pasante']);
             $table->timestamps();
-
             $table->unsignedInteger('id_usuario');
             $table->unsignedInteger('id_nivel');
 

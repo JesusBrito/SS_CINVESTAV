@@ -43,7 +43,6 @@ class LocationsController extends Controller
     {
         $location= new Location;
         $location->ubicacion = $request->txtUbicacion;
-        $location->estado = 1;
         if($location->save()){
             alert()->success('El registro se agregó correctamente', 'OK')->autoclose(2500);
         }else{

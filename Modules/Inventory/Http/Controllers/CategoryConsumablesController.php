@@ -43,7 +43,6 @@ class CategoryConsumablesController extends Controller
 
         $categoryConsumable= new CategoryConsumable;
         $categoryConsumable->categoria = $request->txtCategoriaConsumible;
-        $categoryConsumable->estado = 1;
         if($categoryConsumable->save()){
             alert()->success('El registro se agregó correctamente', 'OK')->autoclose(2500);
         }else{

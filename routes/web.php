@@ -19,7 +19,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     // RUTAS AJAX
     Route::group(['prefix' => 'usuarios'], function () {
-        Route::post('detalle-nivel', 'UsersControllerDocuments@guardarDetalle')->name('usuarios.guardarDetalle');
-        Route::delete('detalle-nivel/{id}', 'UsersControllerDocuments@eliminarDetalle')->name('detalle.eliminarDetalle');
+        Route::post('detalle-nivel', 'UsersController@guardarDetalle')->name('usuarios.guardarDetalle');
+        Route::delete('detalle-nivel/{id}', 'UsersController@eliminarDetalle')->name('detalle.eliminarDetalle');
     });
 });

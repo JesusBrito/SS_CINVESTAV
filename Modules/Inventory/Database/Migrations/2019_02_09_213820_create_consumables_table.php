@@ -20,7 +20,7 @@ class CreateConsumablesTable extends Migration
             $table->Integer('existencia');
             $table->Integer('puntoReorden');
             $table->string('descripcion',80);
-            $table->tinyInteger('estado');
+            $table->tinyInteger('estado')->default(1);
 
             $table->foreign('idCategoria')->references('id')->on('category_consumables');
 

@@ -43,7 +43,6 @@ class TypeReactivesController extends Controller
     {
         $typeReactive= new TypeReactive;
         $typeReactive->tipo = $request->txtTypeReactive;
-        $typeReactive->estado = 1;
         if($typeReactive->save()){
             alert()->success('El registro se agregó correctamente', 'OK')->autoclose(2500);
         }else{

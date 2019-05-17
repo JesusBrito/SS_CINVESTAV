@@ -42,7 +42,6 @@ class UnitiesController extends Controller
     {
         $unity= new Unity;
         $unity->unidad = $request->txtUnidad;
-        $unity->estado = 1;
         if($unity->save()){
             alert()->success('El registro se agregó correctamente', 'OK')->autoclose(2500);
         }else{

@@ -49,7 +49,6 @@ class ConsumablesController extends Controller
         $consumable->existencia = $request->txtExistencia;
         $consumable->puntoReorden = $request->txtExistenciaMinima;
         $consumable->descripcion = $request->txtDescripcion;
-        $consumable->estado = 1;
         if($consumable->save()){
             alert()->success('El registro se agregó correctamente', 'OK')->autoclose(2500);
         }else{

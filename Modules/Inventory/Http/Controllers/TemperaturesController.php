@@ -43,7 +43,6 @@ class TemperaturesController extends Controller
     {
         $temperature= new Temperature;
         $temperature->temperatura = $request->txtTemperatura;
-        $temperature->estado = 1;
         if($temperature->save()){
             alert()->success('El registro se agregó correctamente', 'OK')->autoclose(2500);
         }else{

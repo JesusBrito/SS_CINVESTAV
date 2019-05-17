@@ -25,7 +25,7 @@ class CreateDetailReactivesTable extends Migration
             $table->integer('existencia');
             $table->datetime('fechaCaducidad');
             $table->text('lote');
-            $table->tinyInteger('estado');
+            $table->tinyInteger('estado')->default(1);
             $table->timestamps();
             $table->foreign('idReactivo')->references('id')->on('reactives');
             $table->foreign('idProveedor')->references('id')->on('providers');
