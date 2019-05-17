@@ -21,6 +21,16 @@ class UsersTableSeeder extends Seeder
             'fecha_nacimiento' => '1996-12-26',
             'sexo' => 'Hombre',
             'email' => 'lfcg.programador@gmail.com',
+            'password' => bcrypt('123456'),
+        ]);
+
+        $jesus = User::create([
+            'nombre' => 'Juan Jesús',
+            'a_paterno' => 'Brito',
+            'a_materno' => 'Brito',
+            'fecha_nacimiento' => '1996-11-29',
+            'sexo' => 'Hombre',
+            'email' => 'jesus291196@gmail.com',
             'password' => bcrypt('password'),
         ]);
 
@@ -39,5 +49,7 @@ class UsersTableSeeder extends Seeder
         $lfcg->save();
         $fer->tipoUsuario()->associate($tipoAdmin);
         $fer->save();
+        $jesus->tipoUsuario()->associate($tipoAdmin);
+        $jesus->save();
     }
 }
