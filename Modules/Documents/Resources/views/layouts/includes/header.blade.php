@@ -80,10 +80,10 @@
                         <!-- Menu Footer-->
                         <li class="user-body">
                             <div class="pull-left text-center">
-                                <a href="{{url('/documents/usuarios/show')}}" class="btn btn-default btn-flat">Perfil  </a>
+                                <a href="{{ route('usuarios.show', auth()->user()) }}" class="btn btn-default btn-flat">Perfil  </a>
                             </div>
                             <div class="col-xs-4 text-center">
-                                <a href="{{url('inventory')}}" class="btn btn-default btn-flat">Sistema <br> inventarios</a>
+                                <a href="{{ route('inventory.index') }}" class="btn btn-default btn-flat">Sistema <br> inventarios</a>
                             </div>
                             <div class="pull-right text-center">
                                 <a class="btn btn-default btn-flat" onclick="document.querySelector('#form-logout').submit()">Cerrar <br> sesión</a>

@@ -12,8 +12,11 @@
 */
 
 Route::prefix('inventory')->group(function() {
-    Route::view('/', 'inventory::index')->name('inventory.index');
-    Route::resource('/', 'InventoryController');
+    Route::get('/', function() {
+        session(['sistema' => 'inventario']);
+        return view('inventory::index');
+    })->name('inventory.index');
+
     Route::resource('toxicities','ToxicitiesController');
     Route::resource('typeReactives','TypeReactivesController');
     Route::resource('locations','LocationsController');

@@ -15,11 +15,11 @@ Auth::routes();
 Route::redirect('/', 'login', 301);
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::resource('usuarios', 'UsersController');
+    Route::resource('usuarios', 'UserController');
 
     // RUTAS AJAX
     Route::group(['prefix' => 'usuarios'], function () {
-        Route::post('detalle-nivel', 'UsersController@guardarDetalle')->name('usuarios.guardarDetalle');
-        Route::delete('detalle-nivel/{id}', 'UsersController@eliminarDetalle')->name('detalle.eliminarDetalle');
+        Route::post('detalle-nivel', 'UserController@guardarDetalle')->name('usuarios.guardarDetalle');
+        Route::delete('detalle-nivel/{id}', 'UserController@eliminarDetalle')->name('detalle.eliminarDetalle');
     });
 });
