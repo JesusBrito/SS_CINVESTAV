@@ -11,11 +11,11 @@
 |
  */
 
-Route::prefix('documentos')->group(function () {
+Route::prefix('documents')->group(function () {
     Route::get('/', function() {
         session(['sistema' => 'documentos']);
-        return redirect()->route('usuarios.show', auth()->user());
-    })->name('documentos.index');
+        return redirect()->route('users.show', auth()->user());
+    })->name('documents.index');
 
-    Route::resource('grupos', 'GroupController');
+    Route::resource('groups', 'GroupController');
 });

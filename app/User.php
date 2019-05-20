@@ -3,7 +3,7 @@
 namespace App;
 
 use App\UserType;
-use Modules\Documents\Entities\LevelDetail;
+use App\LevelDetail;
 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;

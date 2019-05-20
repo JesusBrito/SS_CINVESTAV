@@ -80,7 +80,7 @@
                         <!-- Menu Footer-->
                         <li class="user-body">
                             <div class="pull-left text-center">
-                                <a href="{{ route('usuarios.show', auth()->user()) }}" class="btn btn-default btn-flat">Perfil  </a>
+                                <a href="{{ route('users.show', auth()->user()) }}" class="btn btn-default btn-flat">Perfil  </a>
                             </div>
                             <div class="col-xs-4 text-center">
                                 <a href="{{ route('inventory.index') }}" class="btn btn-default btn-flat">Sistema <br> inventarios</a>

@@ -78,7 +78,7 @@
                           <td>{{$user->email}}</td>
                           <td>
                             <div class="btn-group form-inline">
-                              <a class="btn btn-primary" href="{{ url('documents/usuarios/'.$user->id.'/edit') }}">Editar</a>
+                              <a class="btn btn-primary" href="{{ route('users.edit', auth()->user()) }}">Editar</a>
                             </div>
                             <div class="btn-group form-inline">
                               <button type="button" class="btn btn-primary" id="btnEliminar">Eliminar</button>

@@ -90,7 +90,7 @@
 
 
                      <div class="col-xs-4 text-center">
-                     <a href="{{ route('documentos.index') }}" class="btn btn-default btn-flat">Sistema <br> documentos</a>
+                     <a href="{{ route('documents.index') }}" class="btn btn-default btn-flat">Sistema <br> documentos</a>
                     </div>
                     <div class="pull-right text-center">
                         <a class="btn btn-default btn-flat" onclick="document.querySelector('#form-logout').submit()">Cerrar <br> sesión</a>

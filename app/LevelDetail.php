@@ -1,20 +1,19 @@
 <?php
 
-namespace Modules\Documents\Entities;
+namespace App;
 
 use App\User;
-use Modules\Documents\Entities\Level;
+use App\Level;
 use Illuminate\Database\Eloquent\Model;
 
 class LevelDetail extends Model
 {
     protected $fillable = [
-        'id_usuario',
         'id_nivel',
         'carrera',
         'escuela',
-        'ingreso',
-        'egreso',
+        'fecha_inicio',
+        'fecha_fin',
         'estatus',
     ];
 
@@ -25,6 +24,6 @@ class LevelDetail extends Model
 
     public function nivel()
     {
-        return $this->belongsTo(Level::class, 'id_nivel', 'id_nivel');
+        return $this->belongsTo(Level::class, 'id_nivel');
     }
 }

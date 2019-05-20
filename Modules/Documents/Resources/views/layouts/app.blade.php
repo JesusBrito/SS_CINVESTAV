@@ -55,6 +55,7 @@ desired effect
 <!-- ./wrapper -->
 
 <!-- REQUIRED JS SCRIPTS -->
+<script src="{{ asset("js/app.js") }}"></script>
 
 <!-- jQuery 3 -->
 <script src="{{ asset("/js/jquery.min.js") }}"></script>
@@ -63,8 +64,6 @@ desired effect
 <!-- AdminLTE App -->
 <script src="{{ asset("/js/adminlte.min.js") }}"></script>
 
-<!--validar cosas de usuario-->
-<script src="{{ asset("/js/usuarios.js") }}"></script>
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->
@@ -73,13 +72,10 @@ desired effect
 
 <!-- bootstrap datepicker -->
 <script src="{{ asset("/js/bootstrap-datepicker.min.js") }}"></script>
-
-
 <script src="{{ asset("/js/bootstrap-datepicker.es.min.js") }}"></script>
-@stack('scripts')
 
 
-
+@stack('extra-js')
 
 <script type="text/javascript">
   $('#FechaNac').datepicker({format: 'yyyy/mm/dd',language: 'es', autoclose: true});

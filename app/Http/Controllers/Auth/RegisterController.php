@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = 'usuarios';
+    protected $redirectTo = 'login';
 
     /**
      * Create a new controller instance.
@@ -54,7 +54,7 @@ class RegisterController extends Controller
     }
     public function showRegistrationForm()
     {
-        return view('usuarios.create');
+        return view('users.create');
     }
 
     /**

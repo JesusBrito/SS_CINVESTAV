@@ -2,18 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Level;
 use App\LevelDetail;
-use App\User;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class LevelDetailController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -21,8 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        return view('users.index', compact('users'));
+        //
     }
 
     /**
@@ -32,7 +24,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        //
     }
 
     /**
@@ -43,7 +35,14 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $detalleNivel = LevelDetail::create($request->all());
+        $detalleNivel->user()->associate(auth()->user());
 
+        if ($detalleNivel->save()) {
+            return response()->json(['success' => true, 'detalleNivel' => $detalleNivel], 200);
+        }
+
+        return response()->json(['success' => false, 'msg' => 'Error al guardar'], 400);
     }
 
     /**
@@ -52,9 +51,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show($id)
     {
-        return view('users.show');
+        //
     }
 
     /**
@@ -63,10 +62,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(LevelDetail $level_detail)
     {
-        $levels = Level::all();
-        return view('users.edit', compact('user', 'levels'));
+        //
     }
 
     /**
@@ -76,21 +74,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, LevelDetail $level_detail)
     {
-        $user->update($request->all());
-
-        if ($request->hasFile('imagen')) {
-            $user->imagen = $request->file('imagen')->store('profile');
-        }
-
-        if ($user->save()) {
-            alert()->success('user modificado correctamente', 'OK')->autoclose(2500);
-            return redirect(route('users.show', $user));
-        } else {
-            alert()->error('Error al modificar los campos', 'Error')->autoclose(2500);
-            return back();
-        }
+        //
     }
 
     /**
@@ -99,8 +85,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(LevelDetail $levelDetail)
     {
-        //
+        $id = $levelDetail->id;
+        if ($levelDetail->delete()) {
+            return response()->json(['success' => true, 'id' => $id], 200);
+        }
+
+        return response()->json(['success' => false, 'msg' => 'No se pudo eliminar el detalle'], 500);
     }
 }

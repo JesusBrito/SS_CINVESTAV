@@ -19,7 +19,7 @@ class RedirectIfAuthenticated
     {
         if (Auth::check()) {
             return session('sistema') == 'documentos'
-                    ? redirect(route('usuarios.show', auth()->user()))
+                    ? redirect(route('users.show', auth()->user()))
                     : redirect(route('inventory.index'));
         }
 

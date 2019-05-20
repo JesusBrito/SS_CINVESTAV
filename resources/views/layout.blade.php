@@ -106,21 +106,18 @@ desired effect
 <!-- AdminLTE App -->
 <script src="{{asset("/js/adminlte.min.js")}}"></script>
 
-<!--validar cosas de usuario-->
-<script src="{{asset("/js/usuarios.js")}}"></script>
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
-     Both of these plugins are recommended to enhance the
-     user experience. -->
-     <!-- Slimscroll -->
+Both of these plugins are recommended to enhance the
+user experience. -->
+<!-- Slimscroll -->
 <script src="{{asset("/js/jquery.slimscroll.min.js")}}"></script>
-
 <!-- bootstrap datepicker -->
 <script src="{{asset("/js/bootstrap-datepicker.min.js")}}"></script>
-
-
 <script src="{{asset("/js/bootstrap-datepicker.es.min.js")}}"></script>
 
-
+<script src="{{ asset("js/config.js") }}"></script>
+<!--validar cosas de usuario-->
+<script src="{{ asset("js/users.js") }}"></script>
 
 
 <script type="text/javascript">
@@ -133,5 +130,8 @@ desired effect
       autoclose: true,
       language: 'es'});
 </script>
+
+@stack('extra-js')
+
 </body>
 </html>

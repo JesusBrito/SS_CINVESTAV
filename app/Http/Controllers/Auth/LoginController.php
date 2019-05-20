@@ -42,7 +42,7 @@ class LoginController extends Controller
     {
         if ($request->Sistema == '0') {
             session(['sistema' => 'documentos']);
-            return redirect(route('usuarios.show', auth()->user()));
+            return redirect(route('users.show', auth()->user()));
         }
 
         session(['sistema' => 'inventario']);
