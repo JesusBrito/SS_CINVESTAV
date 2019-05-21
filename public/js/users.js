@@ -7,6 +7,7 @@ const addDetail = async e => {
   let carrera = document.querySelector('[name="carrera"]').value
   let fecha_inicio = document.querySelector('[name="fecha_inicio"]').value
   let fecha_fin = document.querySelector('[name="fecha_fin"]').value
+  let estatus = document.querySelector('[name="estatus"]').value
 
   if (!id_nivel || !escuela || !carrera || !fecha_inicio || !fecha_fin) {
     swal('¡Error!', 'Llena todos los campos', 'error');
@@ -14,33 +15,33 @@ const addDetail = async e => {
   }
 
   try {
-    const res = await axios.post(urlLevelDetails, { id_nivel, escuela, carrera, fecha_inicio, fecha_fin })
-    const data = res.data.detalleNivel
+    const res = await axios.post(urlLevelDetails, { id_nivel, escuela, carrera, fecha_inicio, fecha_fin, estatus })
+    const data = res.data
     swal('Ok', 'Se agregó correctamente', 'success');
-    
+
     document.querySelector('[name="escuela"]').value = ''
     document.querySelector('[name="carrera"]').value = ''
     document.querySelector('[name="fecha_inicio"]').value = ''
     document.querySelector('[name="fecha_fin"]').value = ''
 
     const detailTemplate = `
-      <tr id="detail-${data.id}">
-        <td>${data.id_nivel}</td>
-        <td>${data.escuela}</td>
-        <td>${data.carrera}</td>
-        <td>${data.fecha_inicio}</td>
-        <td>${data.fecha_fin}</td>
-        <td>${data.estatus}</td>
+      <tr id="detail-${data.levelDetail.id}">
+        <td>${data.nivel.grado}</td>
+        <td>${data.levelDetail.escuela}</td>
+        <td>${data.levelDetail.carrera}</td>
+        <td>${data.levelDetail.fecha_inicio}</td>
+        <td>${data.levelDetail.fecha_fin}</td>
+        <td>${data.levelDetail.estatus}</td>
         <td>
           <div class="btn-group form-inline">
-          <a class="btn btn-danger btn-sm" data-id="${data.id}">
+          <a class="btn btn-danger btn-sm" data-id="${data.levelDetail.id}">
             <i class="glyphicon glyphicon-trash"></i>
           </a>
           </div>
         </td>
       </tr>
     `
-    $('#details').append(detailTemplate)
+    document.querySelector('#details').insertAdjacentHTML('afterend', detailTemplate)
   } catch (e) {
     swal('¡Error!', 'No se pudo agregar', 'error');
   }
@@ -65,7 +66,7 @@ const deleteDetail = e => {
         const res = await axios.delete(`${urlLevelDetails}/${id}`)
         const data = res.data
         swal('Eliminado', 'Se eliminó correctamente', 'success');
-        $(`#detail-${data.id}`).remove();
+        document.querySelector(`#detail-${data.id}`).remove();
       } catch (e) {
         swal('¡Error!', 'No se pudo eliminar el registro', 'error');
       }
@@ -76,7 +77,6 @@ const deleteDetail = e => {
 
 // EVENTS
 const btnAddDetail = document.querySelector('#btnAddDetail')
-const formDetail = document.querySelector('#formDetail')
 
 btnAddDetail.addEventListener('click', addDetail)
 $(document).on('click', '.btn-danger', deleteDetail)

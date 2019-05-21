@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 class LevelDetail extends Model
 {
     protected $fillable = [
-        'id_nivel',
         'carrera',
         'escuela',
         'fecha_inicio',

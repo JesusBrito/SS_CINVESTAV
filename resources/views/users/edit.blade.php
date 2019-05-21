@@ -137,7 +137,7 @@
                           </thead>
 
                           <tbody id="details">
-                            @foreach($user->detalleNiveles as $detalle)
+                            @forelse($user->detalleNiveles as $detalle)
                               <tr id="detail-{{ $detalle->id }}">
                                 <td>{{ $detalle->nivel->grado }}</td>
                                 <td>{{ $detalle->escuela }}</td>
@@ -153,7 +153,11 @@
                                   </div>
                                 </td>
                               </tr>
-                            @endforeach
+                            @empty
+                              <tr>
+                                  <td colspan="7" class="text-center">No hay grados de estudios</td>
+                              </tr>
+                            @endforelse
                           </tbody>
                       </table>
                       </div>

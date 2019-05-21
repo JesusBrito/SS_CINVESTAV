@@ -22,7 +22,7 @@ class CreateLevelDetailsTable extends Migration
             $table->enum('estatus', ['Egresado','Titulado','En Progreso','Pasante']);
             $table->timestamps();
             $table->unsignedInteger('id_usuario')->nullable();
-            $table->unsignedInteger('id_nivel');
+            $table->unsignedInteger('id_nivel')->nullable();
 
             $table->foreign('id_usuario')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('id_nivel')->references('id')->on('levels')->onDelete('cascade');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Level;
 use App\LevelDetail;
 use Illuminate\Http\Request;
 
@@ -35,14 +36,16 @@ class LevelDetailController extends Controller
      */
     public function store(Request $request)
     {
-        $detalleNivel = LevelDetail::create($request->all());
-        $detalleNivel->user()->associate(auth()->user());
+        $levelDetail = LevelDetail::create($request->all());
+        $level = Level::find($request->id_nivel);
+        $levelDetail->nivel()->associate($level);
+        $levelDetail->user()->associate(auth()->user());
 
-        if ($detalleNivel->save()) {
-            return response()->json(['success' => true, 'detalleNivel' => $detalleNivel], 200);
+        if ($levelDetail->save()) {
+            return response()->json(['success' => true, 'levelDetail' => $levelDetail], 200);
         }
 
-        return response()->json(['success' => false, 'msg' => 'Error al guardar'], 400);
+        return response()->json(['success' => false, 'msg' => 'Error al guardar'], 500);
     }
 
     /**
