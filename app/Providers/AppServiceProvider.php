@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\ServiceProvider;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -13,10 +15,19 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Blade::directive('linkactive', function ($expression) {
+            $class = 'class="active"';
+            return "<?php
+                echo(route({$expression}) == request()->url()
+                        ? '{$class}'
+                        : ''
+                );
+            ?>";
+        });
+
         Schema::defaultStringLength(191);
     }
-    
+
     /**
      * Register any application services.
      *

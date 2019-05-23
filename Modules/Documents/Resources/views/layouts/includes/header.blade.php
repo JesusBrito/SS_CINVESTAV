@@ -1,6 +1,6 @@
 <header class="main-header">
     <!-- Logo -->
-    <a href="paginaprincipal.html" class="logo">
+    <a href="{{ url('/') }}" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><b>G</b>PI</span>
         <!-- logo for regular state and mobile devices -->
@@ -15,7 +15,7 @@
             <span class="sr-only">Toggle navigation</span>
         </a>
 
-        <a href="paginaprincipal.html" class="navbar-brand">
+        <a href="{{ url('/') }}" class="navbar-brand">
             <!-- logo for regular state and mobile devices -->
             <span id=><b id="texto"></b></span>
         </a>
