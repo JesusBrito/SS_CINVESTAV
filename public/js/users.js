@@ -1,5 +1,6 @@
-// FUNCTIONS
+'use strict'
 
+// FUNCTIONS
 const addDetail = async e => {
   e.preventDefault()
   let id_nivel = document.querySelector('[name="id_nivel"]').value
@@ -26,7 +27,7 @@ const addDetail = async e => {
 
     const detailTemplate = `
       <tr id="detail-${data.levelDetail.id}">
-        <td>${data.nivel.grado}</td>
+        <td>${data.levelDetail.nivel.grado}</td>
         <td>${data.levelDetail.escuela}</td>
         <td>${data.levelDetail.carrera}</td>
         <td>${data.levelDetail.fecha_inicio}</td>
