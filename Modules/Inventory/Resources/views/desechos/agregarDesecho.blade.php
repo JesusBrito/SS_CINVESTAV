@@ -34,7 +34,7 @@
                             </div>
                             <label class="control-label col-xs-2">Horario:</label>
                             <div class="col-xs-4">
-                              <input type="text" required class="form-control" name="txtHorario"  placeholder="Horario">
+                              <input type="time" required class="form-control" name="txtHorario"  placeholder="Horario">
                             </div>
                         </div>
                         <br>
@@ -67,7 +67,7 @@
                           <div class="col-md-2 col-md-offset-10  col-sm-2 col-sm-offset-10 col-xs-2 col-xs-offset-10">
                             <button type="submit" class="btn btn-primary">Agregar</button>
                           </div>
-                        </div> 
+                        </div>
                     </div>
                   </div>
                 </form>
