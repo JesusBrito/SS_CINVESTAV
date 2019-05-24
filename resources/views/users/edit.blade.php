@@ -3,12 +3,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Editar usuario
+        {{ $user ? 'Editar' : 'Agregar' }} Usuario
       </h1>
       <ol class="breadcrumb">
         <li><a href="{{ url('/') }}"><i class="fa fa-dashboard"></i>Inicio</a></li>
         <li>Administrar</li>
-        <li class="active">Editar Usuario</li>
+        <li class="active">{{ $user ? 'Editar' : 'Agregar' }} Usuario</li>
       </ol>
     </section>
     <!-- Main content -->
@@ -22,32 +22,34 @@
               <div class="box-header with-border">
                <h3 class="box-title">Llene los siguientes campos</h3>
               </div>
-            <form method="POST" action="{{ route('users.update', $user) }}" role="form" enctype="multipart/form-data">
+            <form method="POST" action="{{ $action }}" role="form" enctype="multipart/form-data">
               @csrf
-              @method('PUT')
+              @if ($user) @method('PUT') @endif
 
               <div class="box-body">
               <div class="col-md-6">
                 <div class="form-group">
                   <label>Tipo de usuario</label>
-                  <select class="form-control" disabled id="tipo_usuario" required name="tipo_usuario">
-                      <option value="{{ $user->tipoUsuario->id }}" selected="true">{{ $user->tipoUsuario->nombre }}</option>
+                  <select class="form-control" id="tipo_usuario" name="tipo_usuario" required {{ $user ? 'disabled' : '' }}>
+                      @foreach ($userTypes as $userType)
+                        <option value="{{ $userType->id }}" {{ optional(optional($user)->tipoUsuario)->id == $userType->id ? 'selected' : '' }}>{{ $userType->nombre }}</option>
+                      @endforeach
                   </select>
                 </div>
 
                 <div class="form-group">
                   <label for="txtnombre">Nombre(s)</label>
-                  <input class="form-control" type="text" name="nombre" maxlegth="30" id="nombre" value="{{ $user->nombre }}" required>
+                  <input class="form-control" type="text" name="nombre" maxlegth="30" id="nombre" value="{{ old('nombre', optional($user)->nombre) }}" required>
                 </div>
 
                 <div class="form-group">
                   <label for="txtappat">Apellido paterno</label>
-                  <input class="form-control" type="text" id="a_paterno" maxlegth="20" name="a_paterno" value="{{ $user->a_paterno }}" required>
+                  <input class="form-control" type="text" id="a_paterno" maxlegth="20" name="a_paterno" value="{{ old('a_paterno', optional($user)->a_paterno) }}" required>
                 </div>
 
                  <div class="form-group">
                   <label for="txtapmat">Apellido materno</label>
-                  <input class="form-control" type="text" id="a_materno" maxlegth="20" name="a_materno" value="{{ $user->a_materno }}" required>
+                  <input class="form-control" type="text" id="a_materno" maxlegth="20" name="a_materno" value="{{ old('a_materno', optional($user)->a_materno) }}" required>
                 </div>
             <!--
                 <div class="form-group">
@@ -70,26 +72,26 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="fecha_nacimiento">Fecha de nacimiento</label>
-                  <input class="form-control" type="date" id="fecha_nacimiento" name="fecha_nacimiento" required readonly value="{{ $user->fecha_nacimiento }}">
+                  <input class="form-control" type="date" id="fecha_nacimiento" name="fecha_nacimiento" required readonly value="{{ old('fecha_nacimiento', optional($user)->fecha_nacimiento) }}>
                 </div>
 
                 <div class="form-group">
                   <label>Sexo</label>
                   <select class="form-control" required id="sexo" name="sexo">
-                      <option value="Hombre" @if($user->sexo == 'Hombre') selected @endif>Hombre</option>
-                      <option value="Mujer" @if($user->sexo == 'Mujer') selected @endif>Mujer</option>
+                      <option value="Hombre" @if(optional($user)->sexo == 'Hombre') selected @endif>Hombre</option>
+                      <option value="Mujer" @if(optional($user)->sexo == 'Mujer') selected @endif>Mujer</option>
                   </select>
                 </div>
 
                 <div class="form-group">
                   <label for="txtnumero">Número de teléfono</label>
-                  <input class="form-control" type="text" pattern="[0-9]{10}" id="celular" value="{{ $user->celular }}" name="Celular" maxlength="10" placeholder="5512345678">
+                  <input class="form-control" type="text" pattern="[0-9]{10}" id="celular" name="celular" value="{{ old('celular', optional($user)->celular) }}" name="celular" maxlength="10" placeholder="5512345678">
                 </div>
 
                 <div class="form-group">
                     <div class="form-group has-feedback">
                       <label for="txtcorreo">Correo electrónico</label>
-                      <input type="email" required class="form-control" value="{{ $user->email }}" name="email" id="email" placeholder="ejemplo@email.com" required>
+                      <input type="email" required class="form-control" value="{{ old('email', optional($user)->email) }}" name="email" id="email" placeholder="ejemplo@email.com" required>
                       <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                     </div>
                 </div>
@@ -137,27 +139,29 @@
                           </thead>
 
                           <tbody id="details">
-                            @forelse($user->detalleNiveles as $detalle)
-                              <tr id="detail-{{ $detalle->id }}">
-                                <td>{{ $detalle->nivel->grado }}</td>
-                                <td>{{ $detalle->escuela }}</td>
-                                <td>{{ $detalle->carrera }}</td>
-                                <td>{{ $detalle->fecha_inicio }}</td>
-                                <td>{{ $detalle->fecha_fin }}</td>
-                                <td>{{ $detalle->estatus }}</td>
-                                <td>
-                                  <div class="btn-group form-inline">
-                                    <a class="btn btn-danger btn-sm" data-id="{{ $detalle->id }}">
-                                      <i class="glyphicon glyphicon-trash"></i>
-                                    </a>
-                                  </div>
-                                </td>
-                              </tr>
-                            @empty
-                              <tr>
-                                  <td colspan="7" class="text-center">No hay grados de estudios</td>
-                              </tr>
-                            @endforelse
+                            @if ($user)
+                              @forelse($user->detalleNiveles as $detalle)
+                                <tr id="detail-{{ $detalle->id }}">
+                                  <td>{{ $detalle->nivel->grado }}</td>
+                                  <td>{{ $detalle->escuela }}</td>
+                                  <td>{{ $detalle->carrera }}</td>
+                                  <td>{{ $detalle->fecha_inicio }}</td>
+                                  <td>{{ $detalle->fecha_fin }}</td>
+                                  <td>{{ $detalle->estatus }}</td>
+                                  <td>
+                                    <div class="btn-group form-inline">
+                                      <a class="btn btn-danger btn-sm" data-id="{{ $detalle->id }}">
+                                        <i class="glyphicon glyphicon-trash"></i>
+                                      </a>
+                                    </div>
+                                  </td>
+                                </tr>
+                              @empty
+                                <tr>
+                                    <td colspan="7" class="text-center">No hay grados de estudios</td>
+                                </tr>
+                              @endforelse
+                            @endif
                           </tbody>
                       </table>
                       </div>

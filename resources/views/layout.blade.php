@@ -121,8 +121,8 @@ user experience. -->
 
 
 <script type="text/javascript">
-  $('#FechaNac').datepicker({format: 'yyyy/mm/dd',language: 'es', autoclose: true});
-  $("#FechaNac").datepicker().datepicker("setDate", new Date());
+  $('.fecha').datepicker({format: 'yyyy/mm/dd',language: 'es', autoclose: true});
+  $('.fecha').datepicker().datepicker("setDate", new Date());
   $('.ano').datepicker({
       format: "yyyy",
       viewMode: "years",

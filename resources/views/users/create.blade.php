@@ -1,68 +1,53 @@
- @extends('layout')
-    @section ('contenido')
-
- <!--content-wrapper-->
-   <div class="content-wrapper">
+@extends('documents::layouts.app')
+@section ('content')
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Registro de usuarios
-        <small>Aquí se registra a cualquier usuario por el administrador</small>
+        Agregar usuario
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i>Nivel</a></li>
+        <li><a href="{{ url('/') }}"><i class="fa fa-dashboard"></i>Inicio</a></li>
         <li>Administrar</li>
-        <li class="active">Nuevo Usuario</li>
+        <li class="active">Agregar Usuario</li>
       </ol>
     </section>
-
     <!-- Main content -->
     <section class="content container-fluid">
-
       <!--------------------------
         | Your Page Content Here |
         -------------------------->
-
-        <div class="row">
-
+      <div class="row">
           <div class="col-md-12">
             <div class="box box-primary">
               <div class="box-header with-border">
                <h3 class="box-title">Llene los siguientes campos</h3>
               </div>
+            <form method="POST" action="{{ route('users.store') }}" role="form" enctype="multipart/form-data">
+              @csrf
 
-            <form method="POST" Action="{{ route('register') }}" role="form" enctype="multipart/form-data">
-                {{csrf_field()}}
               <div class="box-body">
-
               <div class="col-md-6">
-
                 <div class="form-group">
                   <label>Tipo de usuario</label>
                   <select class="form-control" id="tipo_usuario" required name="tipo_usuario">
-                    <option value="Estudiante" selected>Estudiante</option>
-                    <option value="Profesor">Profesor</option>
-                    <option value="Administrador">Administrador</option>
-                    <option value="Técnico">Técnico</option>
-                    <option value="Auxiliar">Auxiliar de laboratorio</option>
+                    
                   </select>
                 </div>
 
                 <div class="form-group">
                   <label for="txtnombre">Nombre(s)</label>
-                  <input class="form-control" type="text" name="nombre" maxlegth="30" id="nombre" placeholder="Escribe tu nombre(s)" required>
+                  <input class="form-control" type="text" name="nombre" maxlegth="30" id="nombre" value="" required>
                 </div>
 
                 <div class="form-group">
                   <label for="txtappat">Apellido paterno</label>
-                  <input class="form-control" type="text" id="a_paterno" maxlegth="20" name="a_paterno" placeholder="Escribe tu apellido paterno" required>
+                  <input class="form-control" type="text" id="a_paterno" maxlegth="20" name="a_paterno" value="" required>
                 </div>
 
                  <div class="form-group">
                   <label for="txtapmat">Apellido materno</label>
-                  <input class="form-control" type="text" id="a_materno" maxlegth="20" name="a_materno" placeholder="Escribe tu apellido materno" required>
+                  <input class="form-control" type="text" id="a_materno" maxlegth="20" name="a_materno" value="" required>
                 </div>
-
             <!--
                 <div class="form-group">
                   <label>Grupo</label>
@@ -79,38 +64,40 @@
                       <option value="g2">Grupo 2</option>
                     </select>
                 </div>-->
-
               </div>
 
               <div class="col-md-6">
-
-                 <div class="form-group">
-                  <label for="FechaNac">Fecha de nacimiento</label>
-                  <input class="form-control" type="text" id="fecha_nacimiento" name="fecha_nacimiento" required readonly style="background:white;">
+                <div class="form-group">
+                  <label for="fecha_nacimiento">Fecha de nacimiento</label>
+                  <input class="form-control" type="date" id="fecha_nacimiento" name="fecha_nacimiento" required value=""">
                 </div>
 
                 <div class="form-group">
                   <label>Sexo</label>
                   <select class="form-control" required id="sexo" name="sexo">
-                    <option value="0" selected="true">Femenino</option>
-                    <option value="1">Masculino</option>
+                      <option value="Hombre">Hombre</option>
+                      <option value="Mujer">Mujer</option>
                   </select>
                 </div>
 
                 <div class="form-group">
                   <label for="txtnumero">Número de teléfono</label>
-                  <input class="form-control" type="text" pattern="[0-9]{10}" id="celular" name="celular" required>
-
+                  <input class="form-control" type="text" pattern="[0-9]{10}" id="celular" value="" name="celular" maxlength="10" placeholder="5512345678">
                 </div>
-<!--
-                 <div class="form-group">
-                  <label for="flfoto">Añadir foto</label>
-                  <input type="file" id="Imagen" name="Imagen" >
+
+                <div class="form-group">
+                    <div class="form-group has-feedback">
+                      <label for="txtcorreo">Correo electrónico</label>
+                      <input type="email" required class="form-control" value="" name="email" id="email" placeholder="ejemplo@email.com" required>
+                      <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                    </div>
+                </div>
+                <br>
+                <div class="form-group">
+                  <label for="flfoto">Añadir foto de perfil</label>
+                  <input type="file" id="imagen" name="imagen" accept="image/*" >
                   <p class="help-block">Suba una fotografía en formato .jpg o .png</p>
                 </div>
-            -->
-
-
                  <!--<div class="form-group">
                     <label>Grupo al que está incrito actualmente</label>
                     <select class="form-control" disabled="" id="slgrupo">
@@ -118,129 +105,117 @@
                       <option value="g2">Grupo 2</option>
                     </select>
                 </div>-->
-
+                <button type="submit" class="btn btn-primary pull-right" id="btnSave" name="btnSave">
+                  <i class="glyphicon glyphicon-ok"></i> Guardar
+                </button>
+                <br>
+                <br>
               </div>
-<!--
+            </form>
+
               <div class="form-group">
                 <div class="row">
                   <div class="col-xs-12">
                     <div class="box">
                       <div class="box-header">
-                        <h3 class="box-title">Agregar grado de estudios</h3>
+                        <h3 class="box-title">Grados de estudio registrados</h3>
                       </div>
-
                       <div class="box-body table-responsive no-padding">
-                        <table class="table table-hover">
-                          <tbody><tr>
-                            <th>Grado</th>
-                            <th>Escuela</th>
-                            <th>Carrera o estudios</th>
-                            <th>Año inicio</th>
-                            <th>Año término</th>
-                            <th>Estatus</th>
-                          </tr>
-                          <tr>
-                            <td>Diplomado</td>
-                            <td>UPIICSA - IPN</td>
-                            <td>Diplomado en seguridad </td>
-                            <td>2015</td>
-                            <td>2016</td>
-                            <td>Egresado</td>
-                          </tr>
+                        <table id="detalles" class="table table-hover">
+                          <thead>
+                            <tr>
+                              <th>Grado</th>
+                              <th>Escuela</th>
+                              <th>Carrera o estudios</th>
+                              <th>Año inicio</th>
+                              <th>Año término</th>
+                              <th>Estatus</th>
+                              <th>Opciones</th>
+                            </tr>
+                          </thead>
 
-                          <tr>
-                              <td><select class="form-control" id=slgrado>
-                                  <option value="Tecnico">Técnico</option>
-                                  <option value="Licenciatura">Licenciatura</option>
-                                  <option value="Diplomado">Diplomado</option>
-                                  <option value="Maestria">Maestría</option>
-                                  <option value="Doctorado">Doctorado</option>
-                              </select></td>
-                            <td><input class="form-control" type="text" id="txtescuela"></td>
-                            <td><input class="form-control" type="text" id="txtcarrera"></td>
-                            <td><input class="form-control ano" type="text" id="txtfechaini" readonly style="background:white;"></td>
-                            <td><input class="form-control ano" type="text" id="txtfechafin" readonly style="background:white;"></td>
-                            <td><select class="form-control" id=slestatus>
-                                  <option value="Enprogreso">En progreso</option>
-                                  <option value="Egresado">Egresado</option>
-                                  <option value="Pasante">Pasante</option>
-                                  <option value="Titulado">Titulado</option>
-                              </select></td>
-                          </tr>
-
-
-                        </tbody></table>
-
+                          <tbody id="details">
+                          </tbody>
+                      </table>
                       </div>
-
+                      <hr/>
+                      <div class="box-header">
+                          <h3 class="box-title">Agregar grado de estudios</h3>
+                        </div>
+                      <div class="box-body table-responsive no-padding">
+                          <table  class="table table-hover">
+                              <thead>
+                              <tr>
+                                  <th>Grado</th>
+                                  <th>Escuela</th>
+                                  <th>Carrera o estudios</th>
+                                  <th>Año inicio</th>
+                                  <th>Año término</th>
+                                  <th>Estatus</th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                                  <tr>
+                                  <td>
+                                      <select class="form-control" name="id_nivel" required>
+                                      @foreach($levels as $level)
+                                          <option value="{{ $level->id }}">{{ $level->grado }}</option>
+                                      @endforeach
+                                      </select>
+                                  </td>
+                                  <td>
+                                      <input class="form-control" type="text" name="escuela" required>
+                                  </td>
+                                  <td>
+                                      <input class="form-control" type="text" name="carrera" required>
+                                  </td>
+                                  <td>
+                                      <input class="form-control ano" type="text" name="fecha_inicio" required>
+                                  </td>
+                                  <td>
+                                      <input class="form-control ano" type="text" name="fecha_fin" required>
+                                  </td>
+                                  <td>
+                                      <select class="form-control" name="estatus" required>
+                                      <option value="En progreso">En progreso</option>
+                                      <option value="Egresado">Egresado</option>
+                                      <option value="Pasante">Pasante</option>
+                                      <option value="Titulado">Titulado</option>
+                                      </select>
+                                  </td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                        </div>
                       <div class="box-footer clearfix">
                         <div class="btn-group pull-right">
-                         <button type="button" class="btn btn-block btn-default" id="btnagregar"><i class="fa fa-plus-circle"></i> Agregar</button>
+                          <button type="button" class="btn btn-block btn-default" id="btnAddDetail">
+                            <i class="fa fa-plus-circle"></i> Agregar
+                          </button>
                         </div>
                       </div>
-
-
-
                     </div>
-
                   </div>
                 </div>
-
                 </div>
-            -->
-
-
-                <div class="col-md-6">
-
-                  <div class="form-group has-feedback">
-                    <label for="txtcorreo">Correo electrónico</label>
-                    <input type="email" required class="form-control" name="email" id="email" placeholder="ejemplo@email.com" required>
-                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                  </div>
-
-                  <div class="form-group has-feedback">
-                    <label for="txtpassword1">Contraseña</label>
-                    <input type="password" required class="form-control" id="password" name="password" placeholder="Contraseña" required>
-                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                  </div>
-
-                  <div class="form-group has-feedback">
-                    <label for="txtpassword2">Repetir contraseña</label>
-                    <input type="password" required class="form-control"  id="txtpassword2" name="txtpassword2" placeholder="Contraseña" required>
-                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                    <span id="aviso_pass" hidden>* Las contraseñas no coinciden</span>
-                  </div>
-
-                </div>
-
                 </div>
                 <!-- /.box-body -->
 
-                <div class="box-footer">
+              <div class="box-footer">
 
-                <button type="submit" class="btn btn-primary pull-right" id="btnaceptar" name="btnaceptar"><i class="glyphicon glyphicon-ok"></i> Aceptar</button>
               </div>
               <!-- /.box-footer -->
 
-               </form>
-
               </div>
-
             </div>
           </div>
+    </section>
+@endsection
 
 
-
-   <!--------------------------
-        | Your Page Content Here |
-        -------------------------->
-
-
-
-     </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-
-
-  @stop
+@push ('extra-js')
+  <script src="{{ asset('js/users.js') }}"></script>
+  <script>
+    let urlLevelDetails = '{{ route('level-details.index') }}'
+  </script>
+@endpush

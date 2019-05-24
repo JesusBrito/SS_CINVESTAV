@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Level;
-use App\LevelDetail;
 use App\User;
+use App\Level;
+use App\UserType;
+use App\LevelDetail;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -32,7 +33,11 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        $user = null;
+        $userTypes = UserType::all();
+        $levels = Level::all();
+        $action = route('users.store');
+        return view('users.edit', compact('user', 'action', 'userTypes', 'levels'));
     }
 
     /**
@@ -65,8 +70,10 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        $userTypes = UserType::all();
         $levels = Level::all();
-        return view('users.edit', compact('user', 'levels'));
+        $action = route('users.update', $user);
+        return view('users.edit', compact('user', 'action', 'userTypes', 'levels'));
     }
 
     /**
