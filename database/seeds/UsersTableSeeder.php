@@ -44,6 +44,16 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('admin1234'),
         ]);
 
+        $yael = User::create([
+            'nombre' => 'Yael',
+            'a_paterno' => 'Hernández',
+            'a_materno' => 'Canseco',
+            'fecha_nacimiento' => '1995-10-09',
+            'sexo' => 'Hombre',
+            'email' => 'rasemyael1995@gmail.com',
+            'password' => bcrypt('admin1234'),
+        ]);
+
         $tipoAdmin = UserType::whereNombre('Administrador')->first();
         $lfcg->tipoUsuario()->associate($tipoAdmin);
         $lfcg->save();
@@ -51,5 +61,7 @@ class UsersTableSeeder extends Seeder
         $fer->save();
         $jesus->tipoUsuario()->associate($tipoAdmin);
         $jesus->save();
+        $yael->tipoUsuario()->associate($tipoAdmin);
+        $yael->save();
     }
 }
