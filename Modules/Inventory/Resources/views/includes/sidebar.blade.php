@@ -23,7 +23,7 @@
             <!-- Optionally, you can add icons to the links -->
 
             <li><a href="#"><i class="fa fa-warning"></i> <span>Alertas</span></a></li>
-            <li><a href="#"><i class="fa fa-book"></i> <span>Bitácora de desechos</span></a></li>
+            <li><a href="{{url('inventory/wasteslog')}}"><i class="fa fa-book"></i> <span>Bitácora de desechos</span></a></li>
 
             <li class="header"><i class="fa fa-cubes"></i><span>Insumos</span></li>
 
