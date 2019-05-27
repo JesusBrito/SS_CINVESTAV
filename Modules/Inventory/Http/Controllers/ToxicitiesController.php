@@ -22,7 +22,7 @@ class ToxicitiesController extends Controller
     public function index()
     {
         $toxicities= Toxicity::all();
-        return view('inventory::toxicidades.listarToxicidades',["toxicities"=>$toxicities]);
+        return view('inventory::toxicidades.listarToxicidades',compact('toxicities'));
     }
 
     /**
@@ -43,7 +43,6 @@ class ToxicitiesController extends Controller
     {
         $toxicity= new Toxicity;
         $toxicity->toxicidad = $request->txtToxicidad;
-        $toxicity->estado = 1;
         if($toxicity->save()){
             alert()->success('El registro se agregó correctamente', 'OK')->autoclose(2500);
         }else{

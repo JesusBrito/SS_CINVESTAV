@@ -21,7 +21,7 @@ class BrandsController extends Controller
     public function index()
     {
         $brands= BrandCompany::all();
-        return view('inventory::marcas.listarMarcas',["brands"=>$brands]);
+        return view('inventory::marcas.listarMarcas',compact('brands'));
     }
 
     /**
@@ -42,7 +42,6 @@ class BrandsController extends Controller
     {
         $brandCompany= new BrandCompany;
         $brandCompany->nombre = $request->txtMarca;
-        $brandCompany->estado = 1;
         if($brandCompany->save()){
             alert()->success('El registro se agregó correctamente', 'OK')->autoclose(2500);
         }else{

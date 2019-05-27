@@ -18,7 +18,9 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::check()) {
-            return redirect('/documents/usuarios/show');
+            return session('sistema') == 'documentos'
+                    ? redirect(route('usuarios.show', auth()->user()))
+                    : redirect(route('inventory.index'));
         }
 
         return $next($request);

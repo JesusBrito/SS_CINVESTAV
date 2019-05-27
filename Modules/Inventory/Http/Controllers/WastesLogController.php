@@ -30,8 +30,6 @@ class WastesLogController extends Controller
      */
     public function create()
     {
-        $wasteslog= WasteLog::all();
-        return view('inventory::BitacoraDesechos.bitacoraDesecho',["wastes"=>$wasteslog]);
     }
 
     /**

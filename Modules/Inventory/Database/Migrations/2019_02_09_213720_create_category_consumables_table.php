@@ -16,7 +16,7 @@ class CreateCategoryConsumablesTable extends Migration
         Schema::create('category_consumables', function (Blueprint $table) {
             $table->increments('id');
             $table->string('categoria',30);
-            $table->tinyInteger('estado');
+            $table->tinyInteger('estado')->default(1);
 
             $table->timestamps();
         });

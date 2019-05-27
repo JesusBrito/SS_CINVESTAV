@@ -21,7 +21,7 @@ class WastesController extends Controller
     public function index()
     {
         $wastes= TypeWaste::all();
-        return view('inventory::Desechos.listarDesechos',["wastes"=>$wastes]);
+        return view('inventory::desechos.listarDesechos',compact('wastes'));
     }
 
     /**
@@ -30,7 +30,7 @@ class WastesController extends Controller
      */
     public function create()
     {
-        return view('inventory::Desechos.agregarDesecho');
+        return view('inventory::desechos.agregarDesecho');
     }
 
     /**

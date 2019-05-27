@@ -21,7 +21,7 @@ class CreateTypeWastesTable extends Migration
             $table->string('equipoSeguridad',80);
             $table->text('procedimiento');
             $table->string('horario',45);
-            $table->tinyInteger('estado');
+            $table->tinyInteger('estado')->default(1);
 
             $table->timestamps();
         });

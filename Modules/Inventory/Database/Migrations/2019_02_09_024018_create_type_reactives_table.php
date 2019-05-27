@@ -16,7 +16,7 @@ class CreateTypeReactivesTable extends Migration
         Schema::create('type_reactives', function (Blueprint $table) {
             $table->increments('id');
             $table->string('tipo',20);
-            $table->tinyInteger('estado');
+            $table->tinyInteger('estado')->default(1);
             $table->timestamps();
         });
     }

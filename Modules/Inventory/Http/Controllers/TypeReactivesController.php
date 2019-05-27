@@ -22,7 +22,7 @@ class TypeReactivesController extends Controller
     public function index()
     {
         $typeReactives= TypeReactive::all();
-        return view('inventory::tipoReactivos.listarTipoReactivo',["typeReactives"=>$typeReactives]);
+        return view('inventory::tipoReactivos.listarTipoReactivo',compact('typeReactives'));
     }
 
     /**
@@ -43,7 +43,6 @@ class TypeReactivesController extends Controller
     {
         $typeReactive= new TypeReactive;
         $typeReactive->tipo = $request->txtTypeReactive;
-        $typeReactive->estado = 1;
         if($typeReactive->save()){
             alert()->success('El registro se agregó correctamente', 'OK')->autoclose(2500);
         }else{

@@ -17,8 +17,8 @@ class CreateEquipmentsTable extends Migration
             $table->increments('id');
             $table->string('nombre',45);
             $table->string('descripcion',80);
-            $table->integer('Existencia');
-            $table->tinyInteger('Estado');
+            $table->integer('existencia');
+            $table->tinyInteger('estado')->default(1);
             $table->timestamps();
         });
     }

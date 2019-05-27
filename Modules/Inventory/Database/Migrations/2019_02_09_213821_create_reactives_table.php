@@ -23,7 +23,7 @@ class CreateReactivesTable extends Migration
             $table->integer('puntoReorden');
             $table->text('manejo');
             $table->integer('totalExistencia');
-            $table->tinyInteger('estado');
+            $table->tinyInteger('estado')->default(1);
             $table->timestamps();
             $table->foreign('idTipoReactivo')->references('id')->on('type_reactives');
             $table->foreign('idTemperatura')->references('id')->on('temperatures');

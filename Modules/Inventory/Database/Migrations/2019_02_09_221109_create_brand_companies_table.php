@@ -16,7 +16,7 @@ class CreateBrandCompaniesTable extends Migration
         Schema::create('brand_companies', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre',30);
-            $table->tinyInteger('estado');
+            $table->tinyInteger('estado')->default(1);
 
             $table->timestamps();
         });

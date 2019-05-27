@@ -22,12 +22,12 @@ class CreateDetailEquipmentsTable extends Migration
             $table->integer('numSerie');
             $table->dateTime('fechaGarantia');
             $table->string('imagen', 80);
-            $table->tinyInteger('estado');
+            $table->tinyInteger('estado')->default(1);
             $table->timestamps();
 
             $table->foreign('idProveedor')->references('id')->on('providers');
             $table->foreign('idEquipo')->references('id')->on('equipments');
-            $table->foreign('idEncargado')->references('idUsuario')->on('users'); 
+            $table->foreign('idEncargado')->references('id')->on('users');
         });
     }
 

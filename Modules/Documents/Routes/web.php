@@ -9,21 +9,13 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
-Route::prefix('documents')->group(function() {
+Route::prefix('documentos')->group(function () {
+    Route::get('/', function() {
+        session(['sistema' => 'documentos']);
+        return redirect()->route('usuarios.show', auth()->user());
+    })->name('documentos.index');
 
-  Route::resource('usuarios', 'UsersControllerDocuments');
-
-  //RUTAS AJAX
-  Route::post('/guardar-detalle-nivel', 'UsersControllerDocuments@saveDetailLevel');
-  Route::delete('/eliminar-detalle-nivel/{id}', 'UsersControllerDocuments@deleteDetailLevel');
-
-
-
-
-
-
-
-
+    Route::resource('grupos', 'GroupController');
 });

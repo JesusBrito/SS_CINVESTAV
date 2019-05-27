@@ -14,12 +14,13 @@ class CreateGroupDetailsTable extends Migration
     public function up()
     {
         Schema::create('group_details', function (Blueprint $table) {
-            $table->string('idGrupo',6);
-            $table->unsignedInteger('idUsuario');
-            $table->primary(['idGrupo', 'idUsuario']);
-            $table->foreign('idGrupo')->references('idGrupo')->on('groups')->onDelete('cascade');
-            $table->foreign('idUsuario')->references('idUsuario')->on('users')->onDelete('cascade');
+            $table->increments('id');
+            $table->unsignedInteger('id_grupo');
+            $table->unsignedInteger('id_usuario');
             $table->timestamps();
+
+            $table->foreign('id_grupo')->references('id')->on('groups')->onDelete('cascade');
+            $table->foreign('id_usuario')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

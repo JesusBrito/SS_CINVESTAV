@@ -23,7 +23,7 @@ class CreateDetailConsumablesTable extends Migration
             $table->unsignedInteger('idUnidad');
             $table->double('cantidad',8,2);
             $table->Integer('existencia');
-            $table->tinyInteger('estado');
+            $table->tinyInteger('estado')->default(1);
 
             $table->foreign('idConsumible')->references('id')->on('consumables');
             $table->foreign('idUbicacion')->references('id')->on('locations');

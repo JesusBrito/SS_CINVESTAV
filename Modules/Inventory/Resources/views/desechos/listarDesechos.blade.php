@@ -4,7 +4,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-          Listar consumibles   
+          Listar tipo de desechos  
           <br>
         </h1>
         <ol class="breadcrumb">
@@ -32,23 +32,24 @@
                       <table id="tableToxicidades" class="table table-striped table-bordered">
                           <thead>
                             <tr class="table-title-edit">
-                              <th class="col-md-2">Nombre</th>
-                              <th class="col-md-1">Categoria</th>
-                              <th class="col-md-1">Existencia mínima</th>
-                              <th class="col-md-1">Existencia</th>
-                              <th class="col-md-5">Opciones</th>
+                              <th class="col-md-2">Categoria</th>
+                              <th class="col-md-2">Tipo</th>
+                              <th class="col-md-2">Recipiente</th>
+                              <th class="col-md-2">Horario</th>
+                              <th class="col-md-2">Estatus</th>
+                              <th class="col-md-4">Opciones</th>
                             </tr>
                           </thead>
                           <tbody>
-                            @foreach ($consumables as $consumable)
-                              <tr id="fila{{$consumable->id}}">
-                                <td>{{$consumable->id}}</td> 
-                                <td class="center-text-column" id="nombre{{$consumable->id}}">{{$consumable->temperatura}}</td> 
-                                <td class="center-text-column" id="estatus{{$consumable->id}}">@if($consumable->estado == 1) Habilidado @else Deshabilitado @endif</td> 
+                            @foreach ($wastes as $waste)
+                              <tr id="fila{{$waste->id}}">
+                                <td>{{$waste->id}}</td> 
+                                <td class="center-text-column" id="nombre{{$waste->id}}">{{$waste->temperatura}}</td> 
+                                <td class="center-text-column" id="estatus{{$waste->id}}">@if($waste->estado == 1) Habilidado @else Deshabilitado @endif</td> 
                                 <td class="table-button-center">
-                                  <a class="btn boton-editar openModalEdit" data-id="{{$consumable->id}}" data-name="{{$consumable->marca}}"><i class="fa fa-edit fa-lg"></i></a>
-                                  <a class="btn boton-deshabilitar" id="btn-des{{$consumable->id}}" onclick="cambiarEstatusConsumible({{$consumable->id}})"> @if($consumable->estado == 1) <i class="fa fa-eye-slash fa-lg" aria-hidden="true"></i>@else <i class="fa fa-eye fa-lg" aria-hidden="true"></i> @endif </a>
-                                  <a class="btn boton-eliminar" onclick="eliminarConsumible({{$consumable->id}})"><i class="fa fa-trash fa-lg"></i></a>
+                                  <a class="btn boton-editar openModalEdit" data-id="{{$waste->id}}" data-name="{{$waste->marca}}"><i class="fa fa-edit fa-lg"></i></a>
+                                  <a class="btn boton-deshabilitar" id="btn-des{{$waste->id}}" onclick="cambiarDesperdicio({{$waste->id}})"> @if($waste->estado == 1) <i class="fa fa-eye-slash fa-lg" aria-hidden="true"></i>@else <i class="fa fa-eye fa-lg" aria-hidden="true"></i> @endif </a>
+                                  <a class="btn boton-eliminar" onclick="eliminarDesperdicio({{$waste->id}})"><i class="fa fa-trash fa-lg"></i></a>
                                 </td>
                               </tr>
                             @endforeach
@@ -96,7 +97,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-              <button type="button" onclick="editarConsumible()" class="btn btn-primary">Guardar Cambios</button>
+              <button type="button" onclick="editarDesecho()" class="btn btn-primary">Guardar Cambios</button>
             </div>
           </div>
         </div>
@@ -114,7 +115,7 @@
         $('#modalEdit').modal('show');
       });
 
-      function editarConsumible(){
+      function editarDesecho(){
         var id = $('#inputIdTemperatura').val()
         var txtTemperatura = $('#inputTemperatura').val()
         swal({
@@ -152,7 +153,7 @@
           })
       }
 
-      function cambiarEstatusConsumible(id){
+      function cambiarEstatusDesecho(id){
         if($('#estatus'+id).html().trim()=="Habilidado"){
           var txtEstatusTemperatura = "Deshabilidado"
         }else{
@@ -182,7 +183,7 @@
         })
       }
 
-      function eliminarConsumible(id){
+      function eliminarDesecho(id){
         swal({
             title: '¿Estás seguro?',
             text: "¡No se podrán deshacer los cambios!",

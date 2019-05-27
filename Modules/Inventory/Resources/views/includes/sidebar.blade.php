@@ -7,7 +7,7 @@
           <!-- Sidebar user panel (optional) -->
           <div class="user-panel">
             <div class="pull-left image">
-              <img src="{{Storage::url(auth()->user()->Imagen)}}" class="img-circle" alt="User Image">
+              <img src="{{ auth()->user()->imagen }}" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
               <p>{{auth()->user()->Nombre}} {{auth()->user()->A_Paterno}}</p>
@@ -182,8 +182,8 @@
                       </span>
                     </a>
                     <ul class="treeview-menu" style="display: all;">
-                      <li class="active"><a href="#"><i class="fa fa-plus-square"></i>Agregar categoría</a></li>
-                      <li><a href="#"><i class="fa fa-list-ul"></i>Listar categorías</a></li>
+                      <li class="active"><a href="{{url('inventory/categoryConsumables/create')}}"><i class="fa fa-plus-square"></i>Agregar categoría</a></li>
+                      <li><a href="{{url('inventory/categoryConsumables')}}"><i class="fa fa-list-ul"></i>Listar categorías</a></li>
                     </ul>
             </li>
 

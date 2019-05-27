@@ -39,8 +39,8 @@
 
                 <div class="form-group">
                   <label>Tipo de usuario</label>
-                  <select class="form-control" id="Tipo_Usuario" required name="Tipo_Usuario">
-                    <option value="Estudiante" selected="true">Estudiante</option>
+                  <select class="form-control" id="tipo_usuario" required name="tipo_usuario">
+                    <option value="Estudiante" selected>Estudiante</option>
                     <option value="Profesor">Profesor</option>
                     <option value="Administrador">Administrador</option>
                     <option value="Técnico">Técnico</option>
@@ -50,17 +50,17 @@
 
                 <div class="form-group">
                   <label for="txtnombre">Nombre(s)</label>
-                  <input class="form-control" type="text" name="Nombre" maxlegth="30" id="Nombre" placeholder="Escribe tu nombre(s)" required>
+                  <input class="form-control" type="text" name="nombre" maxlegth="30" id="nombre" placeholder="Escribe tu nombre(s)" required>
                 </div>
 
                 <div class="form-group">
                   <label for="txtappat">Apellido paterno</label>
-                  <input class="form-control" type="text" id="A_Paterno" maxlegth="20" name="A_Paterno" placeholder="Escribe tu apellido paterno" required>
+                  <input class="form-control" type="text" id="a_paterno" maxlegth="20" name="a_paterno" placeholder="Escribe tu apellido paterno" required>
                 </div>
 
                  <div class="form-group">
                   <label for="txtapmat">Apellido materno</label>
-                  <input class="form-control" type="text" id="A_Materno" maxlegth="20" name="A_Materno" placeholder="Escribe tu apellido materno" required>
+                  <input class="form-control" type="text" id="a_materno" maxlegth="20" name="a_materno" placeholder="Escribe tu apellido materno" required>
                 </div>
 
             <!--
@@ -86,12 +86,12 @@
 
                  <div class="form-group">
                   <label for="FechaNac">Fecha de nacimiento</label>
-                  <input class="form-control" type="text" id="FechaNac" name="FechaNac" required readonly style="background:white;">
+                  <input class="form-control" type="text" id="fecha_nacimiento" name="fecha_nacimiento" required readonly style="background:white;">
                 </div>
 
                 <div class="form-group">
                   <label>Sexo</label>
-                  <select class="form-control" required id="Sexo" name="Sexo">
+                  <select class="form-control" required id="sexo" name="sexo">
                     <option value="0" selected="true">Femenino</option>
                     <option value="1">Masculino</option>
                   </select>
@@ -99,7 +99,7 @@
 
                 <div class="form-group">
                   <label for="txtnumero">Número de teléfono</label>
-                  <input class="form-control" type="text" pattern="[0-9]{10}" id="Celular" name="Celular" required>
+                  <input class="form-control" type="text" pattern="[0-9]{10}" id="celular" name="celular" required>
 
                 </div>
 <!--
@@ -194,7 +194,7 @@
 
                   <div class="form-group has-feedback">
                     <label for="txtcorreo">Correo electrónico</label>
-                    <input type="email" required class="form-control" name="Correo" id="Correo" placeholder="ejemplo@email.com" required>
+                    <input type="email" required class="form-control" name="email" id="email" placeholder="ejemplo@email.com" required>
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                   </div>
 

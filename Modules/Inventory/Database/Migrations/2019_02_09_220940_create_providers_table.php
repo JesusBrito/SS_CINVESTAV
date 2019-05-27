@@ -23,7 +23,7 @@ class CreateProvidersTable extends Migration
             $table->string('alcMun',30);
             $table->string('estadoRep',20);
             $table->integer('cp');
-            $table->tinyInteger('estado');
+            $table->tinyInteger('estado')->default(1);
 
             $table->timestamps();
         });

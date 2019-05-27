@@ -21,7 +21,7 @@ class UnitiesController extends Controller
     public function index()
     {
         $unities= Unity::all();
-        return view('inventory::unidades.listarUnidades',["unities"=>$unities]);
+        return view('inventory::unidades.listarUnidades',compact('unities'));
     }
 
     /**
@@ -42,7 +42,6 @@ class UnitiesController extends Controller
     {
         $unity= new Unity;
         $unity->unidad = $request->txtUnidad;
-        $unity->estado = 1;
         if($unity->save()){
             alert()->success('El registro se agregó correctamente', 'OK')->autoclose(2500);
         }else{

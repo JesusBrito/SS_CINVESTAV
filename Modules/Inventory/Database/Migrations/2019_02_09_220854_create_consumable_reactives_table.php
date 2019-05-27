@@ -17,7 +17,7 @@ class CreateConsumableReactivesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('idReactivo');
             $table->unsignedInteger('idConsumible');
-            $table->tinyInteger('estado');
+            $table->tinyInteger('estado')->default(1);
 
             $table->foreign('idReactivo') -> references('id') -> on('reactives');
             $table->foreign('idConsumible') -> references('id') -> on('consumables');

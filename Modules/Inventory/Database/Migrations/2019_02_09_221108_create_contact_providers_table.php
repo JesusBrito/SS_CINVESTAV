@@ -19,7 +19,7 @@ class CreateContactProvidersTable extends Migration
             $table->string('nombre',45);
             $table->string('telefono',15);
             $table->string('email',50)->unique();
-            $table->tinyInteger('estado');         
+            $table->tinyInteger('estado')->default(1);         
             $table->timestamps();
             $table->foreign('idProveedor')->references('id')->on('providers');
         });

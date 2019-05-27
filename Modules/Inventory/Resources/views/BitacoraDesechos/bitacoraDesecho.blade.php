@@ -31,15 +31,13 @@
                             <label class="control-label col-xs-2">Responsable:</label>
                             <div class="col-xs-4">
                               <select>
-                                <option value="Ej1">Ejemplo 1</option>
-                                <option value="Ej2">Ejemplo 2</option>
+                                <option disabled select value="0">Seleccionar</option>
                               </select>
                             </div>
                             <label class="control-label col-xs-2">Tipo de desecho:</label>
                             <div class="col-xs-4">
-                            <select>
-                                <option value="Ej1">Ejemplo 1</option>
-                                <option value="Ej2">Ejemplo 2</option>
+                              <select>
+                                <option disabled select value="0">Seleccionar</option>
                               </select>
                             </div>
                         </div>
@@ -56,17 +54,35 @@
                         </div>
                         <br>
                         <div class="form-group">
-                            <label class="control-label col-xs-2">Procedimiento:</label>
-                            <div class="col-xs-4">
-                              <textarea required class="form-control" rows="8" name="txtProcedimiento"  placeholder="Procedimiento"></textarea>
+                          <div>
+                            <label class="control-label col-xs-2">Cantidad:</label>
+                            <div class="col-sm-2">
+                              <input type="text" required class="form-control" name="txtCantidad"  placeholder="">
                             </div>
-                            <label class="control-label col-xs-2">Equipo de Seguridad:</label>
-                            <div class="col-xs-4">
-                              <label><input class="custom-control-label" type="radio" name="opt1"> Guantes</label><br><br>
-                              <label><input class="custom-control-label" type="radio" name="opt1"> Bata</label><br><br>
-                              <label><input class="custom-control-label" type="radio" name="opt1"> Gogles</label><br><br>
-                              <label><input class="custom-control-label" type="radio" name="opt1"> Cubreboca</label>
+                            <div class="col-sm-2">
+                              <select>
+                                <option disabled select value="0">Seleccionar</option>
+                              </select>
                             </div>
+                            <br>
+                            <br>
+                            <div class="col-sm">
+                              <label class="control-label col-xs-2">Descripción:</label>
+                              <div class="col-xs-4">
+                                <textarea required class="form-control" rows="8" name="txtAreaProcedimiento"  placeholder="Descripción"></textarea>
+                              </div>
+                            </div>
+                          </div>
+                          <div>
+                            <label class="control-label col-xs-2">CRETI:</label>
+                            <div class="col-xs-4">
+                              <label><input class="custom-control-label" type="radio" name="opt1"> Corrosivo</label><br>
+                              <label><input class="custom-control-label" type="radio" name="opt2"> Reactivo</label><br>
+                              <label><input class="custom-control-label" type="radio" name="opt3"> Explosivo</label><br>
+                              <label><input class="custom-control-label" type="radio" name="opt4"> Toxico</label><br>
+                              <label><input class="custom-control-label" type="radio" name="opt5"> Inflamable</label>
+                            </div>
+                          </div>
                         </div>
                         <br>
                         <div class="form-group">
@@ -74,6 +90,35 @@
                             <button type="submit" class="btn btn-primary">Agregar</button>
                           </div>
                         </div> 
+                        <br>
+                        <div class="col-md-12 table-responsive no-padding"> 
+                          <table id="tableWasteLog" class="table table-striped table-bordered">
+                            <thead>
+                              <tr class="table-title-edit">
+                                <th class="col-md-2">Fecha</th>
+                                <th class="col-md-2">Hora</th>
+                                <th class="col-md-2">Responsable</th>
+                                <th class="col-md-2">Tipo</th>
+                                <th class="col-md-2">Cantidad</th>
+                                <th class="col-md-4">CRETI</th>
+                                <th class="col-md-4">Descripción</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              @foreach ($wastes as $waste)
+                                <tr id="fila{{$waste->id}}">
+                                  <td class="center-text-column">{{$waste->fecha}}</td> 
+                                  <td class="center-text-column">{{$waste->hora}}</td> 
+                                  <td class="center-text-column">{{$waste->id_usuario}}</td> 
+                                  <td class="center-text-column">{{$waste->idTipoDesecho}}</td> 
+                                  <td class="center-text-column">{{$waste->cantidad}}</td> 
+                                  <td class="center-text-column">{{$waste->creti}}</td> 
+                                  <td class="center-text-column">{{$waste->descripcion}}</td> 
+                                </tr>
+                              @endforeach
+                            </tbody>
+                          </table>
+                        </div>
                     </div>
                   </div>
                 </form>

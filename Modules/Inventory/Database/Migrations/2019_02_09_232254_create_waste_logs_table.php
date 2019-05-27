@@ -15,7 +15,7 @@ class CreateWasteLogsTable extends Migration
     {
         Schema::create('waste_logs', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('idUsuario');
+            $table->unsignedInteger('id_usuario');
             $table->unsignedInteger('idTipoDesecho');
             $table->unsignedInteger('idUnidad');
             $table->dateTime('fecha');
@@ -23,9 +23,9 @@ class CreateWasteLogsTable extends Migration
             $table->double('cantidad',8,2);
             $table->string('descripcion',80);
             $table->string('creti',5);
-            $table->tinyInteger('estado');
+            $table->tinyInteger('estado')->default(1);
 
-            $table->foreign('idUsuario')->references('idUsuario')->on('users'); 
+            $table->foreign('id_usuario')->references('id')->on('users');
             $table->foreign('idTipoDesecho')->references('id')->on('type_wastes');
             $table->foreign('idUnidad')->references('id')->on('unities');
 
