@@ -13,7 +13,7 @@ class GroupRequest extends FormRequest
      */
     public function rules()
     {
-        $id = $this->route('group') // verifica si hay existe el parámetro en la url
+        $id = $this->route('group') // verifica si existe el parámetro en la url
                 ? ",nombre,{$this->route('group')->id},id"
                 : '';
 

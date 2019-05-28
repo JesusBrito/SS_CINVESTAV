@@ -84,6 +84,41 @@ desired effect
             autoclose: true,
             language: 'es'
         });
+
+        const alertConfig = {
+            timer: 1000,
+            button: false
+        }
+
+        const deleteRow = e => {
+            e.preventDefault()
+            const url = e.currentTarget.dataset.url
+            const el = e.currentTarget.dataset.el
+
+            swal({
+                title: '¿Estás seguro?',
+                text: "No se podrán deshacer los cambios",
+                type: 'warning',
+                buttons: [
+                    'No, cancelar',
+                    'Si, Estoy seguro'
+                ],
+                dangerMode: true
+            }).then(async isConfirm => {
+                if (isConfirm) {
+                    try {
+                        const res = await axios.delete(url)
+                        const data = res.data
+                        swal('Eliminado', 'Se eliminó correctamente', 'success', alertConfig)
+                        document.querySelector(el).remove()
+                    } catch (e) {
+                        swal('¡Error!', 'No se pudo eliminar el registro', 'error', alertConfig)
+                    }
+                }
+            })
+        }
+
+        $(document).on('click', '.btn-danger', deleteRow)
     </script>
 </body>
 </html>

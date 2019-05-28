@@ -34,7 +34,6 @@
                       <table id="tblGrupos" class="table table-hover table-striped">
                         <thead>
                           <tr role="row">
-                            <th>#</th>
                             <th>Nombre</th>
                             <th>Descripción</th>
                             <th>Profesor</th>
@@ -43,8 +42,7 @@
                         </thead>
                         <tbody>
                           @forelse($groups as $group)
-                          <tr role="row" class="odd">
-                            <td class="sorting_1">{{ $loop->iteration }}</td>
+                          <tr role="row" class="odd" id="row-{{ $group->id }}">
                             <td>{{ $group->nombre }}</td>
                             <td>{{ $group->descripcion }}</td>
                             <td>{{ optional($group->profesor)->nombre_completo ?: '---' }}</td>
@@ -55,7 +53,7 @@
                                 </a>
                               </div>
                               <div class="btn-group form-inline">
-                                <button type="button" class="btn btn-sm btn-danger" id="btnEliminar" title="Eliminar">
+                                <button type="button" class="btn btn-sm btn-danger" title="Eliminar" data-url="{{ route('groups.destroy', $group) }}" data-el="#row-{{ $group->id }}">
                                   <i class="fa fa-trash"></i>
                                 </button>
                               </div>

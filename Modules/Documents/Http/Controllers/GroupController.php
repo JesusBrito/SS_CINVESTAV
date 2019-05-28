@@ -32,7 +32,7 @@ class GroupController extends Controller
         $group = null;
         $action = route('groups.store');
         $users = User::all();
-        
+
         return view('documents::groups.form', compact('group', 'action', 'users'));
     }
 
@@ -48,7 +48,7 @@ class GroupController extends Controller
         $profesor = User::find($request->id_profesor);
         $group->profesor()->associate($profesor);
         $group->save();
-        alert()->success('Los datos se guardaron correctamente', 'OK')->autoclose(2500);
+        alert()->success('Los datos se guardaron correctamente', 'OK')->autoclose(env('NOTIFICATION_TIME', 2500));
 
         return redirect()->route('groups.index');
     }
@@ -91,7 +91,7 @@ class GroupController extends Controller
         $profesor = User::find($request->id_profesor);
         $group->profesor()->associate($profesor);
         $group->save();
-        alert()->success('Los datos se guardaron correctamente', 'OK')->autoclose(2500);
+        alert()->success('Los datos se guardaron correctamente', 'OK')->autoclose(env('NOTIFICATION_TIME', 2500));
 
         return redirect()->route('groups.index');
     }
@@ -105,6 +105,6 @@ class GroupController extends Controller
     public function destroy(Group $group)
     {
         $group->delete();
-        return redirect()->route('groups.index');
+        return response()->json(['success' => true], 200);
     }
 }
