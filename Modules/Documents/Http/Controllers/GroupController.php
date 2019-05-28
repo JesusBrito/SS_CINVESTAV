@@ -2,10 +2,12 @@
 
 namespace Modules\Documents\Http\Controllers;
 
-use App\Group;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Modules\Documents\Entities\Group;
+use Modules\Documents\Http\Requests\GroupRequest;
 
 class GroupController extends Controller
 {
@@ -16,7 +18,8 @@ class GroupController extends Controller
      */
     public function index()
     {
-
+        $groups = Group::with('profesor')->get();
+        return view('documents::groups.index', compact('groups'));
     }
 
     /**
@@ -26,7 +29,11 @@ class GroupController extends Controller
      */
     public function create()
     {
-        //
+        $group = null;
+        $action = route('groups.store');
+        $users = User::all();
+        
+        return view('documents::groups.form', compact('group', 'action', 'users'));
     }
 
     /**
@@ -35,9 +42,15 @@ class GroupController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(GroupRequest $request)
     {
-        //
+        $group = Group::create($request->validated());
+        $profesor = User::find($request->id_profesor);
+        $group->profesor()->associate($profesor);
+        $group->save();
+        alert()->success('Los datos se guardaron correctamente', 'OK')->autoclose(2500);
+
+        return redirect()->route('groups.index');
     }
 
     /**
@@ -59,7 +72,10 @@ class GroupController extends Controller
      */
     public function edit(Group $group)
     {
-        //
+        $action = route('groups.update', $group);
+        $users = User::all();
+
+        return view('documents::groups.form', compact('group', 'action', 'users'));
     }
 
     /**
@@ -69,9 +85,15 @@ class GroupController extends Controller
      * @param  \App\Group  $group
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Group $group)
+    public function update(GroupRequest $request, Group $group)
     {
-        //
+        $group->update($request->validated());
+        $profesor = User::find($request->id_profesor);
+        $group->profesor()->associate($profesor);
+        $group->save();
+        alert()->success('Los datos se guardaron correctamente', 'OK')->autoclose(2500);
+
+        return redirect()->route('groups.index');
     }
 
     /**
@@ -82,6 +104,7 @@ class GroupController extends Controller
      */
     public function destroy(Group $group)
     {
-        //
+        $group->delete();
+        return redirect()->route('groups.index');
     }
 }

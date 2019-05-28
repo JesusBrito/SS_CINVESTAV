@@ -3,13 +3,13 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Listado de Usuarios
-    <small>Aquí se muestran todos los usuarios del sistema</small>
+    Listado de Grupos
+    <small>Aquí se muestran todos los grupos del sistema</small>
   </h1>
   <ol class="breadcrumb">
     <li><a href="{{ url('/') }}"><i class="fa fa-dashboard"></i>Inicio</a></li>
     <li>Administrar</li>
-    <li class="active">Usuarios</li>
+    <li class="active">Grupos</li>
   </ol>
 </section>
 
@@ -19,7 +19,7 @@
     <div class="col-md-12">
       <div class="box box-warning">
         <div class="box-header with-border">
-          <h3 class="box-title">Usuarios</h3>
+          <h3 class="box-title">Grupos</h3>
         </div>
         <form role="form">
           <div class="box-body">
@@ -31,37 +31,26 @@
                 <div class="row">
                   <div class="col-sm-12">
                     <div class="box-body table-responsive no-padding">
-                      <table id="tblUsuarios" class="table table-hover table-striped">
+                      <table id="tblGrupos" class="table table-hover table-striped">
                         <thead>
                           <tr role="row">
-                            <th>Tipo de usuario</th>
-                            <th>Nombre(s)</th>
-                            <th>Apellido paterno</th>
-                            <th>Apellido materno</th>
-                            <th>Grupo</th>
-                            <th>Fecha de nacimiento</th>
-                            <th>Sexo</th>
-                            <th>Teléfono</th>
-                            <th>Correo electrónico</th>
+                            <th>#</th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Profesor</th>
                             <th>Acciones</th>
                           </tr>
                         </thead>
                         <tbody>
-                          @foreach($users as $user)
+                          @forelse($groups as $group)
                           <tr role="row" class="odd">
-                            <td class="sorting_1">{{ $user->tipoUsuario->nombre }}</td>
-                            <!--luego lo agrego, XD-->
-                            <td>{{ $user->nombre }}</td>
-                            <td>{{ $user->a_paterno }}</td>
-                            <td>{{ $user->a_materno }}</td>
-                            <td>Grupo</td>
-                            <td>{{ $user->fecha_nacimiento }}</td>
-                            <td>{{ $user->sexo }}</td>
-                            <td>{{ $user->celular }}</td>
-                            <td>{{ $user->email }}</td>
+                            <td class="sorting_1">{{ $loop->iteration }}</td>
+                            <td>{{ $group->nombre }}</td>
+                            <td>{{ $group->descripcion }}</td>
+                            <td>{{ optional($group->profesor)->nombre_completo ?: '---' }}</td>
                             <td>
                               <div class="btn-group form-inline">
-                                <a class="btn btn-sm btn-warning" href="{{ route('users.edit', auth()->user()) }}" title="Editar">
+                                <a class="btn btn-sm btn-warning" href="{{ route('groups.edit', $group) }}" title="Editar">
                                   <i class="fa fa-pencil"></i>
                                 </a>
                               </div>
@@ -72,7 +61,11 @@
                               </div>
                             </td>
                           </tr>
-                          @endforeach
+                          @empty
+                          <tr>
+                            <td colspan="5" class="text-center">No hay grupos.</td>
+                          </tr>
+                          @endforelse
                         </tbody>
                       </table>
                     </div>

@@ -5,6 +5,7 @@ namespace App;
 use App\UserType;
 use App\LevelDetail;
 
+use Modules\Documents\Entities\Group;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -57,6 +58,11 @@ class User extends Authenticatable
     public function tipoUsuario()
     {
         return $this->belongsTo(UserType::class, 'id_tipo_usuario');
+    }
+
+    public function grupoACargo()
+    {
+        return $this->hasOne(Group::class, 'id_profesor');
     }
 
     public function detalleNiveles()

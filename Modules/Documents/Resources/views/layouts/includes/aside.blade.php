@@ -27,8 +27,8 @@
                 <ul class="treeview-menu" style="display: all;">
                     <li @linkactive('users.create')><a href="{{ route('users.create') }}"><i class="fa fa-user-plus"></i> Registrar Nuevo Usuario</a></li>
                     <li @linkactive('groups.create')><a href="{{ route('groups.create') }}"><i class="fa fa-user-plus"></i> Registrar Nuevo Grupo</a></li>
-                    <li @linkactive('users.index')><a href="{{ route('users.index') }}"><i class="fa fa-list-ul"></i> Listado de Alumnos</a></li>
-                    <li @linkactive('groups.create')><a href="{{ route('groups.index') }}"><i class="fa fa-list-ul"></i> Listado de Grupos</a></li>
+                    <li @linkactive('users.index')><a href="{{ route('users.index') }}"><i class="fa fa-list-ul"></i> Listado de Usuarios</a></li>
+                    <li @linkactive('groups.index')><a href="{{ route('groups.index') }}"><i class="fa fa-list-ul"></i> Listado de Grupos</a></li>
                     <li><a href="#"><i class="fa fa-list-ul"></i>Listado de Profesores</a></li>
                 </ul>
             </li>
