@@ -15,7 +15,8 @@
         "laraveles/spanish": "^1.1",
         "league/flysystem-aws-s3-v3": "~1.0",
         "nwidart/laravel-modules": "^4.0",
-        "uxweb/sweet-alert": "^2.0"
+        "uxweb/sweet-alert": "^2.0",
+        "yajra/laravel-datatables-oracle": "~8.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

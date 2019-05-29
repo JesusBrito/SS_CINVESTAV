@@ -19,6 +19,8 @@
 <link rel="stylesheet" href="{{asset("/css/bootstrap-datepicker.min.css")}}">
 <!-- Cambio de Título-->
 <!-- <link rel="stylesheet" href="{{asset("/admin-lte/texto.css")}}"> -->
+{{-- <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"> --}}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
 
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

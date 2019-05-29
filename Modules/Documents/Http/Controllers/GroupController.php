@@ -8,6 +8,7 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\Documents\Entities\Group;
 use Modules\Documents\Http\Requests\GroupRequest;
+use Datatables;
 
 class GroupController extends Controller
 {
