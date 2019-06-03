@@ -100,8 +100,9 @@ class GroupController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Group  $group
+     * @param \App\Group $group
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(Group $group)
     {

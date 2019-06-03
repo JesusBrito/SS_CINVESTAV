@@ -18,4 +18,5 @@ Route::prefix('documents')->group(function () {
     })->name('documents.index');
 
     Route::resource('groups', 'GroupController');
+    Route::resource('publications','PublicationController');
 });
