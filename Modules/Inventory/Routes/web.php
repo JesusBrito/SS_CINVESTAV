@@ -26,6 +26,8 @@ Route::prefix('inventory')->group(function() {
     Route::resource('categoryConsumables','CategoryConsumablesController');
     Route::resource('consumables','ConsumablesController');
     Route::resource('wastes','WastesController');
+    Route::resource('wasteslog','WastesLogController');
+
 
 
 
