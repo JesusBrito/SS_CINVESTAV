@@ -18,7 +18,7 @@ class PublicationController extends Controller
      */
     public function index()
     {
-        $publications =Publication::with('publicacion')->get();
+        $publications = Publication::all();
         return view('documents::publications.index',compact('publications'));
     }
 
@@ -43,8 +43,7 @@ class PublicationController extends Controller
      */
     public function store(PublicationRequest $request)
     {
-        $publication = Publication::create($request);
-        $publication->save();
+        $publication = Publication::create($request->validated());
         alert()->success('Los datos se guardaron correctamente', 'OK')->autoclose(env('NOTIFICATION_TIME', 2500));
 
         return redirect()->route('publications.index');

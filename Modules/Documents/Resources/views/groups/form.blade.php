@@ -39,7 +39,7 @@
             </div>
 
               <div class="form-group {{ $errors->first('id_profesor', 'has-error') }}">
-                <label>Tipo de usuario</label>
+                <label>Profesor</label>
                 <select class="form-control" id="id_profesor" name="id_profesor" required>
                   @foreach ($users as $user)
                     <option value="{{ $user->id }}" {{ optional(optional($group)->profesor)->id == $user->id ? 'selected' : '' }}>{{ $user->nombre_completo }}</option>

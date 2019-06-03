@@ -21,7 +21,7 @@ class CreatePublicationsTable extends Migration
             $table->string('country');
             $table->string('editorial');
             $table->string('description');
-            $table->string('document');
+            $table->string('document')->nullable();
             $table->timestamps();
         });
     }

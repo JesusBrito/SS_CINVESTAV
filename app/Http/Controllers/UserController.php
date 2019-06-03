@@ -87,7 +87,7 @@ class UserController extends Controller
     $user->update($request->all());
 
     if ($request->hasFile('imagen')) {
-    $user->imagen = $request->file('imagen')->store('profile');
+      $user->imagen = $request->file('imagen')->store('profile');
     }
 
     if ($user->save()) {
