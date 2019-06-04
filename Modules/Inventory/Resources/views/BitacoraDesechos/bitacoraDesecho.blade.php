@@ -76,11 +76,11 @@
                           <div>
                             <label class="control-label col-xs-2">CRETI:</label>
                             <div class="col-xs-4">
-                              <label><input class="custom-control-label" type="radio" name="opt1"> Corrosivo</label><br>
-                              <label><input class="custom-control-label" type="radio" name="opt2"> Reactivo</label><br>
-                              <label><input class="custom-control-label" type="radio" name="opt3"> Explosivo</label><br>
-                              <label><input class="custom-control-label" type="radio" name="opt4"> Toxico</label><br>
-                              <label><input class="custom-control-label" type="radio" name="opt5"> Inflamable</label>
+                              <label><input class="custom-control-label" type="checkbox" name="opt1"> Corrosivo</label><br>
+                              <label><input class="custom-control-label" type="checkbox" name="opt2"> Reactivo</label><br>
+                              <label><input class="custom-control-label" type="checkbox" name="opt3"> Explosivo</label><br>
+                              <label><input class="custom-control-label" type="checkbox" name="opt4"> Toxico</label><br>
+                              <label><input class="custom-control-label" type="checkbox" name="opt5"> Inflamable</label>
                             </div>
                           </div>
                         </div>

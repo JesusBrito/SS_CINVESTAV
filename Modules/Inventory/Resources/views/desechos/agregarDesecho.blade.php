@@ -55,11 +55,15 @@
                               <textarea required class="form-control" rows="8" name="txtProcedimiento"  placeholder="Procedimiento"></textarea>
                             </div>
                             <label class="control-label col-xs-2">Equipo de Seguridad:</label>
+                            <br>
                             <div class="col-xs-4">
-                              <label><input class="custom-control-label" type="radio" name="opt1"> Guantes</label><br><br>
-                              <label><input class="custom-control-label" type="radio" name="opt1"> Bata</label><br><br>
-                              <label><input class="custom-control-label" type="radio" name="opt1"> Gogles</label><br><br>
-                              <label><input class="custom-control-label" type="radio" name="opt1"> Cubreboca</label>
+                              <label><input class="custom-control-label" type="checkbox" name="opt1"> Guantes</label><br><br>
+                              <label><input class="custom-control-label" type="checkbox" name="opt1"> Bata</label><br><br>
+                              <label><input class="custom-control-label" type="checkbox" name="opt1"> Googles</label><br><br>
+                              <label><input class="custom-control-label" type="checkbox" name="opt1"> Cubreboca</label>
+
+
+                              
                             </div>
                         </div>
                         <br>
