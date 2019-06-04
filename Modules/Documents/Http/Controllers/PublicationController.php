@@ -44,6 +44,13 @@ class PublicationController extends Controller
     public function store(PublicationRequest $request)
     {
         $publication = Publication::create($request->validated());
+
+        if ($request->hasFile('document')) {
+            $file = $request->file('document')->store('Documents');
+           // $name = time().$file->getClientOriginalName();
+           // $file->putFileAs($name)->store('Documents');
+        }
+
         alert()->success('Los datos se guardaron correctamente', 'OK')->autoclose(env('NOTIFICATION_TIME', 2500));
 
         return redirect()->route('publications.index');

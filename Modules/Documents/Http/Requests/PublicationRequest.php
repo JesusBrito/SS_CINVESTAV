@@ -14,13 +14,13 @@ class PublicationRequest extends FormRequest
     public function rules()
     {
         return [
-            'type'  => 'bail|required|string',
-            'title'  => 'bail|required|string',
-            'publisher' => 'bail|required|string',
-            'country' => 'bail|required|string',
-            'editorial' => 'bail|required|string',
-            'description' => 'bail|required|string',
-            'document' => 'bail|string'
+            'type'  => 'bail|required|string|max:255',
+            'title'  => 'bail|required|string|max:255',
+            'publisher' => 'bail|required|string|max:255',
+            'country' => 'bail|required|string|max:255',
+            'editorial' => 'bail|required|string|max:255',
+            'description' => 'bail|required|string|max:355',
+            'document' => 'bail|required|mimes:doc,docx,pdf|max:10000'
         ];
     }
 

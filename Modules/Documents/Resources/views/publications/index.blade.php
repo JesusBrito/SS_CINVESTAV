@@ -47,7 +47,11 @@
                                                             <td>{{ $publication->country }}</td>
                                                             <td>{{ $publication->editorial }}</td>
                                                             <td>{{ $publication->description }}</td>
-                                                            <td>{{ $publication->document }}</td>
+                                                            <td>
+                                                                <object type="application/pdf">
+                                                                    <embed src="{{ $publication->document }}" type="application/pdf" />
+                                                                </object>
+                                                            </td>
 
                                                         </tr>
                                                     @empty
