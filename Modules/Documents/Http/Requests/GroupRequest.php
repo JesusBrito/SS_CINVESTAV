@@ -13,12 +13,12 @@ class GroupRequest extends FormRequest
      */
     public function rules()
     {
-        $id = $this->route('group') // verifica si existe el parámetro en la url
-                ? ",nombre,{$this->route('group')->id},id"
-                : '';
+        $uniqueCondition = $this->route('group') // verifica si existe el parámetro en la url
+                                ? ",nombre,{$this->route('group')->id},id"
+                                : '';
 
         return [
-            'nombre' => "bail|required|string|alpha_dash|unique:groups{$id}",
+            'nombre' => "bail|required|string|alpha_dash|unique:groups{$uniqueCondition}",
             'descripcion' => 'bail|required|string',
             'id_profesor' => 'bail|nullable|integer|exists:users,id',
         ];

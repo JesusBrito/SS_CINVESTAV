@@ -27,25 +27,25 @@
 
             <div class="col-md-12">
               <div class="form-group {{ $errors->first('nombre', 'has-error') }}">
-                <label for="txtnombre">Nombre</label>
+                <label for="nombre">Nombre</label>
                 <input class="form-control" type="text" name="nombre" id="nombre" value="{{ old('nombre', optional($group)->nombre) }}" required>
-                {!! $errors->first('nombre', '<strong>:message</strong>') !!}
+                {!! $errors->first('nombre', '<small class="help-block">:message</small>') !!}
               </div>
 
               <div class="form-group {{ $errors->first('descripcion', 'has-error') }}">
-                <label for="txtappat">Descripción</label>
+                <label for="descripcion">Descripción</label>
                 <textarea class="form-control" id="descripcion" name="descripcion" required>{{ old('descripcion', optional($group)->descripcion) }}</textarea>
-                {!! $errors->first('descripcion', '<strong>:message</strong>') !!}
+                {!! $errors->first('descripcion', '<small class="help-block">:message</small>') !!}
             </div>
 
               <div class="form-group {{ $errors->first('id_profesor', 'has-error') }}">
-                <label>Profesor</label>
+                <label for="id_profesor">Profesor</label>
                 <select class="form-control" id="id_profesor" name="id_profesor" required>
                   @foreach ($users as $user)
                     <option value="{{ $user->id }}" {{ optional(optional($group)->profesor)->id == $user->id ? 'selected' : '' }}>{{ $user->nombre_completo }}</option>
                   @endforeach
                 </select>
-                {!! $errors->first('id_profesor', '<strong>:message</strong>') !!}
+                {!! $errors->first('id_profesor', '<small class="help-block">:message</small>') !!}
             </div>
 
               <button type="submit" class="btn btn-primary pull-right" id="btnSave" name="btnSave">
@@ -67,8 +67,4 @@
 
 
 @push ('extra-js')
-  <script src="{{ asset('js/users.js') }}"></script>
-  <script>
-    let urlLevelDetails = '{{ route('level-details.index') }}'
-  </script>
 @endpush

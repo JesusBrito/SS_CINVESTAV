@@ -91,11 +91,11 @@ class UserController extends Controller
     }
 
     if ($user->save()) {
-    alert()->success('Usuario modificado correctamente', 'OK')->autoclose(2500);
-    return redirect(route('users.show', $user));
+      alert()->success('Usuario modificado correctamente', 'OK')->autoclose(2500);
+      return redirect(route('users.show', $user));
     } else {
-    alert()->error('Error al modificar los campos', 'Error')->autoclose(2500);
-    return back();
+      alert()->error('Error al modificar los campos', 'Error')->autoclose(2500);
+      return back();
     }
   }
 

@@ -6,6 +6,7 @@ use App\UserType;
 use App\LevelDetail;
 
 use Modules\Documents\Entities\Group;
+use Modules\Documents\Entities\Patent;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -68,5 +69,10 @@ class User extends Authenticatable
     public function detalleNiveles()
     {
         return $this->hasMany(LevelDetail::class, 'id_usuario');
+    }
+
+    public function patentes()
+    {
+        return $this->hasMany(Patent::class, 'id_autor');
     }
 }

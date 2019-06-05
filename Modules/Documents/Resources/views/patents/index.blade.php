@@ -3,13 +3,13 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Listado de Grupos
-    <small>Aquí se muestran todos los grupos del sistema</small>
+    Listado de Patentes
+    <small>Aquí se muestran todos los patentes del sistema</small>
   </h1>
   <ol class="breadcrumb">
     <li><a href="{{ url('/') }}"><i class="fa fa-dashboard"></i>Inicio</a></li>
     <li>Administrar</li>
-    <li class="active">Grupos</li>
+    <li class="active">Patentes</li>
   </ol>
 </section>
 
@@ -19,8 +19,8 @@
     <div class="col-md-12">
       <div class="box box-warning">
         <div class="box-header with-border">
-          <h3 class="box-title">Grupos</h3>
-          <a class="btn btn-primary" href="{{ route('groups.create') }}" title="Agregar">
+          <h3 class="box-title">Patentes</h3>
+          <a class="btn btn-primary" href="{{ route('patents.create') }}" title="Agregar">
             <i class="fa fa-plus"></i> Agregar
           </a>
         </div>
@@ -31,37 +31,40 @@
                 <div class="row">
                   <div class="col-sm-12">
                     <div class="box-body table-responsive no-padding">
-                      <table id="tblGrupos" class="table table-hover table-striped">
+                      <table id="tblPatentes" class="table table-hover table-striped">
                         <thead>
                           <tr role="row">
                             <th>Nombre</th>
                             <th>Descripción</th>
-                            <th>Profesor</th>
                             <th>Acciones</th>
                           </tr>
                         </thead>
                         <tbody>
-                          @forelse($groups as $group)
-                          <tr role="row" class="odd" id="row-{{ $group->id }}">
-                            <td>{{ $group->nombre }}</td>
-                            <td>{{ $group->descripcion }}</td>
-                            <td>{{ optional($group->profesor)->nombre_completo ?: '---' }}</td>
+                          @forelse($patents as $patent)
+                          <tr role="row" class="odd" id="row-{{ $patent->id }}">
+                            <td>{{ $patent->nombre }}</td>
+                            <td>{{ $patent->descripcion }}</td>
                             <td>
                               <div class="btn-group form-inline">
-                                <a class="btn btn-sm btn-warning" href="{{ route('groups.edit', $group) }}" title="Editar">
+                                <a class="btn btn-sm btn-warning" href="{{ route('patents.edit', $patent) }}" title="Editar">
                                   <i class="fa fa-pencil"></i>
                                 </a>
                               </div>
                               <div class="btn-group form-inline">
-                                <button type="button" class="btn btn-sm btn-danger" title="Eliminar" data-url="{{ route('groups.destroy', $group) }}" data-el="#row-{{ $group->id }}">
+                                <button type="button" class="btn btn-sm btn-danger" title="Eliminar" data-url="{{ route('patents.destroy', $patent) }}" data-el="#row-{{ $patent->id }}">
                                   <i class="fa fa-trash"></i>
                                 </button>
+                              </div>
+                              <div class="btn-group form-inline">
+                                <a type="button" class="btn btn-sm btn-info" title="Ver documento" target="_blank" href="{{ $patent->documento }}">
+                                  <i class="fa fa-file"></i>
+                                </a>
                               </div>
                             </td>
                           </tr>
                           @empty
                           <tr>
-                            <td colspan="5" class="text-center">No hay grupos.</td>
+                            <td colspan="5" class="text-center">No hay patentes</td>
                           </tr>
                           @endforelse
                         </tbody>

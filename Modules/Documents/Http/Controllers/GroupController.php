@@ -49,7 +49,7 @@ class GroupController extends Controller
         $profesor = User::find($request->id_profesor);
         $group->profesor()->associate($profesor);
         $group->save();
-        alert()->success('Los datos se guardaron correctamente', 'OK')->autoclose(env('NOTIFICATION_TIME', 2500));
+        alert()->success('Los datos se guardaron correctamente', 'OK')->autoclose(env('NOTIFICATION_TIME', 1500));
 
         return redirect()->route('groups.index');
     }
@@ -92,7 +92,7 @@ class GroupController extends Controller
         $profesor = User::find($request->id_profesor);
         $group->profesor()->associate($profesor);
         $group->save();
-        alert()->success('Los datos se guardaron correctamente', 'OK')->autoclose(env('NOTIFICATION_TIME', 2500));
+        alert()->success('Los datos se guardaron correctamente', 'OK')->autoclose(env('NOTIFICATION_TIME', 1500));
 
         return redirect()->route('groups.index');
     }

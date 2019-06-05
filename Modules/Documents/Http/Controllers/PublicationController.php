@@ -51,7 +51,7 @@ class PublicationController extends Controller
            // $file->putFileAs($name)->store('Documents');
         }
 
-        alert()->success('Los datos se guardaron correctamente', 'OK')->autoclose(env('NOTIFICATION_TIME', 2500));
+        alert()->success('Los datos se guardaron correctamente', 'OK')->autoclose(env('NOTIFICATION_TIME', 1500));
 
         return redirect()->route('publications.index');
     }

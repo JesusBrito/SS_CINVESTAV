@@ -20,6 +20,9 @@
       <div class="box box-warning">
         <div class="box-header with-border">
           <h3 class="box-title">Usuarios</h3>
+          <a class="btn btn-primary" href="{{ route('users.create') }}" title="Agregar">
+            <i class="fa fa-plus"></i> Agregar
+          </a>
         </div>
         <form role="form">
           <div class="box-body">

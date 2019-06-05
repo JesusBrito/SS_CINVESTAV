@@ -72,7 +72,6 @@ desired effect
     <script src="{{ asset("/js/bootstrap-datepicker.es.min.js") }}"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     @include('sweet::alert')
 
@@ -140,7 +139,7 @@ desired effect
                         const res = await axios.delete(url)
                         const data = res.data
                         swal('Eliminado', 'Se eliminó correctamente', 'success', alertConfig)
-                        document.querySelector(el).remove()
+                        table.row(el).remove().draw()
                     } catch (e) {
                         swal('¡Error!', 'No se pudo eliminar el registro', 'error', alertConfig)
                     }
@@ -149,7 +148,7 @@ desired effect
         }
 
         $(document).on('click', '.btn-danger', deleteRow)
-        $('.table').DataTable(dataTableConfig);
+        const table = $('.table').DataTable(dataTableConfig);
     </script>
 </body>
 </html>
