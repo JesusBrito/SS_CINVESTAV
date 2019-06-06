@@ -66,10 +66,10 @@ const deleteDetail = e => {
       try {
         const res = await axios.delete(`${urlLevelDetails}/${id}`)
         const data = res.data
-        swal('Eliminado', 'Se eliminó correctamente', 'success');
+        swal('Eliminado', 'Se eliminó correctamente', 'success', alertConfig);
         document.querySelector(`#detail-${data.id}`).remove();
       } catch (e) {
-        swal('¡Error!', 'No se pudo eliminar el registro', 'error');
+        swal('¡Error!', 'No se pudo eliminar el registro', 'error', alertConfig);
       }
     }
   })

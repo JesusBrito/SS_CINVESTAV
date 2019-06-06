@@ -57,12 +57,17 @@
                                   <i class="fa fa-trash"></i>
                                 </button>
                               </div>
+                              <div class="btn-group form-inline">
+                                <a class="btn btn-sm btn-info" href="{{ route('groups.show', $group) }}" title="Alumnos">
+                                  <i class="fa fa-user"></i>
+                                </a>
+                              </div>
                             </td>
                           </tr>
                           @empty
-                          <tr>
-                            <td colspan="5" class="text-center">No hay grupos.</td>
-                          </tr>
+                          {{-- <tr>
+                            <td colspan="5" class="text-center">No hay grupos</td>
+                          </tr> --}}
                           @endforelse
                         </tbody>
                       </table>

@@ -62,7 +62,8 @@ class GroupController extends Controller
      */
     public function show(Group $group)
     {
-        //
+        $users = User::all();
+        return view('documents::groups.show', compact('group', 'users'));
     }
 
     /**
@@ -108,5 +109,23 @@ class GroupController extends Controller
     {
         $group->delete();
         return response()->json(['success' => true], 200);
+    }
+
+    public function addStudent(Request $request, Group $group)
+    {
+        $fields = $request->validate([
+            'id_student' => 'bail|required|integer'
+        ]);
+
+        $group->alumnos()->attach($fields['id_student']);
+        $student = User::find($fields['id_student']);
+        $urlRemove = route('groups.remove-student', [$group, $student]);
+
+        return response()->json(['success' => true, 'url' => $urlRemove, 'student' => $student], 200);
+    }
+
+    public function removeStudent()
+    {
+
     }
 }

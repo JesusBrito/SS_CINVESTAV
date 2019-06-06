@@ -18,7 +18,7 @@ class GroupRequest extends FormRequest
                                 : '';
 
         return [
-            'nombre' => "bail|required|string|alpha_dash|unique:groups{$uniqueCondition}",
+            'nombre' => "bail|required|string|unique:groups{$uniqueCondition}",
             'descripcion' => 'bail|required|string',
             'id_profesor' => 'bail|nullable|integer|exists:users,id',
         ];

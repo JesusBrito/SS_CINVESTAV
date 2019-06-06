@@ -75,8 +75,6 @@ desired effect
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     @include('sweet::alert')
 
-    @stack('extra-js')
-
     <script type="text/javascript">
         $('.fecha').datepicker({format: 'yyyy/mm/dd',language: 'es', autoclose: true});
         $('.ano').datepicker({
@@ -150,5 +148,8 @@ desired effect
         $(document).on('click', '.btn-danger', deleteRow)
         const table = $('.table').DataTable(dataTableConfig);
     </script>
+
+    @stack('extra-js')
+
 </body>
 </html>

@@ -68,7 +68,7 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="txtnumero">Número de teléfono</label>
+                  <label for="txtnumero">Celular</label>
                   <input class="form-control" type="text" pattern="[0-9]{10}" id="celular" name="celular" value="{{ old('celular', optional($user)->celular) }}" name="celular" maxlength="10" placeholder="5512345678">
                 </div>
 

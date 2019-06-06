@@ -34,6 +34,10 @@ class User extends Authenticatable
         'estatus'
     ];
 
+    protected $appends = [
+        'nombre_completo'
+    ];
+
     /**
      * The attributes that should be hidden for arrays.
      *

@@ -63,9 +63,9 @@
                             </td>
                           </tr>
                           @empty
-                          <tr>
+                          {{-- <tr>
                             <td colspan="5" class="text-center">No hay patentes</td>
-                          </tr>
+                          </tr> --}}
                           @endforelse
                         </tbody>
                       </table>

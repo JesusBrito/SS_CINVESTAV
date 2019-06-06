@@ -18,6 +18,10 @@ Route::prefix('documents')->group(function () {
     })->name('documents.index');
 
     Route::resource('groups', 'GroupController');
+    Route::prefix('groups')->group(function () {
+        Route::post('{group}/students', 'GroupController@addStudent')->name('groups.add-student');
+        Route::delete('{group}/students/{student}', 'GroupController@removeStudent')->name('groups.remove-student');
+    });
     Route::resource('publications','PublicationController');
     Route::resource('patents','PatentController');
 });
