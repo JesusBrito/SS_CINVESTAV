@@ -20,4 +20,8 @@ class Publication extends Model
     {
         return $this;
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user');
+    }
 }

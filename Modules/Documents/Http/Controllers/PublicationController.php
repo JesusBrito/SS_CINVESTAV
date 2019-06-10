@@ -8,7 +8,6 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\Documents\Entities\Publication;
 use Modules\Documents\Http\Requests\PublicationRequest;
-use Datatables;
 
 class PublicationController extends Controller
 {
@@ -18,7 +17,7 @@ class PublicationController extends Controller
      */
     public function index()
     {
-        $publications = Publication::all();
+        $publications = Publication::where('id_user',auth()->user()->id)->get();
         return view('documents::publications.index',compact('publications'));
     }
 
@@ -41,16 +40,15 @@ class PublicationController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function store(PublicationRequest $request)
+    public function store(PublicationRequest $request, Publication $publication)
     {
         $publication = Publication::create($request->validated());
 
         if ($request->hasFile('document')) {
-            $file = $request->file('document')->store('Documents');
-           // $name = time().$file->getClientOriginalName();
-           // $file->putFileAs($name)->store('Documents');
+            $publication->document = $request->file('document')->store('publications');
         }
-
+        $publication->user()->associate(auth()->user());
+        $publication->save();
         alert()->success('Los datos se guardaron correctamente', 'OK')->autoclose(env('NOTIFICATION_TIME', 1500));
 
         return redirect()->route('publications.index');
@@ -61,9 +59,10 @@ class PublicationController extends Controller
      * @param int $id
      * @return Response
      */
-    public function show($id)
+    public function show()
     {
-        return view('documents::show');
+        $publications = Publication::all();
+        return view('documents::publications.index',compact('publications'));
     }
 
     /**
@@ -71,9 +70,11 @@ class PublicationController extends Controller
      * @param int $id
      * @return Response
      */
-    public function edit($id)
+    public function edit(Publication $publication)
     {
-        return view('documents::edit');
+        $action = route('publications.update', $publication);
+        return view('documents::publications.form', compact('publication', 'action'));
+
     }
 
     /**
@@ -82,18 +83,23 @@ class PublicationController extends Controller
      * @param int $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(PublicationRequest $request, Publication $publication)
     {
-        //
+        $publication = Publication::updated($request->validated());
+
+        if ($request->hasFile('document')) {
+            $publication->document = $request->file('document')->store('publications');
+        }
+
+
+        alert()->success('Los datos se actualizaron correctamente', 'OK')->autoclose(env('NOTIFICATION_TIME', 1500));
+
+        return redirect()->route('publications.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return Response
-     */
-    public function destroy($id)
+    public function destroy(Publication $publication)
     {
-        //
+        $publication->delete();
+        return response()->json(['success' => true], 200);
     }
 }

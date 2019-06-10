@@ -23,6 +23,8 @@ class CreatePublicationsTable extends Migration
             $table->string('description');
             $table->string('document')->nullable();
             $table->timestamps();
+            $table->unsignedInteger('id_user')->nullable();
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

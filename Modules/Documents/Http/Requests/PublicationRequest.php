@@ -20,7 +20,7 @@ class PublicationRequest extends FormRequest
             'country' => 'bail|required|string|max:255',
             'editorial' => 'bail|required|string|max:255',
             'description' => 'bail|required|string|max:355',
-            'document' => 'bail|required|mimes:doc,docx,pdf|max:10000'
+            'document' => 'bail|required|file|mimes:doc,pdf|max:10000'
         ];
     }
 

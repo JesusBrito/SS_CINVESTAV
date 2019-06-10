@@ -7,6 +7,8 @@
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{ url('/') }}"><i class="fa fa-dashboard"></i>Inicio</a></li>
+            <li>Administrar</li>
+            <li class="active">Publicaciones</li>
         </ol>
     </section>
     <!-- Main content -->
@@ -16,6 +18,9 @@
                 <div class="box box-warning">
                     <div class="box-header with-border">
                         <h3 class="box-title">Publicaciones</h3>
+                        <a class="btn btn-primary" href="{{ route('publications.create') }}" title="Agregar">
+                            <i class="fa fa-plus"></i> Agregar
+                        </a>
                     </div>
                     <form role="form">
                         <div class="box-body">
@@ -34,7 +39,7 @@
                                                         <th>País</th>
                                                         <th>Editorial</th>
                                                         <th>Descripción</th>
-                                                        <th>Documento</th>
+                                                        <th>Acciones</th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
@@ -48,9 +53,21 @@
                                                             <td>{{ $publication->editorial }}</td>
                                                             <td>{{ $publication->description }}</td>
                                                             <td>
-                                                                <object type="application/pdf">
-                                                                    <embed src="{{ $publication->document }}" type="application/pdf" />
-                                                                </object>
+                                                                <div class="btn-group form-inline">
+                                                                    <a class="btn btn-sm btn-warning" href="{{ route('publications.edit', $publication) }}" title="Editar">
+                                                                        <i class="fa fa-pencil"></i>
+                                                                    </a>
+                                                                </div>
+                                                                <div class="btn-group form-inline">
+                                                                    <button type="button" class="btn btn-sm btn-danger" title="Eliminar" data-url="{{ route('publications.destroy', $publication) }}" data-el="#row-{{ $publication->id }}">
+                                                                        <i class="fa fa-trash"></i>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="btn-group form-inline">
+                                                                    <a type="button" class="btn btn-sm btn-info" title="Ver documento" target="_blank" href="{{ $publication->document }}">
+                                                                        <i class="fa fa-file"></i>
+                                                                    </a>
+                                                                </div>
                                                             </td>
 
                                                         </tr>
