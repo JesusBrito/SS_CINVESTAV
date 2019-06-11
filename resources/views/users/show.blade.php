@@ -6,7 +6,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Bienvenido(a) {{ auth()->user()->nombre_completo }}
+        {{-- Bienvenido(a) {{ $user->nombre_completo }} --}}
 
       </h1>
       <ol class="breadcrumb">
@@ -28,9 +28,9 @@
           <!-- Profile Image -->
           <div class="box box-warning">
             <div class="box-body box-profile">
-            <img class="profile-user-img img-responsive img-circle" src="{{ auth()->user()->imagen }}" alt="User profile picture">
+            <img class="profile-user-img img-responsive img-circle" src="{{ $user->imagen }}" alt="User profile picture">
 
-              <h3 class="profile-username text-center">{{ auth()->user()->nombre_completo }}</h3>
+              <h3 class="profile-username text-center">{{ $user->nombre_completo }}</h3>
 
             </div>
             <!-- /.box-body -->
@@ -46,7 +46,7 @@
             <div class="box-body">
               <strong><i class="fa fa-book margin-r-5"></i>Educación</strong>
 
-              @foreach(auth()->user()->detalleNiveles() as $detail)
+              @foreach($user->detalleNiveles() as $detail)
                     <p class="text-muted">
                         <i class="fa fa-mortar-board margin-r-5"></i>
                         {{ $detail->carrera }} en {{ $detail->escuela }}
@@ -59,28 +59,28 @@
 
               <strong><i class="fa fa-envelope margin-r-5"></i>Correo electrónico</strong>
              <p class="text-muted" id="txtCorreo">
-                {{ auth()->user()->email }}
+                {{ $user->email }}
               </p>
 
               <hr>
 
               <strong><i class="fa fa-phone margin-r-5"></i>Número</strong>
              <p class="text-muted" id="txtNumero">
-                {{ auth()->user()->celular }}
+                {{ $user->celular }}
               </p>
 
               <hr>
 
               <strong><i class="fa fa-calendar margin-r-5"></i>Fecha de nacimiento</strong>
              <p class="text-muted" id="txtFecha">
-                {{ auth()->user()->fecha_nacimiento }}
+                {{ $user->fecha_nacimiento }}
               </p>
 
               <hr>
 
               <strong><i class="fa fa-user margin-r-5"></i>Sexo</strong>
              <p class="text-muted" id="txtSexo">
-                @if(auth()->user()->sexo==1)
+                @if($user->sexo==1)
                     Hombre
                 @else
                     Mujer
@@ -99,7 +99,7 @@
 
               <div class="box-footer">
 
-                <a class="btn btn-app" href="{{ route('users.edit', auth()->user()) }}"><i class="fa fa-edit"></i>Modificar datos</a>
+                <a class="btn btn-app" href="{{ route('users.edit', $user) }}"><i class="fa fa-edit"></i>Modificar datos</a>
 
                  <a class="btn btn-app" href="#"><i class="fa fa-file-text"></i>Generar CV</a>
               </div>

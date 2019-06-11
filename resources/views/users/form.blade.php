@@ -22,7 +22,7 @@
               <div class="box-header with-border">
                <h3 class="box-title">Llene los siguientes campos</h3>
               </div>
-            <form method="POST" action="{{ $action }}" role="form" enctype="multipart/form-data">
+            <form method="POST" action="{{ $action }}" role="form" enctype="multipart/form-data" id="userForm">
               @csrf
               @if ($user) @method('PUT') @endif
 
@@ -30,7 +30,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label>Tipo de usuario</label>
-                  <select class="form-control" id="tipo_usuario" name="tipo_usuario" required {{ $user ? 'disabled' : '' }}>
+                  <select class="form-control" id="id_tipo_usuario" name="id_tipo_usuario" required {{ $user ? 'disabled' : '' }}>
                       @foreach ($userTypes as $userType)
                         <option value="{{ $userType->id }}" {{ optional(optional($user)->tipoUsuario)->id == $userType->id ? 'selected' : '' }}>{{ $userType->nombre }}</option>
                       @endforeach
@@ -56,7 +56,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="fecha_nacimiento">Fecha de nacimiento</label>
-                  <input class="form-control" type="date" id="fecha_nacimiento" name="fecha_nacimiento" required readonly value="{{ old('fecha_nacimiento', optional($user)->fecha_nacimiento) }}">
+                  <input class="form-control" type="date" id="fecha_nacimiento" name="fecha_nacimiento" required {{ $user ? 'readonly' : '' }} value="{{ old('fecha_nacimiento', optional($user)->fecha_nacimiento) }}">
                 </div>
 
                 <div class="form-group">
@@ -73,15 +73,33 @@
                 </div>
 
                 <div class="form-group">
-                    <div class="form-group has-feedback">
-                      <label for="txtcorreo">Correo electrónico</label>
-                      <input type="email" required class="form-control" value="{{ old('email', optional($user)->email) }}" name="email" id="email" placeholder="ejemplo@email.com" required>
-                      <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                    </div>
+                  <div class="form-group has-feedback">
+                    <label for="txtcorreo">Correo electrónico</label>
+                    <input type="email" class="form-control" value="{{ old('email', optional($user)->email) }}" name="email" id="email" placeholder="ejemplo@email.com" required>
+                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="form-group has-feedback">
+                    <label for="txtcorreo">Contraseña</label>
+                    <input type="password" class="form-control" name="password" id="password" required>
+                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="form-group has-feedback">
+                    <label for="txtcorreo">Confirmar contraseña</label>
+                    <input type="password" class="form-control" name="password_confirmation" id="password_confirmation" required>
+                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                  </div>
                 </div>
                 <br>
                 <div class="form-group">
-                  <p><img src="{{ auth()->user()->imagen }}" widht="80px" height="80px" alt="Foto de perfil"></p>
+                  @if ($user)
+                    <p><img src="{{ $user->imagen }}" widht="80px" height="80px" alt="Foto de perfil"></p>
+                  @endif
                   <label for="flfoto">Añadir foto de perfil</label>
                   <input type="file" id="imagen" name="imagen" accept="image/*" >
                   <p class="help-block">Suba una fotografía en formato .jpg o .png</p>

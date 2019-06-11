@@ -77,7 +77,14 @@ const deleteDetail = e => {
 
 
 // EVENTS
+const btnSave = document.querySelector('#btnSave')
 const btnAddDetail = document.querySelector('#btnAddDetail')
+const userForm = document.querySelector('#userForm')
+
+btnSave.addEventListener('click', e => {
+    e.preventDefault()
+    userForm.submit()
+})
 
 btnAddDetail.addEventListener('click', addDetail)
 $(document).on('click', '.btn-danger', deleteDetail)
