@@ -3,6 +3,7 @@ namespace Modules\Documents\Entities;
 
 use App\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Publication extends Model
 {
@@ -16,9 +17,9 @@ class Publication extends Model
         'document'
     ];
 
-    public function publicacion()
+    public function getDocumentAttribute($value)
     {
-        return $this;
+        return $value ? Storage::url($value) : '';
     }
     public function user()
     {

@@ -85,12 +85,12 @@ class PublicationController extends Controller
      */
     public function update(PublicationRequest $request, Publication $publication)
     {
-        $publication = Publication::updated($request->validated());
+        $publication->update($request->validated());
 
         if ($request->hasFile('document')) {
             $publication->document = $request->file('document')->store('publications');
+            $publication->save();
         }
-
 
         alert()->success('Los datos se actualizaron correctamente', 'OK')->autoclose(env('NOTIFICATION_TIME', 1500));
 
