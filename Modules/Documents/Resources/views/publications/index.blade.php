@@ -38,7 +38,6 @@
                                                         <th>Publicador</th>
                                                         <th>País</th>
                                                         <th>Editorial</th>
-                                                        <th>Descripción</th>
                                                         <th>Acciones</th>
                                                     </tr>
                                                     </thead>
@@ -51,7 +50,6 @@
                                                             <td>{{ $publication->publisher }}</td>
                                                             <td>{{ $publication->country }}</td>
                                                             <td>{{ $publication->editorial }}</td>
-                                                            <td>{{ $publication->description }}</td>
                                                             <td>
                                                                 <div class="btn-group form-inline">
                                                                     <a class="btn btn-sm btn-warning" href="{{ route('publications.edit', $publication) }}" title="Editar">
@@ -64,12 +62,11 @@
                                                                     </button>
                                                                 </div>
                                                                 <div class="btn-group form-inline">
-                                                                    <a type="button" class="btn btn-sm btn-info" title="Ver documento" target="_blank" href="{{ $publication->document }}">
+                                                                    <a type="button" class="btn btn-sm btn-info" title="Ver documento" target="_blank" href="{{  url($publication->document) }}">
                                                                         <i class="fa fa-file"></i>
                                                                     </a>
                                                                 </div>
                                                             </td>
-
                                                         </tr>
                                                     @empty
                                                         <tr>

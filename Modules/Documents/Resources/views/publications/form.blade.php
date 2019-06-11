@@ -56,12 +56,14 @@
                                     <textarea class="form-control" type="text" name="description" id="description" required>{{ old('description', optional($publication)->description) }}</textarea>
                                     {!! $errors->first('description', '<small class="help-block">:message</small>') !!}
                                 </div>
+
                                 <div class="form-group {{ $errors->first('document', 'has-error') }}">
-                                    <label for="txtDocumento">Documento que compruebe el registro</label>
+                                    <label for="documento">Documento</label>
                                     @if (optional($publication)->document)
                                         <p><a href="{{ optional($publication)->document }}" target="_blank">Ver documento</a></p>
                                     @endif
-                                    <input class="form-control" type="file" name="document" id="document" value="{{ old('document', optional($publication)->document) }}">
+                                    <input type="file" id="document" name="document" accept="pdf" />
+                                    <p class="help-block">Suba un archivo PDF</p>
                                     {!! $errors->first('document', '<small class="help-block">:message</small>') !!}
                                 </div>
 
