@@ -1,10 +1,15 @@
 <?php
-namespace App\Http\Controllers;
+
+namespace Modules\Inventory\Http\Controllers;
+
 use App\Level;
 use App\User;
 use App\UserType;
 use Illuminate\Http\Request;
-class UserController extends Controller
+use Illuminate\Routing\Controller;
+
+
+class UsersControllerInventory extends Controller
 {
   public function __construct()
   {
@@ -18,7 +23,8 @@ class UserController extends Controller
   public function index()
   {
     $users = User::all();
-    return view('users.index', compact('users'));
+
+    return view('inventory::usuarios.listarUsuarios', compact('users'));
   }
   /**
     * Show the form for creating a new resource.
@@ -28,10 +34,11 @@ class UserController extends Controller
   public function create()
   {
     $user = null;
-    $action = route('users.store');
+    $action = route('usersInventory.store');
     $userTypes = UserType::all();
     $levels = Level::all();
-    return view('users.form', compact('user', 'action', 'userTypes', 'levels'));
+    return view('inventory::usuarios.crearEditarUsuario.blade', compact('user', 'action', 'userTypes', 'levels'));
+
   }
   /**
     * Store a newly created resource in storage.
@@ -61,9 +68,9 @@ class UserController extends Controller
   public function edit(User $user)
   {
     $userTypes = UserType::all();
-    $action = route('users.update', $user);
+    $action = route('usersInventory.update', $user);
     $levels = Level::all();
-    return view('users.form', compact('user', 'action', 'userTypes', 'levels'));
+    return view('inventory::usuarios.crearEditarUsuario.blade', compact('user', 'action', 'userTypes', 'levels'));
   }
   /**
     * Update the specified resource in storage.
