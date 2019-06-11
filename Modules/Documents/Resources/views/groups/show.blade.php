@@ -83,13 +83,7 @@
           <div>
             <div class="form-group">
               <label>Usuario:</label>
-              <select name="id_student" id="id_student" class="form-control">
-                @forelse ($users as $user)
-                  <option value="{{ $user->id }}">{{ $user->nombre_completo }}</option>
-                @empty
-                  <option value="">No hay usuarios</option>
-                @endforelse
-              </select>
+              <select name="id_student" id="id_student" class="form-control"></select>
             </div>
           </div>
         </div>
@@ -107,9 +101,28 @@
   const urlAddStudent = '{{ route('groups.add-student', $group) }}'
   const btnAdd = document.querySelector('#btnAdd')
 
-  btnAdd.addEventListener('click', e => {
+  btnAdd.addEventListener('click', async e => {
     e.preventDefault()
-    $('#modal').modal('show');
+
+    try {
+        document.querySelector('#id_student').innerHTML = ''
+        const res = await axios.get('{{ route('groups.available-users', $group) }}')
+        const users = res.data.users
+
+        if (! users.length) {
+            const emptyOption = `<option value="">No hay usuarios</option>`
+            document.querySelector('#id_student').insertAdjacentHTML('beforeend', emptyOption)
+        }
+
+        users.forEach(user => {
+            const option = `<option value="${user.id}">${user.nombre_completo}</option>`
+            document.querySelector('#id_student').insertAdjacentHTML('beforeend', option)
+        });
+
+        $('#modal').modal('show');
+    } catch (err) {
+        console.log(err)
+    }
   })
 
   const addStudent = async _ => {
@@ -125,7 +138,9 @@
           </button>
         </div>
       `
-      table.add([student.nombre_completo, btnRemove]).draw()
+      const rowNode = table.row.add([student.nombre_completo, btnRemove]).draw().node()
+      $(rowNode).attr('id', `row-${student.id}`)
+      $('#modal').modal('hide');
       swal('Éxito', 'Datos guardados correctamente', 'success', alertConfig);
     } catch (err) {
       swal('Error', 'Ocurrió un error al guardar los datos', 'error', alertConfig)
