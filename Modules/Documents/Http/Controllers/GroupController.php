@@ -62,8 +62,7 @@ class GroupController extends Controller
      */
     public function show(Group $group)
     {
-        $users = User::all();
-        return view('documents::groups.show', compact('group', 'users'));
+        return view('documents::groups.show', compact('group'));
     }
 
     /**
@@ -124,8 +123,19 @@ class GroupController extends Controller
         return response()->json(['success' => true, 'url' => $urlRemove, 'student' => $student], 200);
     }
 
-    public function removeStudent()
+    public function removeStudent(Group $group, User $student)
     {
+        $id = $student->id;
+        $group->alumnos()->detach($id);
 
+        return response()->json(['success' => true, 'id' => $id], 200);
+    }
+
+    public function availableUsers(Group $group)
+    {
+        $usersGroupIds = $group->alumnos->modelKeys();
+        $users = User::whereNotIn('id', $usersGroupIds)->get();
+
+        return response()->json(compact('users'));
     }
 }

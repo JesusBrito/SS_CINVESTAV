@@ -21,6 +21,7 @@ Route::prefix('documents')->group(function () {
     Route::prefix('groups')->group(function () {
         Route::post('{group}/students', 'GroupController@addStudent')->name('groups.add-student');
         Route::delete('{group}/students/{student}', 'GroupController@removeStudent')->name('groups.remove-student');
+        Route::get('{group}/available-users', 'GroupController@availableUsers')->name('groups.available-users');
     });
     Route::resource('publications','PublicationController');
     Route::resource('patents','PatentController');
