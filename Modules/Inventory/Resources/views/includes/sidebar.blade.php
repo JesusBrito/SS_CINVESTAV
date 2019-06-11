@@ -80,8 +80,8 @@
                       </span>
                     </a>
                     <ul class="treeview-menu" style="display: all;">
-                      <li class="active"><a href="#"><i class="fa fa-user-plus"></i>Agregar usuario</a></li>
-                      <li><a href="#"><i class="fa fa-list-ul"></i>Listar usuarios</a></li>
+                      <li class="active"><a href="{{route('usersInventory.create')}}"><i class="fa fa-user-plus"></i>Agregar usuario</a></li>
+                      <li><a href="{{route('usersInventory.index')}}"><i class="fa fa-list-ul"></i>Listar usuarios</a></li>
                     </ul>
             </li>
 

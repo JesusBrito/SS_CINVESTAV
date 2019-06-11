@@ -37,7 +37,7 @@ class UsersControllerInventory extends Controller
     $action = route('usersInventory.store');
     $userTypes = UserType::all();
     $levels = Level::all();
-    return view('inventory::usuarios.crearEditarUsuario.blade', compact('user', 'action', 'userTypes', 'levels'));
+    return view('inventory::usuarios.crearEditarUsuario', compact('user', 'action', 'userTypes', 'levels'));
 
   }
   /**
@@ -70,7 +70,7 @@ class UsersControllerInventory extends Controller
     $userTypes = UserType::all();
     $action = route('usersInventory.update', $user);
     $levels = Level::all();
-    return view('inventory::usuarios.crearEditarUsuario.blade', compact('user', 'action', 'userTypes', 'levels'));
+    return view('inventory::usuarios.crearEditarUsuario', compact('user', 'action', 'userTypes', 'levels'));
   }
   /**
     * Update the specified resource in storage.

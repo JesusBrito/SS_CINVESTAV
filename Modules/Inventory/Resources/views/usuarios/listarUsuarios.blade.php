@@ -1,7 +1,4 @@
-@extends('documents::layouts.app')
-@section ('content')
-
+@extends('inventory::layouts.master')
+@section ('main_container')
 @include('users/index')
-
-@extends('documents::layouts.app')
-@section ('content')
+@endsection
