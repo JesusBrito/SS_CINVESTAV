@@ -26,17 +26,20 @@
                   <form class="form-horizontal" method="POST" action="{{ route('wastes.store') }}">
                   {{ csrf_field() }}
                   <div class="box-body">
-                    <div class="col-md-8 col-md-offset-2">
+                    <div class="col-md-12">
                         <div class="form-group">
                             <label class="control-label col-xs-2">Responsable:</label>
                             <div class="col-xs-4">
-                              <select>
+                              <select class="form-control">
                                 <option disabled select value="0">Seleccionar</option>
+                                @foreach ($users as $user)
+                                    <option value="{{$user->id}}">{{$user->nombre}} {{$user->a_paterno}} {{$user->a_materno}}</option>
+                                @endforeach
                               </select>
                             </div>
                             <label class="control-label col-xs-2">Tipo de desecho:</label>
                             <div class="col-xs-4">
-                              <select>
+                              <select class="form-control">
                                 <option disabled select value="0">Seleccionar</option>
                               </select>
                             </div>
@@ -45,11 +48,11 @@
                         <div class="form-group">
                             <label class="control-label col-xs-2">Fecha:</label>
                             <div class="col-xs-4">
-                              <input type="text" required class="form-control" name="txtFecha"  placeholder="_/_/__">
+                              <input type="date" required class="form-control" name="txtFecha"  placeholder="_/_/__">
                             </div>
                             <label class="control-label col-xs-2">Hora:</label>
                             <div class="col-xs-4">
-                              <input type="text" required class="form-control" name="txtHora"  placeholder=" _:_AM/PM">
+                              <input type="time" required class="form-control" name="txtHora"  placeholder=" _:_AM/PM">
                             </div>
                         </div>
                         <br>
@@ -57,30 +60,34 @@
                           <div>
                             <label class="control-label col-xs-2">Cantidad:</label>
                             <div class="col-sm-2">
-                              <input type="text" required class="form-control" name="txtCantidad"  placeholder="">
+                              <input type="number" min=".1" step=".1" required class="form-control" name="txtCantidad"  placeholder="">
                             </div>
                             <div class="col-sm-2">
-                              <select>
+                              <select class="form-control">
                                 <option disabled select value="0">Seleccionar</option>
+                                @foreach ($unities as $unity)
+                                    <option value="{{$unity->id}}">{{$unity->unidad}}</option>
+                                @endforeach
                               </select>
                             </div>
                             <br>
                             <br>
+                            <br>
                             <div class="col-sm">
                               <label class="control-label col-xs-2">Descripción:</label>
-                              <div class="col-xs-4">
-                                <textarea required class="form-control" rows="8" name="txtAreaProcedimiento"  placeholder="Descripción"></textarea>
+                              <div class="col-xs-4 container-text">
+                                <textarea rows="8" required class="form-control textarea-description"  name="txtAreaProcedimiento"  placeholder="Descripción"></textarea>
                               </div>
                             </div>
                           </div>
                           <div>
                             <label class="control-label col-xs-2">CRETI:</label>
                             <div class="col-xs-4">
-                              <label><input class="custom-control-label" type="checkbox" name="opt1"> Corrosivo</label><br>
-                              <label><input class="custom-control-label" type="checkbox" name="opt2"> Reactivo</label><br>
-                              <label><input class="custom-control-label" type="checkbox" name="opt3"> Explosivo</label><br>
-                              <label><input class="custom-control-label" type="checkbox" name="opt4"> Toxico</label><br>
-                              <label><input class="custom-control-label" type="checkbox" name="opt5"> Inflamable</label>
+                              <label><input class="custom-control-label" type="radio" name="creti"> Corrosivo</label><br>
+                              <label><input class="custom-control-label" type="radio" name="creti"> Reactivo</label><br>
+                              <label><input class="custom-control-label" type="radio" name="creti"> Explosivo</label><br>
+                              <label><input class="custom-control-label" type="radio" name="creti"> Toxico</label><br>
+                              <label><input class="custom-control-label" type="radio" name="creti"> Inflamable</label>
                             </div>
                           </div>
                         </div>
@@ -89,10 +96,10 @@
                           <div class="col-md-2 col-md-offset-10  col-sm-2 col-sm-offset-10 col-xs-2 col-xs-offset-10">
                             <button type="submit" class="btn btn-primary">Agregar</button>
                           </div>
-                        </div> 
+                        </div>
                         <br>
-                        <div class="col-md-12 table-responsive no-padding"> 
-                          <table id="tableWasteLog" class="table table-striped table-bordered">
+                        <div class="col-md-12 table-responsive no-padding">
+                          <table id="tableToxicidades" class="table table-striped table-bordered">
                             <thead>
                               <tr class="table-title-edit">
                                 <th class="col-md-2">Fecha</th>
@@ -107,13 +114,13 @@
                             <tbody>
                               @foreach ($wastes as $waste)
                                 <tr id="fila{{$waste->id}}">
-                                  <td class="center-text-column">{{$waste->fecha}}</td> 
-                                  <td class="center-text-column">{{$waste->hora}}</td> 
-                                  <td class="center-text-column">{{$waste->id_usuario}}</td> 
-                                  <td class="center-text-column">{{$waste->idTipoDesecho}}</td> 
-                                  <td class="center-text-column">{{$waste->cantidad}}</td> 
-                                  <td class="center-text-column">{{$waste->creti}}</td> 
-                                  <td class="center-text-column">{{$waste->descripcion}}</td> 
+                                  <td class="center-text-column">{{$waste->fecha}}</td>
+                                  <td class="center-text-column">{{$waste->hora}}</td>
+                                  <td class="center-text-column">{{$waste->id_usuario}}</td>
+                                  <td class="center-text-column">{{$waste->idTipoDesecho}}</td>
+                                  <td class="center-text-column">{{$waste->cantidad}}</td>
+                                  <td class="center-text-column">{{$waste->creti}}</td>
+                                  <td class="center-text-column">{{$waste->descripcion}}</td>
                                 </tr>
                               @endforeach
                             </tbody>

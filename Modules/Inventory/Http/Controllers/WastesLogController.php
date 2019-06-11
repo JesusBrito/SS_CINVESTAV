@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\Inventory\Entities\WasteLog as WasteLog;
+use Modules\Inventory\Entities\Unity as Unity;
+use Modules\Inventory\Entities\TypeWaste as TypeWaste;
+use app\User as User;
+
 
 class WastesLogController extends Controller
 {
@@ -17,11 +21,14 @@ class WastesLogController extends Controller
     {
        $this->middleware('auth');
     }
-    
+
     public function index()
     {
-        $wasteslog= WasteLog::all();
-        return view('inventory::BitacoraDesechos.bitacoraDesecho',["wastes"=>$wasteslog]);
+        $wastes = WasteLog::all();
+        $unities = Unity::all();
+        $typeWastes = TypeWaste::all();
+        $users = User::all();
+        return view('inventory::BitacoraDesechos.bitacoraDesecho',compact('wastes', 'unities', 'typeWastes','users'));
     }
 
     /**
