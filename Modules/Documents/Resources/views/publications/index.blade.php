@@ -62,7 +62,7 @@
                                                                     </button>
                                                                 </div>
                                                                 <div class="btn-group form-inline">
-                                                                    <a type="button" class="btn btn-sm btn-info" title="Ver documento" target="_blank" href="{{  url($publication->document) }}">
+                                                                    <a type="button" class="btn btn-sm btn-info" title="Ver documento" target="_blank" href="{{ $publication->document }}">
                                                                         <i class="fa fa-file"></i>
                                                                     </a>
                                                                 </div>

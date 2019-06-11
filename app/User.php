@@ -29,11 +29,9 @@ class User extends Authenticatable
         'nombre',
         'a_paterno',
         'a_materno',
-        'tipo_usuario',
         'celular',
         'fecha_nacimiento',
         'sexo',
-        'estatus'
     ];
 
     protected $appends = [

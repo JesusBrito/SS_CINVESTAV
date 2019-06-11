@@ -41,7 +41,6 @@
                             <th>Nombre(s)</th>
                             <th>Apellido paterno</th>
                             <th>Apellido materno</th>
-                            <th>Grupo</th>
                             <th>Fecha de nacimiento</th>
                             <th>Sexo</th>
                             <th>Teléfono</th>
@@ -51,16 +50,14 @@
                         </thead>
                         <tbody>
                           @foreach($users as $user)
-                          <tr role="row" class="odd">
+                          <tr role="row" class="odd" id="row-{{ $user->id }}">
                             <td class="sorting_1">{{ $user->tipoUsuario->nombre }}</td>
-                            <!--luego lo agrego, XD-->
                             <td>{{ $user->nombre }}</td>
                             <td>{{ $user->a_paterno }}</td>
                             <td>{{ $user->a_materno }}</td>
-                            <td>Grupo</td>
                             <td>{{ $user->fecha_nacimiento }}</td>
                             <td>{{ $user->sexo }}</td>
-                            <td>{{ $user->celular }}</td>
+                            <td>{{ $user->celular ?: '---' }}</td>
                             <td>{{ $user->email }}</td>
                             <td>
                               <div class="btn-group form-inline">
@@ -69,7 +66,7 @@
                                 </a>
                               </div>
                               <div class="btn-group form-inline">
-                                <button type="button" class="btn btn-sm btn-danger" id="btnEliminar" title="Eliminar">
+                                <button type="button" class="btn btn-sm btn-danger" title="Eliminar" data-url="{{ route('users.destroy', $user) }}" data-el="#row-{{ $user->id }}">
                                   <i class="fa fa-trash"></i>
                                 </button>
                               </div>

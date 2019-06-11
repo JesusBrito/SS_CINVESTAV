@@ -17,7 +17,7 @@ class UserController extends Controller
     */
   public function index()
   {
-    $users = User::all();
+    $users = User::where('id', '<>', auth()->user()->id)->get();
     return view('users.index', compact('users'));
   }
   /**
@@ -41,6 +41,33 @@ class UserController extends Controller
     */
   public function store(Request $request)
   {
+    $user = User::create($request->only([
+      'email',
+      'imagen',
+      'nombre',
+      'a_paterno',
+      'a_materno',
+      'tipo_usuario',
+      'celular',
+      'fecha_nacimiento',
+      'sexo',
+    ]));
+
+    $tipoUsuario = UserType::find($request->id_tipo_usuario);
+    $user->tipoUsuario()->associate($tipoUsuario);
+    $user->password = bcrypt($request->password);
+
+    if ($request->hasFile('imagen')) {
+      $user->imagen = $request->file('imagen')->store('profile');
+    }
+
+    if ($user->save()) {
+      alert()->success('Usuario modificado correctamente', 'OK')->autoclose(2500);
+      return redirect(route('users.show', $user));
+    } else {
+      alert()->error('Error al modificar los campos', 'Error')->autoclose(2500);
+      return back();
+    }
   }
   /**
     * Display the specified resource.
@@ -50,7 +77,7 @@ class UserController extends Controller
     */
   public function show(User $user)
   {
-    return view('users.show');
+    return view('users.show', compact('user'));
   }
   /**
     * Show the form for editing the specified resource.
@@ -74,7 +101,25 @@ class UserController extends Controller
     */
   public function update(Request $request, User $user)
   {
-    $user->update($request->all());
+    $user->update($request->only([
+        'email',
+        'imagen',
+        'nombre',
+        'a_paterno',
+        'a_materno',
+        'tipo_usuario',
+        'celular',
+        'fecha_nacimiento',
+        'sexo',
+    ]));
+
+    $tipoUsuario = UserType::find($request->id_tipo_usuario);
+    $user->tipoUsuario()->associate($tipoUsuario);
+
+    if ($request->password) {
+        $user->password = bcrypt($request->password);
+    }
+
     if ($request->hasFile('imagen')) {
       $user->imagen = $request->file('imagen')->store('profile');
     }
@@ -94,6 +139,7 @@ class UserController extends Controller
     */
   public function destroy(User $user)
   {
-    //
+    $user->delete();
+    return response()->json(['success' => true], 200);
   }
 }
