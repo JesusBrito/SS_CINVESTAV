@@ -190,13 +190,13 @@
             <li class="treeview">
                     <a href="#">
                       <i class="fa fa-trash-o"></i>
-                      <span>Categorías de desechos</span>
+                      <span>Tipos de desecho</span>
                       <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                       </span>
                     </a>
                     <ul class="treeview-menu" style="display: all;">
-                      <li class="active"><a href="{{url('inventory/wastes/create')}}"><i class="fa fa-plus-square"></i>Agregar categoría</a></li>
+                      <li class="active"><a href="{{url('inventory/wastes/create')}}"><i class="fa fa-plus-square"></i>Agregar tipo</a></li>
                       <li><a href="{{url('inventory/wastes')}}"><i class="fa fa-list-ul"></i>Listar categorías</a></li>
                     </ul>
             </li>

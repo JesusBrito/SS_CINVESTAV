@@ -39,17 +39,6 @@
                         </div>
                         <br>
                         <div class="form-group">
-                            <label class="control-label col-xs-2">Tipo:</label>
-                            <div class="col-xs-4">
-                              <input type="text" required class="form-control" name="txtTipo"  placeholder="Tipo">
-                            </div>
-                            <label class="control-label col-xs-2">Recipiente:</label>
-                            <div class="col-xs-4">
-                              <input type="text" required class="form-control" name="txtRecipiente"  placeholder="Recipiente">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="form-group">
                             <label class="control-label col-xs-2">Procedimiento:</label>
                             <div class="col-xs-4">
                               <textarea required class="form-control" rows="8" name="txtProcedimiento"  placeholder="Procedimiento"></textarea>
@@ -63,7 +52,7 @@
                               <label><input class="custom-control-label" type="checkbox" name="opt1"> Cubreboca</label>
 
 
-                              
+
                             </div>
                         </div>
                         <br>

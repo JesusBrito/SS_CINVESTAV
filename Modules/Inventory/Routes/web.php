@@ -27,6 +27,8 @@ Route::prefix('inventory')->group(function() {
     Route::resource('consumables','ConsumablesController');
     Route::resource('wastes','WastesController');
     Route::resource('wasteslog','WastesLogController');
+    Route::resource('providers','ProvidersController');
+    Route::resource('reactives','ReactivesController');
     Route::resource('usersInventory','UsersControllerInventory');
 
 
@@ -42,4 +44,6 @@ Route::prefix('inventory')->group(function() {
     Route::put('categoryConsumable/change-status', 'CategoryConsumablesController@changeStatus');
     Route::put('consumable/change-status', 'ConsumablesController@changeStatus');
     Route::put('waste/change-status', 'WastesController@changeStatus');
+    Route::put('providers/change-status', 'ProvidersController@changeStatus');
+    Route::put('reactives/change-status', 'ReactivesController@changeStatus');
 });
