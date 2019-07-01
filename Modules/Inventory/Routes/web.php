@@ -30,6 +30,7 @@ Route::prefix('inventory')->group(function() {
     Route::resource('providers','ProvidersController');
     Route::resource('reactives','ReactivesController');
     Route::resource('usersInventory','UsersControllerInventory');
+    Route::resource('equipments','EquipmentsController');
 
 
 
@@ -46,4 +47,5 @@ Route::prefix('inventory')->group(function() {
     Route::put('waste/change-status', 'WastesController@changeStatus');
     Route::put('providers/change-status', 'ProvidersController@changeStatus');
     Route::put('reactives/change-status', 'ReactivesController@changeStatus');
+    Route::put('equipments/change-status', 'EquipmentsController@changeStatus');
 });
