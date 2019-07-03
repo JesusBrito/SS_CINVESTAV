@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Inventory\Http\Controllers;
+namespace Modules\Documents\Http\Controllers;
 
 use App\Level;
 use App\User;
@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
 
-class UsersControllerInventory extends Controller
+class UsersControllerDocuments extends Controller
 {
   public function __construct()
   {
@@ -24,7 +24,7 @@ class UsersControllerInventory extends Controller
   {
     $users = User::all();
 
-    return view('inventory::usuarios.listarUsuarios', compact('users'));
+    return view('documents::usuarios.listarUsuarios', compact('users'));
   }
   /**
     * Show the form for creating a new resource.
@@ -37,7 +37,7 @@ class UsersControllerInventory extends Controller
     $action = route('usersInventory.store');
     $userTypes = UserType::all();
     $levels = Level::all();
-    return view('inventory::usuarios.crearEditarUsuario', compact('user', 'action', 'userTypes', 'levels'));
+    return view('documents::usuarios.crearEditarUsuario', compact('user', 'action', 'userTypes', 'levels'));
 
   }
   /**
@@ -57,7 +57,7 @@ class UsersControllerInventory extends Controller
     */
   public function show(User $user)
   {
-    return view('inventory::usuarios.mostrarUsuario', compact('user'));
+    return view('documents::usuarios.mostrarUsuario', compact('user'));
   }
   /**
     * Show the form for editing the specified resource.
@@ -70,7 +70,7 @@ class UsersControllerInventory extends Controller
     $userTypes = UserType::all();
     $action = route('usersInventory.update', $user);
     $levels = Level::all();
-    return view('inventory::usuarios.crearEditarUsuario', compact('user', 'action', 'userTypes', 'levels'));
+    return view('documents::usuarios.crearEditarUsuario', compact('user', 'action', 'userTypes', 'levels'));
   }
   /**
     * Update the specified resource in storage.
