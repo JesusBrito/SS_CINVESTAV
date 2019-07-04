@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 
-class DocumentsController extends Controller
+class CongresosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class DocumentsController extends Controller
      */
     public function index()
     {
-        return view('documents::congresos.index');
+        return view('documents::index');
     }
 
     /**
@@ -28,45 +28,52 @@ class DocumentsController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     * @param  Request $request
+     * @param Request $request
      * @return Response
      */
     public function store(Request $request)
     {
+        //
     }
 
     /**
      * Show the specified resource.
+     * @param int $id
      * @return Response
      */
-    public function show()
+    public function show($id)
     {
         return view('documents::show');
     }
 
     /**
      * Show the form for editing the specified resource.
+     * @param int $id
      * @return Response
      */
-    public function edit()
+    public function edit($id)
     {
         return view('documents::edit');
     }
 
     /**
      * Update the specified resource in storage.
-     * @param  Request $request
+     * @param Request $request
+     * @param int $id
      * @return Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
+        //
     }
 
     /**
      * Remove the specified resource from storage.
+     * @param int $id
      * @return Response
      */
-    public function destroy()
+    public function destroy($id)
     {
+        //
     }
 }
