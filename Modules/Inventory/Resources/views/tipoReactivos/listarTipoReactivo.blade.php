@@ -110,7 +110,6 @@
         var id = $(this).attr('data-id')
         $('#inputTipo').val($('#nombre'+id).html());
         $('#inputIdTipo').val(id);
-        console.log($(this))
         $('#modalEdit').modal('show');
       });
 
@@ -164,7 +163,6 @@
         }else{
           var txtEstatusTipo = "Habilidado"
         }
-        console.log($('#estatus'+id).html())
         $.ajax({
           type: "PUT",
           url: urlImport+"/inventory/typeReactive/change-status",

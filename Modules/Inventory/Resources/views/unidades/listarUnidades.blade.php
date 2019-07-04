@@ -33,7 +33,8 @@
                           <thead>
                             <tr class="table-title-edit">
                               <th class="col-md-2">Id</th>
-                              <th class="col-md-5">Unidad</th>
+                              <th class="col-md-3">Nombre largo</th>
+                              <th class="col-md-2">Nombre corto</th>
                               <th class="col-md-2">Estatus</th>
                               <th class="col-md-3">Opciones</th>
                             </tr>
@@ -42,7 +43,8 @@
                             @foreach ($unities as $unity)
                               <tr id="fila{{$unity->id}}">
                                 <td>{{$unity->id}}</td> 
-                                <td class="center-text-column" id="nombre{{$unity->id}}">{{$unity->unidad}}</td> 
+                                <td class="center-text-column" id="nombreLargo{{$unity->id}}">{{$unity->nombreLargo}}</td> 
+                                <td class="center-text-column" id="nombreCorto{{$unity->id}}">{{$unity->nombreCorto}}</td> 
                                 <td class="center-text-column" id="estatus{{$unity->id}}">@if($unity->estado == 1) Habilidado @else Deshabilitado @endif</td> 
                                 <td class="table-button-center">
                                   <a class="btn boton-editar openModalEdit" data-id="{{$unity->id}}" data-name="{{$unity->unidad}}"><i class="fa fa-edit fa-lg"></i></a>
@@ -66,7 +68,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="myModalLabel">Editar tipo de reactivo</h4>
+              <h4 class="modal-title" id="myModalLabel">Editar unidad de medida</h4>
             </div>
             <div class="modal-body">
 
@@ -76,15 +78,21 @@
                   <input name="_asset" value="{{ url('/') }}" type="hidden">
                     <div>
                       <div class="form-group">
-                        <label class="control-label col-xs-4">Id de la toxicidad:</label>
+                        <label class="control-label col-xs-4">Id de la unidad:</label>
                         <div class="col-xs-8">
                           <input type="text" class="form-control" readonly id="inputIdUnidad" placeholder="Id">
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="control-label col-xs-4">Nombre de la toxicidad:</label>
+                        <label class="control-label col-xs-4">Nombre largo:</label>
                         <div class="col-xs-8">
-                          <input type="text" class="form-control" id="inputUnidad" placeholder="Unidad">
+                          <input type="text" class="form-control" id="inputNombreLargo" placeholder="Nombre">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-xs-4">Nombre corto:</label>
+                        <div class="col-xs-8">
+                          <input type="text" class="form-control" id="inputNombreCorto" placeholder="Nombre">
                         </div>
                       </div>
                       <br>
@@ -108,17 +116,18 @@
 
       $(".openModalEdit").click(function () {
         var id = $(this).attr('data-id')
-        $('#inputUnidad').val($('#nombre'+id).html());
+        $('#inputNombreLargo').val($('#nombreLargo'+id).html());
+        $('#inputNombreCorto').val($('#nombreCorto'+id).html());
         $('#inputIdUnidad').val(id);
-        console.log($(this))
         $('#modalEdit').modal('show');
       });
 
       function editarUnidad(){
         var id = $('#inputIdUnidad').val()
-        var txtUnidad = $('#inputUnidad').val().trim()
+        var txtNombreLargo = $('#inputNombreLargo').val().trim()
+        var txtNombreCorto = $('#inputNombreCorto').val().trim()
 
-        if(!(txtUnidad.length > 0)){
+        if(!(txtNombreLargo.length > 0 || txtNombreCorto.length >0)){
           swal('¡Error!','No se puede enviar el campo vacío','error');
         }
         else{ 
@@ -140,17 +149,17 @@
                     dataType: "json",
                     data: {
                         "_token": _token,
-                        "txtUnidad": txtUnidad,
+                        "txtNombreLargo": txtNombreLargo,
+                        "txtNombreCorto": txtNombreCorto,
                         "txtIdUnidad": id
                     }
                     }).done(function(resp){
                         swal('Ok','Se editó correctamente el registro','info');
-                        $('#nombre'+id).html(txtUnidad)
+                        $('#nombreLargo'+id).html(txtNombreLargo)
+                        $('#nombreCorto'+id).html(txtNombreCorto)
                     }).fail(function(err) {
                         swal('¡Error!','No se pudo modificar el registro','error');
-                    }).error(function(data) {
-                    swal('¡Error!', 'No se pudo modificar el registro', "error");
-                })
+                    })
               }else{
                 swal('Cancelado','No se han realizado cambios','error')
               }
@@ -164,7 +173,6 @@
         }else{
           var txtEstatusUnidad = "Habilidado"
         }
-        console.log($('#estatus'+id).html())
         $.ajax({
           type: "PUT",
           url: urlImport+"/inventory/unity/change-status",

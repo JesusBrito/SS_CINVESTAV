@@ -16,8 +16,11 @@ class CreateTemperaturesTable extends Migration
         Schema::create('temperatures', function (Blueprint $table) {
             $table->increments('id');
             $table->string('temperatura',20);
+            $table->unsignedInteger('idUnidad');
             $table->tinyInteger('estado')->default(1);
             $table->timestamps();
+            $table->foreign('idUnidad')->references('id')->on('unities');
+
         });
     }
 

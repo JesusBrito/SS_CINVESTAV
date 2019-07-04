@@ -111,7 +111,6 @@
         var id = $(this).attr('data-id')
         $('#inputTemperatura').val($('#nombre'+id).html());
         $('#inputIdTemperatura').val(id);
-        console.log($(this))
         $('#modalEdit').modal('show');
       });
 
@@ -159,7 +158,6 @@
         }else{
           var txtEstatusTemperatura = "Habilidado"
         }
-        console.log($('#estatus'+id).html())
         $.ajax({
           type: "PUT",
           url: urlImport+"/inventory/temperature/change-status",

@@ -229,7 +229,6 @@
         }else{
           var txtEstatusConsumible = "Habilidado"
         }
-        console.log($('#estatus'+id).html())
         $.ajax({
           type: "PUT",
           url: urlImport+"/inventory/consumable/change-status",

@@ -110,7 +110,6 @@
         var id = $(this).attr('data-id')
         $('#inputToxicidad').val($('#nombre'+id).html());
         $('#inputIdToxicidad').val(id);
-        console.log($(this))
         $('#modalEdit').modal('show');
       });
 
@@ -164,7 +163,6 @@
         }else{
           var txtEstatusToxicidad = "Habilidado"
         }
-        console.log($('#estatus'+id).html())
         $.ajax({
           type: "PUT",
           url: urlImport+"/inventory/toxicity/change-status",

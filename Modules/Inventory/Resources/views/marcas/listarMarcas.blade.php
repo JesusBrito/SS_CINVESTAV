@@ -109,7 +109,6 @@
         var id = $(this).attr('data-id')
         $('#inputMarca').val($('#nombre'+id).html());
         $('#inputIdMarca').val(id);
-        console.log($(this))
         $('#modalEdit').modal('show');
       });
 
@@ -161,7 +160,6 @@
         }else{
           var txtEstatusMarca = "Habilidado"
         }
-        console.log($('#estatus'+id).html())
         $.ajax({
           type: "PUT",
           url: urlImport+"/inventory/brand/change-status",

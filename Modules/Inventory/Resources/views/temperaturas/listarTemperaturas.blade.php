@@ -33,7 +33,8 @@
                           <thead>
                             <tr class="table-title-edit">
                               <th class="col-md-2">Id</th>
-                              <th class="col-md-5">Temperatura</th>
+                              <th class="col-md-2">Temperatura</th>
+                              <th class="col-md-3">Unidad</th>
                               <th class="col-md-2">Estatus</th>
                               <th class="col-md-3">Opciones</th>
                             </tr>
@@ -43,6 +44,10 @@
                               <tr id="fila{{$temperature->id}}">
                                 <td>{{$temperature->id}}</td> 
                                 <td class="center-text-column" id="nombre{{$temperature->id}}">{{$temperature->temperatura}}</td> 
+                                <td class="center-text-column" id="unidad{{$temperature->id}}">{{$temperature->unity->nombreLargo}} - {{$temperature->unity->nombreCorto}}</td> 
+
+                                
+
                                 <td class="center-text-column" id="estatus{{$temperature->id}}">@if($temperature->estado == 1) Habilidado @else Deshabilitado @endif</td> 
                                 <td class="table-button-center">
                                   <a class="btn boton-editar openModalEdit" data-id="{{$temperature->id}}" data-name="{{$temperature->temperatura}}"><i class="fa fa-edit fa-lg"></i></a>
@@ -87,6 +92,17 @@
                           <input type="text" class="form-control" id="inputTemperatura" placeholder="Temperatura">
                         </div>
                       </div>
+                      <div class="form-group">
+                        <label class="control-label col-xs-4">Unidad:</label>
+                        <div class="col-xs-8">
+                          <select class="form-control" id="inputUnidad" name="txtUnidad">
+                            <option disabled select value="0">Seleccionar</option>
+                            @foreach ($unities as $unity)
+                                <option  value="{{$unity->id}}">{{$unity->nombreLargo}} - {{$unity->nombreCorto}}</option>
+                            @endforeach
+                          </select>
+                        </div>
+                    </div>
                       <br>
                     </div>
                 </form>
@@ -109,14 +125,21 @@
       $(".openModalEdit").click(function () {
         var id = $(this).attr('data-id')
         $('#inputTemperatura').val($('#nombre'+id).html());
+        $('#inputUnidad').val($('#unidad'+id).html());
+        $('#inputUnidad option').each(function() {
+            if($(this).text()==$('#unidad'+id).html())
+              $(this).prop("selected", true)
+            
+        });
         $('#inputIdTemperatura').val(id);
-        console.log($(this))
         $('#modalEdit').modal('show');
       });
 
       function editarTemperatura(){
         var id = $('#inputIdTemperatura').val()
         var txtTemperatura = $('#inputTemperatura').val().trim()
+        var txtUnidad = $('#inputUnidad option:selected').val().trim()
+        var txtUnidadToShow = $('#inputUnidad option:selected').text().trim()
 
         if(!(txtTemperatura.length > 0)){
           swal('¡Error!','No se puede enviar el campo vacío','error');
@@ -141,11 +164,13 @@
                     data: {
                         "_token": _token,
                         "txtTemperatura": txtTemperatura,
+                        "txtUnidad" : txtUnidad,
                         "txtIdTemperatura": id
                     }
                     }).done(function(resp){
                         swal('Ok','Se editó correctamente el registro','info');
                         $('#nombre'+id).html(txtTemperatura)
+                        $('#unidad'+id).html(txtUnidadToShow)
                     }).fail(function(err) {
                         swal('¡Error!','No se pudo modificar el registro','error');
                     }).error(function(data) {
@@ -164,7 +189,6 @@
         }else{
           var txtEstatusTemperatura = "Habilidado"
         }
-        console.log($('#estatus'+id).html())
         $.ajax({
           type: "PUT",
           url: urlImport+"/inventory/temperature/change-status",

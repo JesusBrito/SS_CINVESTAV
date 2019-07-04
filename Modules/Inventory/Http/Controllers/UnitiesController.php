@@ -41,7 +41,8 @@ class UnitiesController extends Controller
     public function store(Request $request)
     {
         $unity= new Unity;
-        $unity->unidad = $request->txtUnidad;
+        $unity->nombreLargo = $request->txtNombreLargo;
+        $unity->nombreCorto = $request->txtNombreCorto;
         if($unity->save()){
             alert()->success('El registro se agregó correctamente', 'OK')->autoclose(2500);
         }else{
@@ -76,7 +77,8 @@ class UnitiesController extends Controller
     public function update(Request $request, $id)
     {
         $unity = Unity::find($id);
-        $unity->unidad = $request->txtUnidad;
+        $unity->nombreLargo = $request->txtNombreLargo;
+        $unity->nombreCorto = $request->txtNombreCorto;
 
         if($unity->save()){
             return response()->json(array('success' => true), 200);

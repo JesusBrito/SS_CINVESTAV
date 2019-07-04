@@ -7,6 +7,8 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 
 use Modules\Inventory\Entities\Temperature as Temperature;
+use Modules\Inventory\Entities\Unity as Unity;
+
 
 class TemperaturesController extends Controller
 {
@@ -22,7 +24,8 @@ class TemperaturesController extends Controller
     public function index()
     {
         $temperatures= Temperature::all();
-        return view('inventory::temperaturas.listarTemperaturas',compact('temperatures'));
+        $unities= Unity::all();
+        return view('inventory::temperaturas.listarTemperaturas',compact('temperatures', 'unities'));
     }
 
     /**
@@ -31,7 +34,8 @@ class TemperaturesController extends Controller
      */
     public function create()
     {
-        return view('inventory::temperaturas.agregarTemperatura');
+        $unities= Unity::all();
+        return view('inventory::temperaturas.agregarTemperatura',compact('unities'));
     }
 
     /**
@@ -43,12 +47,14 @@ class TemperaturesController extends Controller
     {
         $temperature= new Temperature;
         $temperature->temperatura = $request->txtTemperatura;
+        $temperature->idUnidad = $request->txtUnidad;
         if($temperature->save()){
             alert()->success('El registro se agregó correctamente', 'OK')->autoclose(2500);
         }else{
             alert()->error('Error al agregar el registro', 'Error')->autoclose(2500);
         }
-        return view('inventory::temperaturas.agregarTemperatura');
+        $unities= Unity::all();
+        return view('inventory::temperaturas.agregarTemperatura',compact('unities'));
     }
 
     /**
@@ -78,6 +84,7 @@ class TemperaturesController extends Controller
     {
         $temperature = Temperature::find($id);
         $temperature->temperatura = $request->txtTemperatura;
+        $temperature->idUnidad = $request->txtUnidad;
         if($temperature->save()){
             return response()->json(array('success' => true), 200);
         }else{

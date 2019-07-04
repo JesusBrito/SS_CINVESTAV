@@ -109,7 +109,6 @@
         var id = $(this).attr('data-id')
         $('#inputUbicacion').val($('#nombre'+id).html());
         $('#inputIdUbicacion').val(id);
-        console.log($(this))
         $('#modalEdit').modal('show');
       });
 
@@ -163,7 +162,6 @@
         }else{
           var txtEstatusUbicacion = "Habilidado"
         }
-        console.log($('#estatus'+id).html())
         $.ajax({
           type: "PUT",
           url: urlImport+"/inventory/location/change-status",

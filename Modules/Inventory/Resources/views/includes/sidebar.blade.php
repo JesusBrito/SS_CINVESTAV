@@ -204,7 +204,7 @@
             <li class="treeview">
                     <a href="#">
                       <i class="fa fa-sort-numeric-asc"></i>
-                      <span>Unidades de volumen</span>
+                      <span>Unidades de medida</span>
                       <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                       </span>

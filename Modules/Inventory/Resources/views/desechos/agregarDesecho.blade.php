@@ -30,8 +30,16 @@
                         <div class="form-group">
                             <label class="control-label col-xs-2">Categoría:</label>
                             <div class="col-xs-4">
-                              <input type="text" required class="form-control" name="txtCategoria"  placeholder="Categoría">
+                              <select class="form-control">
+                                <option disabled select value="0">Seleccionar</option>
+                                <option value="1">Biológicos</option>
+                                <option value="2">Químicos</option>
+                                <option value="3">Radioactivos</option>
+                                <option value="3">Punzo Cortantes</option>
+                                <option value="4">Otro</option>
+                              </select>
                             </div>
+
                             <label class="control-label col-xs-2">Horario:</label>
                             <div class="col-xs-4">
                               <input type="time" required class="form-control" name="txtHorario"  placeholder="Horario">
@@ -40,20 +48,38 @@
                         <br>
                         <div class="form-group">
                             <label class="control-label col-xs-2">Procedimiento:</label>
-                            <div class="col-xs-4">
-                              <textarea required class="form-control" rows="8" name="txtProcedimiento"  placeholder="Procedimiento"></textarea>
+                            <div class="col-xs-4 container-text">
+                              <textarea required class="form-control textarea-description" rows="10" name="txtProcedimiento"  placeholder="Procedimiento"></textarea>
                             </div>
-                            <label class="control-label col-xs-2">Equipo de Seguridad:</label>
-                            <br>
-                            <div class="col-xs-4">
-                              <label><input class="custom-control-label" type="checkbox" name="opt1"> Guantes</label><br><br>
-                              <label><input class="custom-control-label" type="checkbox" name="opt1"> Bata</label><br><br>
-                              <label><input class="custom-control-label" type="checkbox" name="opt1"> Googles</label><br><br>
-                              <label><input class="custom-control-label" type="checkbox" name="opt1"> Cubreboca</label>
-
-
-
+                            
+                            <label class="control-label col-xs-2">Días de entrega:</label>
+                            <div class="weekDays-selector col-xs-4">
+                              <input type="checkbox" id="weekday-mon" class="weekday" />
+                              <label for="weekday-mon">L</label>
+                              <input type="checkbox" id="weekday-tue" class="weekday" />
+                              <label for="weekday-tue">M</label>
+                              <input type="checkbox" id="weekday-wed" class="weekday" />
+                              <label for="weekday-wed">Mx</label>
+                              <input type="checkbox" id="weekday-thu" class="weekday" />
+                              <label for="weekday-thu">J</label>
+                              <input type="checkbox" id="weekday-fri" class="weekday" />
+                              <label for="weekday-fri">V</label>
+                              <input type="checkbox" id="weekday-sat" class="weekday" />
+                              <label for="weekday-sat">S</label>
+                              <input type="checkbox" id="weekday-sun" class="weekday" />
+                              <label for="weekday-sun">D</label>
                             </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label class="control-label col-xs-2">Equipo de Seguridad:</label>
+                          <br>
+                          <div class="col-xs-4">
+                            <label><input class="custom-control-label" type="checkbox" name="opt1"> Guantes</label><br><br>
+                            <label><input class="custom-control-label" type="checkbox" name="opt1"> Bata</label><br><br>
+                            <label><input class="custom-control-label" type="checkbox" name="opt1"> Googles</label><br><br>
+                            <label><input class="custom-control-label" type="checkbox" name="opt1"> Cubreboca</label>
+                          </div>
                         </div>
                         <br>
                         <div class="form-group">

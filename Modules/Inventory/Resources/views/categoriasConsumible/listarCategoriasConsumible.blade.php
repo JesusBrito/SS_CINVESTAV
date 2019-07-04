@@ -110,7 +110,6 @@
         var id = $(this).attr('data-id')
         $('#inputCategoria').val($('#nombre'+id).html());
         $('#inputIdCategoria').val(id);
-        console.log($(this))
         $('#modalEdit').modal('show');
       });
 
@@ -162,7 +161,6 @@
         }else{
           var txtEstatusCategoria = "Habilidado"
         }
-        console.log($('#estatus'+id).html())
         $.ajax({
           type: "PUT",
           url: urlImport+"/inventory/categoryConsumable/change-status",

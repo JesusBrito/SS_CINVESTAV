@@ -4,7 +4,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-          Agregar unidad de volumen
+          Agregar unidad de medida
           <small>Optional description</small>
         </h1>
         <ol class="breadcrumb">
@@ -28,9 +28,16 @@
                   <div class="box-body">
                     <div class="col-md-8 col-md-offset-2">
                         <div class="form-group">
-                            <label class="control-label col-xs-4">Nombre de la unidad:</label>
+                            <label class="control-label col-xs-4">Nombre largo:</label>
                             <div class="col-xs-8">
-                              <input type="text" required class="form-control" name="txtUnidad" placeholder="Unidad">
+                              <input type="text" required class="form-control" name="txtNombreLargo" placeholder="Nombre largo">
+                            </div>
+                            <br>
+                            <br>
+                            <br>
+                            <label class="control-label col-xs-4">Nombre corto o simbolo:</label>
+                            <div class="col-xs-8">
+                              <input type="text" required class="form-control" name="txtNombreCorto" placeholder="Nombre corto">
                             </div>
                         </div>
                         <br>

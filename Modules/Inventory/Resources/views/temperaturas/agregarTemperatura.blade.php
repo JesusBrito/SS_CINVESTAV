@@ -33,6 +33,17 @@
                               <input type="text" required class="form-control" name="txtTemperatura" placeholder="Temperatura">
                             </div>
                         </div>
+                          <div class="form-group">
+                            <label class="control-label col-xs-4">Unidad:</label>
+                            <div class="col-xs-8">
+                              <select class="form-control" name="txtUnidad">
+                                <option disabled select value="0">Seleccionar</option>
+                                @foreach ($unities as $unity)
+                                    <option value="{{$unity->id}}">{{$unity->nombreLargo}} - {{$unity->nombreCorto}}</option>
+                                @endforeach
+                              </select>
+                            </div>
+                        </div>
                         <br>
                         <div class="form-group">
                           <div class="col-md-2 col-md-offset-10  col-sm-2 col-sm-offset-10 col-xs-2 col-xs-offset-10">

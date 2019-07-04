@@ -66,7 +66,7 @@
                               <select class="form-control">
                                 <option disabled select value="0">Seleccionar</option>
                                 @foreach ($unities as $unity)
-                                    <option value="{{$unity->id}}">{{$unity->unidad}}</option>
+                                    <option value="{{$unity->id}}">{{$unity->nombreCorto}}</option>
                                 @endforeach
                               </select>
                             </div>
