@@ -27,4 +27,5 @@ Route::prefix('documents')->group(function () {
     Route::resource('patents','PatentController');
     Route::resource('users','UsersControllerDocuments');
     Route::resource('conferencias','ConferenciasController');
+    Route::resource('congresos','CongresosController');
 });

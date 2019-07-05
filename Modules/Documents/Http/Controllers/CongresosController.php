@@ -14,7 +14,7 @@ class CongresosController extends Controller
      */
     public function index()
     {
-        return view('documents::index');
+        return view('documents::congresos.index');
     }
 
     /**
@@ -23,7 +23,10 @@ class CongresosController extends Controller
      */
     public function create()
     {
-        return view('documents::create');
+        $congresos =null;
+        $action = route('groups.store');
+        return view('documents::congresos.form', compact('congresos', 'action'));
+
     }
 
     /**

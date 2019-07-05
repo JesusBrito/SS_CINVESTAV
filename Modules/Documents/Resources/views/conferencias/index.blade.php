@@ -20,7 +20,7 @@
       <div class="box box-warning">
         <div class="box-header with-border">
           <h3 class="box-title">Conferencias</h3>
-          <a class="btn btn-primary" href="{{ route('groups.create') }}" title="Agregar">
+          <a class="btn btn-primary" href="{{ route('conferencias.create') }}" title="Agregar">
             <i class="fa fa-plus"></i> Agregar
           </a>
         </div>

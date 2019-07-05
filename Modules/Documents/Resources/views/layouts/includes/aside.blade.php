@@ -38,11 +38,11 @@
             <li><a href="#"><i class="fa fa-users"></i> <span>Colaboraciones</span></a></li>
             <li><a href="#"><i class="fa fa-pencil-square-o"></i> <span>Cursos</span></a></li>
             <li><a href="#"><i class="fa fa-puzzle-piece"></i> <span>Convenios</span></a></li>
-            <li><a href="#"><i class="fa fa-calendar"></i> <span>Conferencias</span></a></li>
+            <li @linkactive('conferencias.index')><a href="{{ route('conferencias.index') }}"><i class="fa fa-certificate"></i> <span>Conferencias</span></a></li>
             <li @linkactive('patents.index')><a href="{{ route('patents.index') }}"><i class="fa fa-certificate"></i> <span>Patentes</span></a></li>
             <li><a href="#"><i class="fa fa-graduation-cap"></i> <span>Tesis</span></a></li>
             <li @linkactive('publications.index')><a href="{{ route('publications.index') }}"><i class="fa fa-file-text"></i> <span>Publicaciones</span></a></li>
-            <li><a href="#"><i class="fa fa-institution"></i> <span>Congresos</span></a></li>
+            <li @linkactive('congresos.index')><a href="{{ route('congresos.index') }}"><i class="fa fa-file-text"></i> <span>Congresos</span></a></li>
         </ul>
         <!-- /.sidebar-menu -->
     </section>
