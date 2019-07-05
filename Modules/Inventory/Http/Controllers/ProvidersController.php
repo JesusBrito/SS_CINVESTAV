@@ -23,7 +23,7 @@ class ProvidersController extends Controller
     public function index()
     {
         $providers= Provider::all();
-        return view('inventory::Proveedores.listaProveedor',compact('providers'));
+        return view('inventory::proveedores.listarProveedores',compact('providers'));
     }
 
     /**
@@ -32,7 +32,7 @@ class ProvidersController extends Controller
      */
     public function create()
     {
-        return view('inventory::create');
+        return view('inventory::proveedores.agregarProveedor');
     }
 
     /**
@@ -58,7 +58,7 @@ class ProvidersController extends Controller
             alert()->error('Error al agregar el registro', 'Error')->autoclose(2500);
         }
         //return view('inventory::proveedores.formularioProveedores');
-        return view('inventory::Proveedores.listaProveedor');
+        return view('inventory::proveedores.listarProveedores');
 
     }
 

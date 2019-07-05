@@ -96,8 +96,8 @@
                       </span>
                     </a>
                     <ul class="treeview-menu" style="display: all;">
-                      <li class="active"><a href="#"><i class="fa fa-plus-square"></i>Agregar proveedor</a></li>
-                      <li><a href="{{url('inventory/providers')}}"><i class="fa fa-list-ul"></i>Listar proveedores</a></li>
+                      <li class="active"><a href="{{route('providers.create')}}"><i class="fa fa-plus-square"></i>Agregar proveedor</a></li>
+                      <li><a href="{{route('providers.index')}}"><i class="fa fa-list-ul"></i>Listar proveedores</a></li>
                       <li><a href="#"><i class="fa fa-list-ul"></i>Detalle proveedores</a></li>
                     </ul>
             </li>
