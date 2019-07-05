@@ -44,20 +44,23 @@
               <div class="form-group">
                 <label class="control-label col-xs-4">Número exterior:</label>
                 <div class="col-xs-8">
-                  <input type="text" required class="form-control" name="txtNumeroExterior" placeholder="Número exterior">
+                  <input type="text" required class="form-control" name="txtNumeroExterior"
+                    placeholder="Número exterior">
                 </div>
               </div>
               <div class="form-group">
                 <label class="control-label col-xs-4">Número interior:</label>
                 <div class="col-xs-8">
-                  <input type="text" required class="form-control" name="txtNumeroInterior" placeholder="Número interior">
+                  <input type="text" required class="form-control" name="txtNumeroInterior"
+                    placeholder="Número interior">
                 </div>
               </div>
 
               <div class="form-group">
                 <label class="control-label col-xs-4">Código postal:</label>
                 <div class="col-xs-8">
-                  <input type="text" maxlength="5" required class="form-control" id="txtCp" name="txtCp" placeholder="Código postal">
+                  <input type="text" maxlength="5" required class="form-control" id="txtCp" name="txtCp"
+                    placeholder="Código postal">
                 </div>
               </div>
 
@@ -73,23 +76,50 @@
               <div class="form-group">
                 <label class="control-label col-xs-4">Municipio:</label>
                 <div class="col-xs-8">
-                  <input type="text" required class="form-control" id="txtMunicipio" name="txtMunicipio" disabled placeholder="Municipio">
+                  <input type="text" required class="form-control" id="txtMunicipio" name="txtMunicipio" disabled
+                    placeholder="Municipio">
                 </div>
               </div>
 
               <div class="form-group">
                 <label class="control-label col-xs-4">Estado:</label>
                 <div class="col-xs-8">
-                  <input type="text" required class="form-control" id="txtEstado" name="txtEstado" disabled placeholder="Estado">
+                  <input type="text" required class="form-control" id="txtEstado" name="txtEstado" disabled
+                    placeholder="Estado">
                 </div>
               </div>
               <br>
-              <div class="form-group">
-                <div class="col-md-2 col-md-offset-10  col-sm-2 col-sm-offset-10 col-xs-2 col-xs-offset-10">
-                  <button type="submit" class="btn btn-primary">Agregar</button>
-                </div>
-              </div>
+              <br>
             </div>
+            <div class="col-md-12 table-responsive no-padding">
+                    <h3>Lista de contactos</h3>
+                    <div class="form-group">
+                            <div class="col-md-2 col-md-offset-10  col-sm-2 col-sm-offset-10 col-xs-2 col-xs-offset-10">
+                              <button class="btn btn-primary">Agregar contacto</button>
+                            </div>
+                          </div>
+              <table id="tableToxicidades" class="table table-striped table-bordered">
+                <thead>
+                  <tr class="table-title-edit">
+                    <th class="col-md-4">Nombre</th>
+                    <th class="col-md-2">Telefono</th>
+                    <th class="col-md-2">Email</th>
+                    <th class="col-md-2">Opciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr id="fila">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td class="table-button-center">
+                      <a class="btn boton-eliminar" onclick="eliminarFila()"><i class="fa fa-trash fa-lg"></i></a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
           </div>
         </form>
       </div>
@@ -100,7 +130,7 @@
 <script>
   var _token = $('input[name="_token"]').val()
   var urlImport = $('input[name="_asset"]').val()
-  
+
   var typingTimer;                //timer identifier
   var doneTypingInterval = 2000;  //time in ms (5 seconds)
 
@@ -120,7 +150,7 @@
 
   function obtenerDatosDireccion(){
     var txtCp = $('#txtCp').val()
-    if(txtCp.length>5){
+    if(txtCp.length==5){
       $.ajax({
         type: "GET",
         url: `https://api-codigos-postales.herokuapp.com/v2/codigo_postal/${txtCp}`,
