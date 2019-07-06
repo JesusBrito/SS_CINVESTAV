@@ -1,4 +1,4 @@
 @extends('documents::layouts.app')
-@section ('content')
-@include('users/index')
-@endsection
+    @section ('content')
+        @include('users/index')
+    @endsection

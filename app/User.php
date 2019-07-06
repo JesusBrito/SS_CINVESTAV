@@ -2,16 +2,12 @@
 
 namespace App;
 
-use App\UserType;
-use App\LevelDetail;
-
-use Modules\Documents\Entities\Group;
-use Modules\Documents\Entities\Patent;
+use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Modules\Documents\Entities\{ Group, Patent };
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Database\Eloquent\Relations\{ BelongsTo, HasOne, HasMany};
 
 class User extends Authenticatable
 {
@@ -47,8 +43,18 @@ class User extends Authenticatable
         'password',
     ];
 
-    // ACCESSORS
-    public function getNombreCompletoAttribute()
+    protected $with = [
+        'userType',
+        'levelDetail',
+    ];
+
+    /*
+    |--------------------------------------------------------------------------
+    | Accessors and Mutators
+    |--------------------------------------------------------------------------
+    */
+
+    public function getNombreCompletoAttribute() : string
     {
         return "{$this->nombre} {$this->a_paterno}";
     }
@@ -59,23 +65,28 @@ class User extends Authenticatable
         return Storage::url($url);
     }
 
-    // RELATIONS
-    public function tipoUsuario()
+    /*
+    |--------------------------------------------------------------------------
+    | Eloquent Model Relationships
+    |--------------------------------------------------------------------------
+    */
+
+    public function userType() : BelongsTo
     {
         return $this->belongsTo(UserType::class, 'id_tipo_usuario');
     }
 
-    public function grupoACargo()
+    public function group() : HasOne
     {
         return $this->hasOne(Group::class, 'id_profesor');
     }
 
-    public function detalleNiveles()
+    public function levelDetail() : HasMany
     {
         return $this->hasMany(LevelDetail::class, 'id_usuario');
     }
 
-    public function patentes()
+    public function patent() : HasMany
     {
         return $this->hasMany(Patent::class, 'id_autor');
     }

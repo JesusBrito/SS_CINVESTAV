@@ -49,7 +49,7 @@
                         <tbody>
                           @foreach($users as $user)
                           <tr role="row" class="odd" id="row-{{ $user->id }}">
-                            <td class="sorting_1">{{ $user->tipoUsuario->nombre }}</td>
+                            <td class="sorting_1">{{ $user->userType->nombre }}</td>
                             <td>{{ $user->nombre }}</td>
                             <td>{{ $user->a_paterno }}</td>
                             <td>{{ $user->a_materno }}</td>

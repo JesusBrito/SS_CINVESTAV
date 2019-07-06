@@ -40,15 +40,17 @@
             <!-- /.box-header -->
             <div class="box-body">
               <strong><i class="fa fa-book margin-r-5"></i>Educación</strong>
-
-              @foreach($user->detalleNiveles() as $detail)
+              @foreach($user->levelDetail as $detail)
                     <p class="text-muted">
                         <i class="fa fa-mortar-board margin-r-5"></i>
                         {{ $detail->carrera }} en {{ $detail->escuela }}
                     </p>
                     <p class="text-muted">
-                        Generación: {{ $detail->ingreso }} - {{ $detail->egreso }}
+                        Generación: {{ $detail->entrace }} - {{ $detail->ends }}
                     </p>
+                  <p class="text-muted">
+                      Estatus: {{ $detail->estatus }}
+                  </p>
                 @endforeach
               <hr>
 

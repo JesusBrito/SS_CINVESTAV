@@ -2,76 +2,72 @@
 
 namespace Modules\Documents\Http\Controllers;
 
-use App\Level;
-use App\User;
-use App\UserType;
 use Illuminate\Http\Request;
+use App\{ User, Level, UserType };
 use Illuminate\Routing\Controller;
 
 
 class UsersControllerDocuments extends Controller
 {
-  public function __construct()
-  {
+    public function __construct()
+    {
     $this->middleware('auth');
-  }
-  /**
-    * Display a listing of the resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
-  public function index()
-  {
-    $users = User::all();
+    }
 
-    return view('documents::usuarios.listarUsuarios', compact('users'));
-  }
-  /**
-    * Show the form for creating a new resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
-  public function create()
-  {
-    $user = null;
-    $action = route('usersInventory.store');
-    $userTypes = UserType::all();
-    $levels = Level::all();
-    return view('documents::usuarios.crearEditarUsuario', compact('user', 'action', 'userTypes', 'levels'));
+    /**
+     * @return \Illuminate\View\View
+     */
+    public function index()
+    {
+        $users = User::all();
 
-  }
-  /**
+        return view('documents::usuarios.listarUsuarios', compact('users'));
+    }
+
+
+    /**
+     * @return \Illuminate\View\View
+     */
+    public function create()
+    {
+        $user = null;
+        $action = route('usersInventory.store');
+        $userTypes = UserType::all();
+        $levels = Level::all();
+        return view('documents::usuarios.crearEditarUsuario', compact('user', 'action', 'userTypes', 'levels'));
+    }
+
+    /**
     * Store a newly created resource in storage.
     *
     * @param  \Illuminate\Http\Request  $request
     * @return \Illuminate\Http\Response
     */
-  public function store(Request $request)
-  {
-  }
-  /**
-    * Display the specified resource.
-    *
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
-  public function show(User $user)
-  {
-    return view('documents::usuarios.mostrarUsuario', compact('user'));
-  }
-  /**
-    * Show the form for editing the specified resource.
-    *
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
-  public function edit(User $user)
-  {
-    $userTypes = UserType::all();
-    $action = route('usersInventory.update', $user);
-    $levels = Level::all();
-    return view('documents::usuarios.crearEditarUsuario', compact('user', 'action', 'userTypes', 'levels'));
-  }
+    public function store(Request $request)
+    {
+    }
+
+    /**
+     * @param  \App\User  $user
+     * @return \Illuminate\View\View
+     */
+    public function show(User $user)
+    {
+        return view('documents::usuarios.mostrarUsuario', compact('user'));
+    }
+
+    /**
+     * @param  User  $user
+     * @return \Illuminate\View\View
+     */
+    public function edit(User $user)
+    {
+        $userTypes = UserType::all();
+        $action = route('usersInventory.update', $user);
+        $levels = Level::all();
+        return view('documents::usuarios.crearEditarUsuario', compact('user', 'action', 'userTypes', 'levels'));
+    }
+
   /**
     * Update the specified resource in storage.
     *

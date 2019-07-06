@@ -2,9 +2,8 @@
 
 namespace App;
 
-use App\User;
-use App\Level;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class LevelDetail extends Model
 {
@@ -16,12 +15,40 @@ class LevelDetail extends Model
         'estatus',
     ];
 
-    public function user()
+    /*
+    |--------------------------------------------------------------------------
+    | Accessors and Mutators
+    |--------------------------------------------------------------------------
+    */
+
+    public function getEntraceAttribute()
+    {
+        return $this->fecha_inicio;
+    }
+
+    public function getEndsAttribute()
+    {
+        return $this->fecha_fin;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Eloquent Model Relationships
+    |--------------------------------------------------------------------------
+    */
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user() : BelongsTo
     {
         return $this->belongsTo(User::class, 'id_usuario');
     }
 
-    public function nivel()
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function nivel() : BelongsTo
     {
         return $this->belongsTo(Level::class, 'id_nivel');
     }
