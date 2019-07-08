@@ -132,7 +132,7 @@
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
               aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Editar Proveedor</h4>
+          <h4 class="modal-title" id="myModalLabel">Agregar contacto</h4>
         </div>
         <div class="modal-body">
           <form action="">
@@ -142,17 +142,17 @@
               <div id="fgNombre" class="form-group">
                 <label>Nombre:</label>
                   <input type="text" class="form-control" id="inputNombre" placeholder="Nombre del contacto">
-                  <span id="spNombre" class="help-block">Please correct the error</span>
+                  <span id="spNombre" class="help-block">Campo vacío</span>
               </div>
               <div id="fgTelefono" class="form-group">
                 <label>Telefono:</label>
                   <input type="tel" class="form-control" id="inputTelefono" placeholder="Teléfono">
-                  <span id="spTelefono" class="help-block">Please correct the error</span>
+                  <span id="spTelefono" class="help-block">Campo vacío</span>
               </div>
               <div id="fgEmail" class="form-group">
                 <label>Email:</label>
                   <input type="email" class="form-control" id="inputEmail" placeholder="Correo electrónico">
-                  <span id="spEmail" class="help-block">No es un correo electrónico valido</span>
+                  <span id="spEmail" class="help-block">Campo vacío</span>
               </div>
               <br>
             </div>
@@ -173,6 +173,17 @@
   var typingTimer
   var doneTypingInterval = 2000
   var counter = 1
+  var boolNombre = false
+  var boolTelefono = false
+  var boolEmail = false
+
+  $( "#spTelefono" ).hide()
+  $( "#spNombre" ).hide()
+  $( "#spEmail" ).hide()
+
+  $( "#fgNombre" ).removeClass( "has-error" );
+  $( "#fgEmail" ).removeClass( "has-error" );
+  $( "#fgTelefono" ).removeClass( "has-error" );
 
   $(".openModalAdd").click(function () {
         var id = $(this).attr('data-id')
@@ -221,43 +232,91 @@
     }
   }
 
+  $('#inputNombre').keyup(function(){
+    if(validaNombre($('#inputNombre').val())){
+        $( "#fgNombre" ).removeClass( "has-error" );
+        $( "#spNombre" ).hide()
+        boolNombre = true
+    }else{
+        $( "#fgNombre" ).addClass( "has-error" );
+        $( "#spNombre" ).show()
+        $( "#spNombre" ).html("Ingrese un nombre valido")
+        boolNombre = false
+    }
+  });
+
+  $('#inputTelefono').keyup(function(){
+    if(validaTelefono($('#inputTelefono').val())){
+        $( "#fgTelefono" ).removeClass( "has-error" );
+        $( "#spTelefono" ).hide()
+        boolTelefono = true
+    }else{
+        $( "#fgTelefono" ).addClass( "has-error" );
+        $( "#spTelefono" ).show()
+        $( "#spTelefono" ).html("Ingrese un telefono valido")
+        boolTelefono = false
+    }
+  });
+
+  $('#inputEmail').keyup(function(){
+    if(validaEmail($('#inputEmail').val())){
+        $( "#fgEmail" ).removeClass( "has-error" );
+        $( "#spEmail" ).hide()
+        boolEmail = true
+    }else{
+        $( "#fgEmail" ).addClass( "has-error" );
+        $( "#spEmail" ).show()
+        $( "#spEmail" ).html("Ingrese un email valido")
+        boolEmail = false
+    }
+  });
+
   function agregarContacto(){
     var nombre = $('#inputNombre').val()
     var telefono = $('#inputTelefono').val()
     var email = $('#inputEmail').val()
-    var fila = `<tr id="fila${counter}"><td>${nombre}</td><td>${telefono}</td><td>${email}</td><td class="table-button-center"> <a class="btn boton-eliminar" onclick="eliminarFila(${counter})"><i class="fa fa-trash fa-lg"></i></a> </td></tr>`
-  
-    if(!nombre){
-      $( "#fgNombre" ).addClass( "has-error" );
-    }else{
-      $( "#fgNombre" ).removeClass( "has-error" );
-    }
-    
-    if(!telefono){
-      $( "#fgTelefono" ).addClass( "has-error" );
-    }else{
-      $( "#fgTelefono" ).removeClass( "has-error" );
-    }
-
-    if(!email){
-      $( "#fgEmail" ).addClass( "has-error" );
-    }else{
-      $( "#fgEmail" ).removeClass( "has-error" );
-    }
+    var fila = `<tr id="fila${counter}"><td name>${nombre}</td><td>${telefono}</td><td>${email}</td><td class="table-button-center"> <a class="btn boton-eliminar" onclick="eliminarFila(${counter})"><i class="fa fa-trash fa-lg"></i></a> </td></tr>`
 
     if(!nombre || !telefono || !email){
       swal('Error','Debe llenar todos los campos','warning');
+    }else if(!boolEmail||!boolTelefono||!boolEmail){
+        swal('Error','Revise los datos ingresados','warning');
     }else{
       document.querySelector('#contactProviders').insertAdjacentHTML('afterend', fila)
       $('#inputNombre').val("")
       $('#inputTelefono').val("")
-      $('#inputEmail').val("")    
+      $('#inputEmail').val("")
     }
   }
 
+  function validaEmail(email) {
+    emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i
+    if (emailRegex.test(email)){
+      return true
+    }else {
+      return false
+    }
+  }
+
+  function validaTelefono(telefono) {
+    telRegex = new RegExp("^[0-9]{10}$")
+    if (telRegex.test(telefono)){
+      return true
+    }else {
+      return false
+    }
+  }
+
+  function validaNombre(nombre) {
+    nombreRegex = /^([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\']+[\s])+([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\'])+[\s]?([A-Za-zÁÉÍÓÚñáéíóúÑ]{0}?[A-Za-zÁÉÍÓÚñáéíóúÑ\'])?$/i
+    if (nombreRegex.test(nombre)){
+      return true
+    }else {
+      return false
+    }
+  }
   function eliminarFila(idFila){
     $("#fila"+idFila).remove()
-    $('#r2').remove(); 
   }
 
 </script>
