@@ -7,6 +7,7 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 
 use Modules\Inventory\Entities\Provider as Provider;
+use Modules\Inventory\Entities\ContactProvider as ContactProvider;
 
 class ProvidersController extends Controller
 {
@@ -42,24 +43,36 @@ class ProvidersController extends Controller
      */
     public function store(Request $request)
     {
+        $cont = 0;
         $provider= new Provider;
-        $provider->nombreEmpresa = $request->nombreEmpresa;
-        $provider->calle = $request->calle;
-        $provider->colonia = $request->colonia;
-        $provider->numExterior = $request->numExterior;
-        $provider->numInterior = $request->numInterior;
-        $provider->alcMun = $request->alcMun;
-        $provider->estadoRep = $request->estadoRep;
-        $provider->cp = $request->cp;
+        $provider->nombreEmpresa = $request->txtNombreEmpresa;
+        $provider->calle = $request->txtCalle;
+        $provider->colonia = $request->txtColonia;
+        $provider->numExterior = $request->txtNumExterior;
+        $provider->numInterior = $request->txtNumInterior;
+        $provider->alcMun = $request->txtMunicipio;
+        $provider->estadoRep = $request->txtEstado;
+        $provider->cp = $request->txtCp;
+
+        $listNombreContacto = $request->get('tableNombre');
+        $listTelefonoContacto = $request->get('tableTelefono');
+        $listEmailContacto = $request->get('tableEmail');
 
         if($provider->save()){
+            while ($cont<count($listNombreContacto)) {
+                $contactProvider= new ContactProvider;
+                $contactProvider->nombre=$listNombreContacto[$cont];
+                $contactProvider->telefono=$listTelefonoContacto[$cont];
+                $contactProvider->email=$listEmailContacto[$cont];
+                $contactProvider->idProveedor=$provider->id;
+                $contactProvider->save();
+                $cont++;
+            }
             alert()->success('El registro se agregó correctamente', 'OK')->autoclose(2500);
         }else{
             alert()->error('Error al agregar el registro', 'Error')->autoclose(2500);
         }
-        //return view('inventory::proveedores.formularioProveedores');
-        return view('inventory::proveedores.listarProveedores');
-
+        return view('inventory::proveedores.agregarProveedor');
     }
 
     /**
@@ -123,7 +136,7 @@ class ProvidersController extends Controller
 
     public function changeStatus(Request $request)
     {
-        $provider = Provider::find($request->id);
+        $provider = Provider::find($request->txtIdProveedor);
         if($provider->estado==1){
             $provider->estado = 0;
         }else{

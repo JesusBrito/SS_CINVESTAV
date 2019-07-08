@@ -234,21 +234,21 @@
 
       function cambiarEstatusProveedor(id){
         if($('#estatus'+id).html().trim()=="Habilidado"){
-          var txtEstatusTemperatura = "Deshabilidado"
+          var txtEstatusProveedor = "Deshabilidado"
         }else{
-          var txtEstatusTemperatura = "Habilidado"
+          var txtEstatusProveedor = "Habilidado"
         }
         $.ajax({
           type: "PUT",
-          url: urlImport+"/inventory/temperature/change-status",
+          url: urlImport+"/inventory/provider/change-status",
           dataType: "json",
           data: {
             "_token": _token,
-            "txtIdTemperatura": id
+            "txtIdProveedor": id
           }
         }).done(function(resp){
           swal('Ok','Es estatus se modificó correctamente','info');
-          $('#estatus'+id).html(txtEstatusTemperatura)
+          $('#estatus'+id).html(txtEstatusProveedor)
           if($('#estatus'+id).html().trim()=="Habilidado"){
             $('#btn-des'+id).html('<i class="fa fa-eye-slash fa-lg" aria-hidden="true"></i>')
           }else{
@@ -276,7 +276,7 @@
               // código que elimina
               $.ajax({
                   type: "DELETE",
-                  url: urlImport+"/inventory/temperatures/"+id,
+                  url: urlImport+"/inventory/providers/"+id,
                   dataType: "json",
                   data: {
                       "_token": _token,

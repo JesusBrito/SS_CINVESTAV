@@ -22,14 +22,14 @@
         <div class="box-header with-border">
           <h3 class="box-title">Llene los siguientes campos</h3>
         </div>
-        <form method="POST" action="" role="form" enctype="multipart/form-data" id="userForm">
+        <form method="POST" action="{{ route('providers.store') }}" role="form" enctype="form-data" id="providerForm">
           @csrf
           <div class="box-body">
             <div class="col-md-6">
 
               <div class="form-group">
                 <label>Nombre de la empresa</label>
-                <input type="text" required class="form-control" name="txtNombre" placeholder="Nombre de la empresa">
+                <input type="text" required class="form-control" name="txtNombreEmpresa" placeholder="Nombre de la empresa">
               </div>
 
               <div class="form-group">
@@ -39,12 +39,12 @@
 
               <div class="form-group">
                 <label>Número exterior:</label>
-                <input type="text" required class="form-control" name="txtNumeroExterior" placeholder="Número exterior">
+                <input type="text" required class="form-control" name="txtNumExterior" placeholder="Número exterior">
               </div>
 
               <div class="form-group">
                 <label>Número interior:</label>
-                <input type="text" required class="form-control" name="txtNumeroInterior" placeholder="Número interior">
+                <input type="text" required class="form-control" name="txtNumInterior" placeholder="Número interior">
               </div>
             </div>
 
@@ -64,13 +64,13 @@
 
               <div class="form-group">
                 <label>Municipio:</label>
-                <input type="text" required class="form-control" id="txtMunicipio" name="txtMunicipio" disabled
+                <input type="text" required class="form-control" id="txtMunicipio" name="txtMunicipio" readonly="readonly"
                   placeholder="Municipio">
               </div>
 
               <div class="form-group">
                 <label>Estado:</label>
-                <input type="text" required class="form-control" id="txtEstado" name="txtEstado" disabled
+                <input type="text" required class="form-control" id="txtEstado" name="txtEstado" readonly="readonly"
                   placeholder="Estado">
               </div>
 
@@ -173,25 +173,22 @@
   var typingTimer
   var doneTypingInterval = 2000
   var counter = 1
-  var boolNombre = false
-  var boolTelefono = false
-  var boolEmail = false
-
-  $( "#spTelefono" ).hide()
-  $( "#spNombre" ).hide()
-  $( "#spEmail" ).hide()
-
-  $( "#fgNombre" ).removeClass( "has-error" );
-  $( "#fgEmail" ).removeClass( "has-error" );
-  $( "#fgTelefono" ).removeClass( "has-error" );
 
   $(".openModalAdd").click(function () {
-        var id = $(this).attr('data-id')
-        $('#inputEmpresa').val($('#nombreEmpresa'+id).html());
-        $('#inputCalle').val($('#calle'+id).html());
-        $('#inputIdProveedor').val(id);
-        $('#modalContact').modal('show');
-      });
+    $('#inputNombre').val("")
+    $('#inputTelefono').val("")
+    $('#inputEmail').val("")
+
+    $( "#spTelefono" ).hide()
+    $( "#spNombre" ).hide()
+    $( "#spEmail" ).hide()
+
+    $( "#fgNombre" ).removeClass( "has-error" );
+    $( "#fgEmail" ).removeClass( "has-error" );
+    $( "#fgTelefono" ).removeClass( "has-error" );
+
+    $('#modalContact').modal('show');
+  });
 
   //on keyup, start the countdown
   $('#txtCp').keyup(function(){
@@ -236,12 +233,10 @@
     if(validaNombre($('#inputNombre').val())){
         $( "#fgNombre" ).removeClass( "has-error" );
         $( "#spNombre" ).hide()
-        boolNombre = true
     }else{
         $( "#fgNombre" ).addClass( "has-error" );
         $( "#spNombre" ).show()
         $( "#spNombre" ).html("Ingrese un nombre valido")
-        boolNombre = false
     }
   });
 
@@ -275,8 +270,14 @@
     var nombre = $('#inputNombre').val()
     var telefono = $('#inputTelefono').val()
     var email = $('#inputEmail').val()
-    var fila = `<tr id="fila${counter}"><td name>${nombre}</td><td>${telefono}</td><td>${email}</td><td class="table-button-center"> <a class="btn boton-eliminar" onclick="eliminarFila(${counter})"><i class="fa fa-trash fa-lg"></i></a> </td></tr>`
-
+    var fila = 
+      `<tr id="fila${counter}">
+        <td><input type="hidden" name="tableNombre[]" class="form-control" value="${nombre}" placeholder="Nombre contacto">${nombre}</td>
+        <td><input type="hidden" name="tableTelefono[]" class="form-control" value="${telefono}" placeholder="Telefono de contacto">${telefono}</td>
+        <td><input type="hidden" name="tableEmail[]" class="form-control" value="${email}" placeholder="Correo de contacto">${email}</td>
+        <td class="table-button-center"> <a class="btn boton-eliminar" onclick="eliminarFila(${counter})"><i class="fa fa-trash fa-lg"></i></a></td>
+      </tr>`
+    
     if(!nombre || !telefono || !email){
       swal('Error','Debe llenar todos los campos','warning');
     }else if(!boolEmail||!boolTelefono||!boolEmail){
